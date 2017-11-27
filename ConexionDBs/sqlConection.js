@@ -17,6 +17,7 @@ var config = {
         rowCollectionOnDone: true
     }
 };
+
 //Código de error
 var SIN_CONEXION = 1;
 

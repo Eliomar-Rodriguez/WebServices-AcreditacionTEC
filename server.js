@@ -15,12 +15,15 @@ var dimensionCtrl = require('./Controladores/controladorDimensiones'); // contro
 var CYECtrl = require('./Controladores/controladorCYE'); // controlador de CYE
 var CYEACtrl = require('./Controladores/controladorCYEA'); // controlador de CYEA
 var UsuariosCtrl = require('./Controladores/controladorUsuarios'); // controlador de Usuarios
+
 /*
 ===============================================================================
 >  Configuraciones principales del servidor, con esto escucha las peticiones  <
 ===============================================================================
 */
+
 var bodyParser = require('body-parser');
+
 var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
@@ -32,17 +35,11 @@ app.use(bodyParser.json());
 
 app.use('/', express.static(__dirname + '/"Web Services"'));
 
-
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
-/*
-===========================================
->  Inicio de las direcciones (Endpoints)  <
-===========================================
 
 /** tipos de consulta, implementar!
  * post
@@ -50,6 +47,13 @@ app.use(function(req, res, next) {
  * put
  * delete
  */
+
+/*
+===========================================
+>  Inicio de las direcciones (Endpoints)  <
+===========================================
+*/
+
 /*
 ==================================
 >  EndPoints de los Componentes  < // bien todos
@@ -92,7 +96,7 @@ app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
 
 /*
 =====================================================
->     EndPoints de los Usuarios / Responsables      < // listos todos
+>     EndPoints de los Usuarios / Responsables      < // bien todos
 =====================================================
 */
 app.post('/insertUsuario', UsuariosCtrl.insertUsuario);
