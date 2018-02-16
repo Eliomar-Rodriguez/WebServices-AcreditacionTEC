@@ -87,6 +87,12 @@ app.post('/insertCYEA', CYEACtrl.insertCYEA);
 app.get('/selectCYEA', CYEACtrl.selectCYEA);
 app.post('/editCYEA', CYEACtrl.editCYEA);
 app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
+
+/*
+==================================
+>     EndPoints de      < // bien todos
+==================================
+*/
 /*
 ==================================================================================
 >  Pone el servidor en escucha de peticiones,lo levanta en el puerto requerido.  <
