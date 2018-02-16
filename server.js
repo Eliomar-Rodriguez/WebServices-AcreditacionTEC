@@ -14,6 +14,7 @@ var componenteCtrl = require('./Controladores/controladorComponentes'); // contr
 var dimensionCtrl = require('./Controladores/controladorDimensiones'); // controlador de Dimensiones
 var CYECtrl = require('./Controladores/controladorCYE'); // controlador de CYE
 var CYEACtrl = require('./Controladores/controladorCYEA'); // controlador de CYEA
+var NivelesIAECtrl = require('./Controladores/controladorNivelesIAE'); // controlador de NivelesIAE
 /*
 ===============================================================================
 >  Configuraciones principales del servidor, con esto escucha las peticiones  <
@@ -90,9 +91,13 @@ app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
 
 /*
 ==================================
->     EndPoints de      < // bien todos
+>     EndPoints de NivelesIAE    < // bien todos
 ==================================
 */
+app.post('/insertNivelIAE', NivelesIAECtrl.insertNivelIAE);
+app.get('/selectNivelIAE', NivelesIAECtrl.selectNivelIAE);
+app.post('/editNivelIAE', NivelesIAECtrl.editNivelIAE);
+app.post('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
 /*
 ==================================================================================
 >  Pone el servidor en escucha de peticiones,lo levanta en el puerto requerido.  <

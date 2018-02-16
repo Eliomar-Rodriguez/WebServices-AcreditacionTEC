@@ -4,15 +4,15 @@ var sqlConection = require('../ConexionDBs/sqlConection.js');
 
 /*
 ===========================
->  CRUD's de CYE          <
+>  CRUD's de NivelIAE     <
 >   - insert              <
 >   - select              <
 >   - edit                <
 >   - delete              <
 ===========================
 */
-exports.insertCYE = function insertCYE(datos, callback) {
-    var request = new Request('insertCYE', function(err) { // nombre de procedimiento en la base de datos
+exports.insertNivelIAE = function insertNivelIAE(datos, callback) {
+    var request = new Request('insertNivelIAE', function(err) { // nombre de procedimiento en la base de datos
         if (err) {
             callback({
                 success: false,
@@ -23,9 +23,7 @@ exports.insertCYE = function insertCYE(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_Componente', TYPES.Int, datos.ID_Componente);
-    request.addParameter('ID_Carrera', TYPES.Int, datos.ID_Carrera);
-    request.addParameter('Criterio', TYPES.VarChar, datos.Criterio);
+    request.addParameter('Nivel', TYPES.VarChar, datos.Nivel);
 
     request.addOutputParameter('success', TYPES.Bit);
     
@@ -34,8 +32,8 @@ exports.insertCYE = function insertCYE(datos, callback) {
     });
 }
 
-exports.selectCYE = function(callback) {  
-    var query = "SELECT * FROM CYE"; //Agregar procedimiento almacenado para esta consulta
+exports.selectNivelIAE = function(callback) {  
+    var query = "SELECT * FROM NivelesIAE"; //Agregar procedimiento almacenado para esta consulta
     var request = new Request(query, function(err) {
         if (err) {
             callback({
@@ -48,12 +46,12 @@ exports.selectCYE = function(callback) {
             });
         }
     });
-    // se usa executeRequest porque es el destinado para escribir consultas desde aca (StringQuery) en vez de llamar procedimientos almacenados
+    // se usa executeRequest porque es el destinado para escribir consultas desde aca en vez de llamar procedimientos almacenados
     sqlConection.executeRequest(request, callback); 
 }
 
-exports.editCYE = function editCYE(datos, callback) {
-    var request = new Request('editCYE', function(err) {
+exports.editNivelIAE = function editNivelIAE(datos, callback) {
+    var request = new Request('editNivelIAE', function(err) {
         if (err) {
             callback({
                 success: false,
@@ -65,20 +63,18 @@ exports.editCYE = function editCYE(datos, callback) {
         }
     });
 
-    request.addParameter('ID_CYE', TYPES.Int, datos.ID);
-    request.addParameter('ID_Componente', TYPES.Int, datos.ID_Componente);
-    request.addParameter('ID_Carrera', TYPES.Int, datos.ID_Carrera); 
-    request.addParameter('Criterio', TYPES.VarChar, datos.Criterio);
+    request.addParameter('ID_Nivel', TYPES.Int, datos.ID);
+    request.addParameter('Nivel', TYPES.VarChar, datos.Nivel); 
     
     request.addOutputParameter('success', TYPES.Bit);
 
     sqlConection.callProcedure(request, callback);
 };
 // DELETE 
-exports.deleteCYE = function deleteCYE(datos, callback) {
-    var request = new Request('deleteCYE', function(err) {
+exports.deleteNivelIAE = function deleteNivelIAE(datos, callback) {
+    var request = new Request('deleteNivelIAE', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el CYE";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el NivelIAE";
             callback({
                 success: false,
                 error: request.error,
@@ -88,7 +84,7 @@ exports.deleteCYE = function deleteCYE(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_CYE', TYPES.Int, datos.ID);
+    request.addParameter('ID_Nivel', TYPES.Int, datos.ID);
     
     request.addOutputParameter('success', TYPES.Bit);
 
