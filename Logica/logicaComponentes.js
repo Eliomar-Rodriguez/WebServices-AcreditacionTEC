@@ -37,7 +37,8 @@ exports.seleccionarComponente = function(callback) {
             msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar los componentes";
             callback({
                 success: true,
-                data: response.data
+                data: response.data,
+                error: response.error
             })
         } else {
             callback({

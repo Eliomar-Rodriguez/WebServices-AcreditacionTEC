@@ -33,8 +33,7 @@ exports.insertComponente = function insertComponente(datos, callback) {
 }
 
 exports.selectComponente = function(callback) {
-    var query = "SELECT C.ID,D.ID AS ID_Dimension,C.Componente,D.Dimension FROM Componentes AS C INNER JOIN Dimensiones AS D ON C.ID_Dimension = D.ID";
-    var request = new Request(query, function(err) {
+    var request = new Request("SELECT * FROM Componentes", function(err) {
         if (err) {
             callback({
                 success: false,
@@ -71,7 +70,7 @@ exports.editComponente = function editComponente(datos, callback) {
 
     sqlConection.callProcedure(request, callback);
 };
-
+// DELETE 
 exports.deleteComponente = function deleteComponente(datos, callback) {
     var request = new Request('deleteComponente', function(err) {
         if (err) {

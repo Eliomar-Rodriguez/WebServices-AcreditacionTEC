@@ -14,16 +14,12 @@ var componenteCtrl = require('./Controladores/controladorComponentes'); // contr
 var dimensionCtrl = require('./Controladores/controladorDimensiones'); // controlador de Dimensiones
 var CYECtrl = require('./Controladores/controladorCYE'); // controlador de CYE
 var CYEACtrl = require('./Controladores/controladorCYEA'); // controlador de CYEA
-var UsuariosCtrl = require('./Controladores/controladorUsuarios'); // controlador de Usuarios
-
 /*
 ===============================================================================
 >  Configuraciones principales del servidor, con esto escucha las peticiones  <
 ===============================================================================
 */
-
 var bodyParser = require('body-parser');
-
 var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
@@ -41,19 +37,17 @@ app.use(function(req, res, next) {
     next();
 });
 
-/** tipos de consulta, implementar!
- * post
- * get
- * put
- * delete
- */
-
 /*
 ===========================================
 >  Inicio de las direcciones (Endpoints)  <
 ===========================================
-*/
 
+/** tipos de consulta, implementar!
+ * post insert
+ * get  select
+ * put  edit
+ * delete   delete
+ */
 /*
 ==================================
 >  EndPoints de los Componentes  < // bien todos
@@ -93,17 +87,6 @@ app.post('/insertCYEA', CYEACtrl.insertCYEA);
 app.get('/selectCYEA', CYEACtrl.selectCYEA);
 app.post('/editCYEA', CYEACtrl.editCYEA);
 app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
-
-/*
-=====================================================
->     EndPoints de los Usuarios / Responsables      < // bien todos
-=====================================================
-*/
-app.post('/insertUsuario', UsuariosCtrl.insertUsuario);
-app.get('/selectUsuarios', UsuariosCtrl.selectUsuarios);
-app.post('/editUsuario', UsuariosCtrl.editUsuario);
-app.post('/deleteUsuario', UsuariosCtrl.deleteUsuario);
-
 /*
 ==================================================================================
 >  Pone el servidor en escucha de peticiones,lo levanta en el puerto requerido.  <

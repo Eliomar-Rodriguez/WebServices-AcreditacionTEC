@@ -29,21 +29,14 @@ exports.insertCYEA = function insertCYEA(datos, callback) {
     request.addParameter('FLOC', TYPES.Date, datos.Fecha);
 
     request.addOutputParameter('success', TYPES.Bit);
-    console.log(
-        "ID_CYE: " + datos.ID_CYE,
-        "ID_Reponsable: " + datos.ID_Responsable,
-        "CriterioAjustado: "+ datos.CriterioAjustado,
-        "Fecha: " + datos.Fecha
-    );
+    
     sqlConection.callProcedure(request, function(res) {
         callback(res);
     });
 }
 
 exports.selectCYEA = function(callback) {  
-    var query = "SELECT CA.ID,C.Criterio,CA.CriterioAjustado,CA.Observaciones,CA.Valoracion,U.NombreCompleto AS 'Responsable',U.Correo,CA.FLOC "+
-    "FROM CYEA AS CA INNER JOIN CYE AS C ON CA.ID_CYE_General = C.ID INNER JOIN Usuarios AS U ON U.ID = CA.ID_Responsable"; 
-    //Agregar procedimiento almacenado para esta consulta
+    var query = "SELECT * FROM CYEA"; //Agregar procedimiento almacenado para esta consulta
     var request = new Request(query, function(err) {
         if (err) {
             callback({
@@ -85,7 +78,7 @@ exports.editCYEA = function editCYEA(datos, callback) {
 
     sqlConection.callProcedure(request, callback);
 };
- 
+// DELETE 
 exports.deleteCYEA = function deleteCYEA(datos, callback) {
     var request = new Request('deleteCYEA', function(err) {
         if (err) {

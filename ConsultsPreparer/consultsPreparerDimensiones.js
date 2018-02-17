@@ -71,7 +71,7 @@ exports.editDimension = function editDimension(datos, callback) {
 
     sqlConection.callProcedure(request, callback);
 };
-
+// DELETE 
 exports.deleteDimension = function deleteDimension(datos, callback) {
     console.log("Lego a consprep");
     var request = new Request('deleteDimension', function(err) {

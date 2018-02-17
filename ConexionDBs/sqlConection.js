@@ -9,15 +9,14 @@ var Connection = require('tedious').Connection; // libreria necesaria para conec
 var config = {
     userName: 'sa',
     password: '12345',
-    server: 'localhost', // direccion del servidor donde esta la base de datos
+    server: 'localhost', // direccion del servidor
     options: {
-        database: 'ProyectoAcreditacionTEC',
+        database: 'AcreditacionTEC',
         driver: 'SQL Server Native Client 11.0',
         port: 1433,
         rowCollectionOnDone: true
     }
 };
-
 //Código de error
 var SIN_CONEXION = 1;
 
@@ -112,7 +111,7 @@ exports.executeRequest = function executeRequest(request, callback) {
  * @param {function} callback
  */
 exports.callProcedure = function callProcedure(request, callback) {
-    console.log("sqlconection");
+    console.log("sqlconcets");
     try {
         'use strict';
         var res = [],

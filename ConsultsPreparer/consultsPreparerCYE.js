@@ -37,7 +37,7 @@ exports.insertCYE = function insertCYE(datos, callback) {
 }
 
 exports.selectCYE = function(callback) {  
-    var query = "SELECT C.ID,C.ID_Componente,C.Criterio,Co.Componente FROM CYE AS C INNER JOIN Componentes AS Co ON C.ID_Componente = Co.ID"; //Agregar procedimiento almacenado para esta consulta
+    var query = "SELECT * FROM CYE"; //Agregar procedimiento almacenado para esta consulta
     var request = new Request(query, function(err) {
         if (err) {
             callback({
@@ -55,12 +55,6 @@ exports.selectCYE = function(callback) {
 }
 
 exports.editCYE = function editCYE(datos, callback) {
-    console.log(
-        "\nID : "+ datos.ID,
-        "\nID_Componente: " + datos.ID_Componente,
-        "\nCriterio: " + datos.Criterio,
-        "\n"
-    );
     var request = new Request('editCYE', function(err) {
         if (err) {
             callback({
@@ -81,7 +75,7 @@ exports.editCYE = function editCYE(datos, callback) {
 
     sqlConection.callProcedure(request, callback);
 };
-
+// DELETE 
 exports.deleteCYE = function deleteCYE(datos, callback) {
     var request = new Request('deleteCYE', function(err) {
         if (err) {

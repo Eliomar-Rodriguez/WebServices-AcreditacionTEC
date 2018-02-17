@@ -36,7 +36,6 @@ exports.seleccionarCYE = function(callback) {
         if (response.success) {
             msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar los CYEs";
             callback({
-                success: true,
                 data: response.data           
             })
         } else {
