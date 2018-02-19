@@ -9,7 +9,7 @@ var Connection = require('tedious').Connection; // libreria necesaria para conec
 var config = {
     userName: 'sa',
     password: '12345',
-    server: 'localhost', // direccion del servidor
+    server: '172.24.47.57', // direccion del servidor
     options: {
         database: 'AcreditacionTEC',
         driver: 'SQL Server Native Client 11.0',
