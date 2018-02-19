@@ -18,7 +18,6 @@ exports.editComponente = function(rRequest, rResponse){
 };
 
 exports.selectComponente = function(rRequest, rResponse){
-    console.log('hola xD');
     logicaComponente.seleccionarComponente(function(data){
         rResponse.send(data.data);
     })
