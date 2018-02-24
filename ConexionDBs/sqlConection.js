@@ -6,7 +6,7 @@ var Connection = require('tedious').Connection; // libreria necesaria para conec
 >   Cambiar esto por la configuraciones del servidor en producción  <
 =====================================================================
 */
-var config = {
+var config = { // cambia cuando se monte en el servidor
     userName: 'sa',
     password: '12345',
     server: 'localhost', // direccion del servidor
