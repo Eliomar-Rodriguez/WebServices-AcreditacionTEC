@@ -111,7 +111,6 @@ exports.executeRequest = function executeRequest(request, callback) {
  * @param {function} callback
  */
 exports.callProcedure = function callProcedure(request, callback) {
-    console.log("sqlconcets");
     try {
         'use strict';
         var res = [],

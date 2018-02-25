@@ -15,6 +15,7 @@ var dimensionCtrl = require('./Controladores/controladorDimensiones'); // contro
 var CYECtrl = require('./Controladores/controladorCYE'); // controlador de CYE
 var CYEACtrl = require('./Controladores/controladorCYEA'); // controlador de CYEA
 var NivelesIAECtrl = require('./Controladores/controladorNivelesIAE'); // controlador de NivelesIAE
+var CumpliNominCtrl = require('./Controladores/controladorCumpliNomin'); // controlador de Cumplimientos Nominales
 /*
 ===============================================================================
 >  Configuraciones principales del servidor, con esto escucha las peticiones  <
@@ -98,10 +99,21 @@ app.post('/insertNivelIAE', NivelesIAECtrl.insertNivelIAE);
 app.get('/selectNivelIAE', NivelesIAECtrl.selectNivelIAE);
 app.post('/editNivelIAE', NivelesIAECtrl.editNivelIAE);
 app.post('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
+
 /*
-==================================================================================
->  Pone el servidor en escucha de peticiones,lo levanta en el puerto requerido.  <
-==================================================================================
+===============================================
+>     EndPoints de Cumplimientos Nominales    < // bien todos
+===============================================
+*/
+app.post('/insertCumpliNomin', CumpliNominCtrl.insertCumpliNomin);
+app.get('/selectCumpliNomin', CumpliNominCtrl.selectCumpliNomin);
+app.post('/editCumpliNomin', CumpliNominCtrl.editCumpliNomin);
+app.post('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
+
+/*
+======================================================================================
+>  Pone el servidor en escucha de peticiones, lo levanta en el puerto especificado.  <
+======================================================================================
 */
 server.listen(port, function() {
     console.log('Servidor escuchando en el puerto: ' + port);
