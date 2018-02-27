@@ -16,6 +16,8 @@ var CYECtrl = require('./Controladores/controladorCYE'); // controlador de CYE
 var CYEACtrl = require('./Controladores/controladorCYEA'); // controlador de CYEA
 var NivelesIAECtrl = require('./Controladores/controladorNivelesIAE'); // controlador de NivelesIAE
 var CumpliNominCtrl = require('./Controladores/controladorCumpliNomin'); // controlador de Cumplimientos Nominales
+var ValoracionesCtrl = require('./Controladores/controladorValoracion'); // controlador de Valoraciones
+
 /*
 ===============================================================================
 >  Configuraciones principales del servidor, con esto escucha las peticiones  <
@@ -57,8 +59,8 @@ app.use(function(req, res, next) {
 */
 app.post('/insertComponente', componenteCtrl.insertComponente);
 app.get('/selectComponentes', componenteCtrl.selectComponente);
-app.post('/editComponente', componenteCtrl.editComponente);
-app.post('/deleteComponente', componenteCtrl.deleteComponente);
+app.put('/editComponente', componenteCtrl.editComponente);
+app.delete('/deleteComponente', componenteCtrl.deleteComponente);
 
 /*
 ==================================
@@ -67,8 +69,8 @@ app.post('/deleteComponente', componenteCtrl.deleteComponente);
 */
 app.post('/insertDimension', dimensionCtrl.insertDimension);
 app.get('/selectDimensiones', dimensionCtrl.selectDimension);
-app.post('/editDimension', dimensionCtrl.editDimension);
-app.post('/deleteDimension', dimensionCtrl.deleteDimension);
+app.put('/editDimension', dimensionCtrl.editDimension);
+app.delete('/deleteDimension', dimensionCtrl.deleteDimension);
 
 /*
 ==================================
@@ -77,18 +79,18 @@ app.post('/deleteDimension', dimensionCtrl.deleteDimension);
 */
 app.post('/insertCYE', CYECtrl.insertCYE);
 app.get('/selectCYE', CYECtrl.selectCYE);
-app.post('/editCYE', CYECtrl.editCYE);
-app.post('/deleteCYE', CYECtrl.deleteCYE);
+app.put('/editCYE', CYECtrl.editCYE);
+app.delete('/deleteCYE', CYECtrl.deleteCYE);
 
 /*
 ==================================
->     EndPoints de los CYEA      < // bien todos
+>     EndPoints de los CYEA      < // bien todos            NO ESTA COMPLETO!!!!!!!
 ==================================
 */
 app.post('/insertCYEA', CYEACtrl.insertCYEA);
 app.get('/selectCYEA', CYEACtrl.selectCYEA);
-app.post('/editCYEA', CYEACtrl.editCYEA);
-app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
+app.put('/editCYEA', CYEACtrl.editCYEA);
+app.delete('/deleteCYEA', CYEACtrl.deleteCYEA);
 
 /*
 ==================================
@@ -97,8 +99,8 @@ app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
 */
 app.post('/insertNivelIAE', NivelesIAECtrl.insertNivelIAE);
 app.get('/selectNivelIAE', NivelesIAECtrl.selectNivelIAE);
-app.post('/editNivelIAE', NivelesIAECtrl.editNivelIAE);
-app.post('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
+app.put('/editNivelIAE', NivelesIAECtrl.editNivelIAE);
+app.delete('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
 
 /*
 ===============================================
@@ -107,8 +109,19 @@ app.post('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
 */
 app.post('/insertCumpliNomin', CumpliNominCtrl.insertCumpliNomin);
 app.get('/selectCumpliNomin', CumpliNominCtrl.selectCumpliNomin);
-app.post('/editCumpliNomin', CumpliNominCtrl.editCumpliNomin);
-app.post('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
+app.put('/editCumpliNomin', CumpliNominCtrl.editCumpliNomin);
+app.delete('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
+
+/*
+====================================
+>     EndPoints de Valoraciones    < // bien todos
+====================================
+*/
+app.post('/insertValoracion', ValoracionesCtrl.insertValoracion);
+app.get('/selectValoracion', ValoracionesCtrl.selectValoracion);
+app.put('/editValoracion', ValoracionesCtrl.editValoracion);
+app.delete('/deleteValoracion', ValoracionesCtrl.deleteValoracion);
+
 
 /*
 ======================================================================================

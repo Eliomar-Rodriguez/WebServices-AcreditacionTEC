@@ -62,7 +62,6 @@ exports.editCumpliNomin = function editCumpliNomin(datos, callback) {
             })
         }
     });
-    console.log(datos.ID + "\n" + datos.FechaCumplimiento);
     request.addParameter('ID_CumpliNominal', TYPES.Int, datos.ID);
     request.addParameter('FechaCumplimiento', TYPES.Date, datos.FechaCumplimiento); 
     

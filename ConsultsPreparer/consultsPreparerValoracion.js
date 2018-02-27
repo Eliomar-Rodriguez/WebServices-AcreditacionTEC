@@ -4,28 +4,26 @@ var sqlConection = require('../ConexionDBs/sqlConection.js');
 
 /*
 ===========================
->  CRUD's de Usuarios     <
+>  CRUD's de Valoracion   <
 >   - insert              <
 >   - select              <
 >   - edit                <
 >   - delete              <
 ===========================
 */
-exports.insertUsuario = function insertUsuario(datos, callback) {
-    var request = new Request('insertUsuario', function(err) { // nombre de procedimiento en la base de datos
+exports.insertValoracion = function insertValoracion(datos, callback) {
+    var request = new Request('insertValoracion', function(err) { // nombre de procedimiento en la base de datos
         if (err) {
             callback({
                 success: false,
                 error: request.error,
                 title: "Error",
-                message: "Sucedio un error en la inserción de los datos",
+                message: "Sucedió un error en la inserción de los datos",
                 type: "error"
             })
         }
     });
-    request.addParameter('Correo', TYPES.VarChar, datos.Correo);
-    request.addParameter('NombreCompleto', TYPES.VarChar, datos.NombreCompleto);
-    request.addParameter('Tipo', TYPES.Int, datos.Tipo);
+    request.addParameter('Valoracion', TYPES.VarChar, datos.Valoracion);
 
     request.addOutputParameter('success', TYPES.Bit);
     
@@ -34,8 +32,8 @@ exports.insertUsuario = function insertUsuario(datos, callback) {
     });
 }
 
-exports.selectUsuarios = function(callback) {  
-    var query = "SELECT * FROM Usuarios"; //Agregar procedimiento almacenado para esta consulta
+exports.selectValoracion = function(callback) {  
+    var query = "SELECT * FROM Valoraciones"; //Agregar procedimiento almacenado para esta consulta
     var request = new Request(query, function(err) {
         if (err) {
             callback({
@@ -52,8 +50,8 @@ exports.selectUsuarios = function(callback) {
     sqlConection.executeRequest(request, callback); 
 }
 
-exports.editUsuario = function editUsuario(datos, callback) {
-    var request = new Request('editUsuario', function(err) {
+exports.editValoracion = function editValoracion(datos, callback) {
+    var request = new Request('editValoracion', function(err) {
         if (err) {
             callback({
                 success: false,
@@ -65,20 +63,18 @@ exports.editUsuario = function editUsuario(datos, callback) {
         }
     });
 
-    request.addParameter('ID', TYPES.Int, datos.ID);
-    request.addParameter('Correo', TYPES.VarChar, datos.Correo);
-    request.addParameter('NombreCompleto', TYPES.VarChar, datos.NombreCompleto);
-    request.addParameter('Tipo', TYPES.Int, datos.Tipo);
+    request.addParameter('ID_Valoracion', TYPES.Int, datos.ID);
+    request.addParameter('Valoracion', TYPES.VarChar, datos.Valoracion); 
     
     request.addOutputParameter('success', TYPES.Bit);
 
     sqlConection.callProcedure(request, callback);
 };
-
-exports.deleteUsuario = function deleteUsuario(datos, callback) {
-    var request = new Request('deleteUsuario', function(err) {
+// DELETE 
+exports.deleteValoracion = function deleteValoracion(datos, callback) {
+    var request = new Request('deleteValoracion', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el usuario";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar la Valoración";
             callback({
                 success: false,
                 error: request.error,
@@ -88,7 +84,7 @@ exports.deleteUsuario = function deleteUsuario(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_Usuario', TYPES.Int, datos.ID);
+    request.addParameter('ID_Valoracion', TYPES.Int, datos.ID);
     
     request.addOutputParameter('success', TYPES.Bit);
 

@@ -6,7 +6,6 @@
 var logicaCumpliNomin = require('../Logica/logicaCumpliNomin.js');
 
 exports.insertCumpliNomin = function(rRequest, rResponse){
-    console.log(rRequest.query.FechaCumplimiento);
     logicaCumpliNomin.insertarCumpliNomin(rRequest.query, function(data){
         rResponse.send(data);
     })
