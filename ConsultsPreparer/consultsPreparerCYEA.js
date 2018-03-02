@@ -4,7 +4,7 @@ var sqlConection = require('../ConexionDBs/sqlConection.js');
 
 /*
 ===========================
->  CRUD's de CYEA          <
+>  CRUD's de CYEA         <
 >   - insert              <
 >   - select              <
 >   - edit                <
@@ -82,7 +82,7 @@ exports.editCYEA = function editCYEA(datos, callback) {
 exports.deleteCYEA = function deleteCYEA(datos, callback) {
     var request = new Request('deleteCYEA', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar la dimensión";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el CYEA";
             callback({
                 success: false,
                 error: request.error,

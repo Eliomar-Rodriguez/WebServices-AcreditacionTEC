@@ -4,15 +4,15 @@ var sqlConection = require('../ConexionDBs/sqlConection.js');
 
 /*
 ===========================
->  CRUD's de CYE          <
+>  CRUD's de Evidencia    <
 >   - insert              <
 >   - select              <
 >   - edit                <
 >   - delete              <
 ===========================
 */
-exports.insertCYE = function insertCYE(datos, callback) {
-    var request = new Request('insertCYE', function(err) { // nombre de procedimiento en la base de datos
+exports.insertEvidencia = function insertEvidencia(datos, callback) {
+    var request = new Request('insertEvidencia', function(err) { // nombre de procedimiento en la base de datos
         if (err) {
             callback({
                 success: false,
@@ -23,9 +23,8 @@ exports.insertCYE = function insertCYE(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_Componente', TYPES.Int, datos.ID_Componente);
-    request.addParameter('ID_Carrera', TYPES.Int, datos.ID_Carrera);
-    request.addParameter('Criterio', TYPES.VarChar, datos.Criterio);
+    request.addParameter('TipoEvidencia', TYPES.Int, datos.TipoEvidencia);
+    request.addParameter('URL', TYPES.VarChar, datos.URL);
 
     request.addOutputParameter('success', TYPES.Bit);
     
@@ -34,8 +33,8 @@ exports.insertCYE = function insertCYE(datos, callback) {
     });
 }
 
-exports.selectCYE = function(callback) { 
-    var query = "SELECT CYE.ID AS ID_CYE,C.ID AS ID_Componente,C.Componente,CA.ID AS ID_Carrera,CA.Carrera,CYE.Criterio FROM CYE INNER JOIN (SELECT * FROM Componentes) AS C ON CYE.ID_Componente = C.ID INNER JOIN Carreras AS CA ON CA.ID = CYE.ID_Carrera";
+exports.selectEvidencia = function(callback) {  
+    var query = "SELECT * FROM Evidencias"; //Agregar procedimiento almacenado para esta consulta
     var request = new Request(query, function(err) {
         if (err) {
             callback({
@@ -48,12 +47,12 @@ exports.selectCYE = function(callback) {
             });
         }
     });
-    // se usa executeRequest porque es el destinado para escribir consultas desde aca (StringQuery) en vez de llamar procedimientos almacenados
+    // se usa executeRequest porque es el destinado para escribir consultas desde aca en vez de llamar procedimientos almacenados
     sqlConection.executeRequest(request, callback); 
 }
 
-exports.editCYE = function editCYE(datos, callback) {
-    var request = new Request('editCYE', function(err) {
+exports.editEvidencia = function editEvidencia(datos, callback) {
+    var request = new Request('editEvidencia', function(err) {
         if (err) {
             callback({
                 success: false,
@@ -65,20 +64,19 @@ exports.editCYE = function editCYE(datos, callback) {
         }
     });
 
-    request.addParameter('ID_CYE', TYPES.Int, datos.ID);
-    request.addParameter('ID_Componente', TYPES.Int, datos.ID_Componente);
-    request.addParameter('ID_Carrera', TYPES.Int, datos.ID_Carrera); 
-    request.addParameter('Criterio', TYPES.VarChar, datos.Criterio);
+    request.addParameter('ID_Evidencia', TYPES.Int, datos.ID);
+    request.addParameter('TipoEvidencia', TYPES.Int, datos.TipoEvidencia);
+    request.addParameter('URL', TYPES.VarChar, datos.URL);
     
     request.addOutputParameter('success', TYPES.Bit);
 
     sqlConection.callProcedure(request, callback);
 };
 // DELETE 
-exports.deleteCYE = function deleteCYE(datos, callback) {
-    var request = new Request('deleteCYE', function(err) {
+exports.deleteEvidencia = function deleteEvidencia(datos, callback) {
+    var request = new Request('deleteEvidencia', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el CYE";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar la evidencia";
             callback({
                 success: false,
                 error: request.error,
@@ -88,7 +86,7 @@ exports.deleteCYE = function deleteCYE(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_CYE', TYPES.Int, datos.ID);
+    request.addParameter('ID_Evidencia', TYPES.Int, datos.ID);
     
     request.addOutputParameter('success', TYPES.Bit);
 

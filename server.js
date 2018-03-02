@@ -17,6 +17,7 @@ var CYEACtrl = require('./Controladores/controladorCYEA'); // controlador de CYE
 var NivelesIAECtrl = require('./Controladores/controladorNivelesIAE'); // controlador de NivelesIAE
 var CumpliNominCtrl = require('./Controladores/controladorCumpliNomin'); // controlador de Cumplimientos Nominales
 var ValoracionesCtrl = require('./Controladores/controladorValoracion'); // controlador de Valoraciones
+var EvidenciasCtrl = require('./Controladores/controladorEvidencias'); // controlador de Evidencias
 
 /*
 ===============================================================================
@@ -122,6 +123,16 @@ app.post('/insertValoracion', ValoracionesCtrl.insertValoracion);
 app.get('/selectValoracion', ValoracionesCtrl.selectValoracion);
 app.post('/editValoracion', ValoracionesCtrl.editValoracion);
 app.post('/deleteValoracion', ValoracionesCtrl.deleteValoracion);
+
+/*
+==================================
+>     EndPoints de Evidencias    < // bien todos
+==================================
+*/
+app.post('/insertEvidencia', EvidenciasCtrl.insertEvidencia);
+app.get('/selectEvidencias', EvidenciasCtrl.selectEvidencias);
+app.post('/editEvidencia', EvidenciasCtrl.editEvidencia);
+app.post('/deleteEvidencia', EvidenciasCtrl.deleteEvidencia);
 
 
 /*
