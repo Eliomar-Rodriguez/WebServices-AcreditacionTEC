@@ -33,7 +33,8 @@ exports.insertComponente = function insertComponente(datos, callback) {
 }
 
 exports.selectComponente = function(callback) {
-    var request = new Request("SELECT * FROM Componentes", function(err) {
+    var query = "SELECT C.ID as ID_Componente, C.Componente, D.Dimension FROM Componentes AS C INNER JOIN (SELECT * FROM Dimensiones) AS D ON C.ID_Dimension = D.ID";
+    var request = new Request(query, function(err) {
         if (err) {
             callback({
                 success: false,

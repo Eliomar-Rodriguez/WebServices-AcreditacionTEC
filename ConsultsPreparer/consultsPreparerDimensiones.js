@@ -32,8 +32,7 @@ exports.insertDimension = function insertDimension(datos, callback) {
     });
 }
 
-exports.selectDimension = function(callback) {   
-    console.log('Preparar consulta'); 
+exports.selectDimension = function(callback) {  
     var query = "SELECT * FROM Dimensiones"; //Agregar procedimiento almacenado para esta consulta
     var request = new Request(query, function(err) {
         if (err) {

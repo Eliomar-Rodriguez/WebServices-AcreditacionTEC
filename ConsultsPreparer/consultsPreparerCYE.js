@@ -34,8 +34,8 @@ exports.insertCYE = function insertCYE(datos, callback) {
     });
 }
 
-exports.selectCYE = function(callback) {  
-    var query = "SELECT * FROM CYE"; //Agregar procedimiento almacenado para esta consulta
+exports.selectCYE = function(callback) { 
+    var query = "SELECT CYE.ID,C.Componente,CA.Carrera,CYE.Criterio FROM CYE INNER JOIN (SELECT * FROM Componentes) AS C ON CYE.ID_Componente = C.ID INNER JOIN Carreras AS CA ON CA.ID = CYE.ID_Carrera";
     var request = new Request(query, function(err) {
         if (err) {
             callback({

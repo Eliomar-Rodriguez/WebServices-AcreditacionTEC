@@ -52,35 +52,6 @@ app.use(function(req, res, next) {
  * put  edit
  * delete   delete
  */
-/*
-==================================
->  EndPoints de los Componentes  < // bien todos
-==================================
-*/
-app.post('/insertComponente', componenteCtrl.insertComponente);
-app.get('/selectComponentes', componenteCtrl.selectComponente);
-app.put('/editComponente', componenteCtrl.editComponente);
-app.delete('/deleteComponente', componenteCtrl.deleteComponente);
-
-/*
-==================================
->  EndPoints de los Dimensiones  < // bien todos
-==================================
-*/
-app.post('/insertDimension', dimensionCtrl.insertDimension);
-app.get('/selectDimensiones', dimensionCtrl.selectDimension);
-app.put('/editDimension', dimensionCtrl.editDimension);
-app.delete('/deleteDimension', dimensionCtrl.deleteDimension);
-
-/*
-==================================
->     EndPoints de los CYE       < // bien todos
-==================================
-*/
-app.post('/insertCYE', CYECtrl.insertCYE);
-app.get('/selectCYE', CYECtrl.selectCYE);
-app.put('/editCYE', CYECtrl.editCYE);
-app.delete('/deleteCYE', CYECtrl.deleteCYE);
 
 /*
 ==================================
@@ -89,8 +60,38 @@ app.delete('/deleteCYE', CYECtrl.deleteCYE);
 */
 app.post('/insertCYEA', CYEACtrl.insertCYEA);
 app.get('/selectCYEA', CYEACtrl.selectCYEA);
-app.put('/editCYEA', CYEACtrl.editCYEA);
-app.delete('/deleteCYEA', CYEACtrl.deleteCYEA);
+app.post('/editCYEA', CYEACtrl.editCYEA);
+app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
+
+/*
+==================================
+>  EndPoints de los Componentes  < // bien todos
+==================================
+*/
+app.post('/insertComponente', componenteCtrl.insertComponente);
+app.get('/selectComponentes', componenteCtrl.selectComponente);
+app.post('/editComponente', componenteCtrl.editComponente);
+app.post('/deleteComponente', componenteCtrl.deleteComponente);
+
+/*
+==================================
+>  EndPoints de los Dimensiones  < // bien todos
+==================================
+*/
+app.post('/insertDimension', dimensionCtrl.insertDimension);
+app.get('/selectDimensiones', dimensionCtrl.selectDimension);
+app.post('/editDimension', dimensionCtrl.editDimension);
+app.post('/deleteDimension', dimensionCtrl.deleteDimension);
+
+/*
+==================================
+>     EndPoints de los CYE       < // bien todos
+==================================
+*/
+app.post('/insertCYE', CYECtrl.insertCYE);
+app.get('/selectCYE', CYECtrl.selectCYE);
+app.post('/editCYE', CYECtrl.editCYE);
+app.post('/deleteCYE', CYECtrl.deleteCYE);
 
 /*
 ==================================
@@ -99,8 +100,8 @@ app.delete('/deleteCYEA', CYEACtrl.deleteCYEA);
 */
 app.post('/insertNivelIAE', NivelesIAECtrl.insertNivelIAE);
 app.get('/selectNivelIAE', NivelesIAECtrl.selectNivelIAE);
-app.put('/editNivelIAE', NivelesIAECtrl.editNivelIAE);
-app.delete('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
+app.post('/editNivelIAE', NivelesIAECtrl.editNivelIAE);
+app.post('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
 
 /*
 ===============================================
@@ -109,8 +110,8 @@ app.delete('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
 */
 app.post('/insertCumpliNomin', CumpliNominCtrl.insertCumpliNomin);
 app.get('/selectCumpliNomin', CumpliNominCtrl.selectCumpliNomin);
-app.put('/editCumpliNomin', CumpliNominCtrl.editCumpliNomin);
-app.delete('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
+app.post('/editCumpliNomin', CumpliNominCtrl.editCumpliNomin);
+app.post('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
 
 /*
 ====================================
@@ -119,8 +120,8 @@ app.delete('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
 */
 app.post('/insertValoracion', ValoracionesCtrl.insertValoracion);
 app.get('/selectValoracion', ValoracionesCtrl.selectValoracion);
-app.put('/editValoracion', ValoracionesCtrl.editValoracion);
-app.delete('/deleteValoracion', ValoracionesCtrl.deleteValoracion);
+app.post('/editValoracion', ValoracionesCtrl.editValoracion);
+app.post('/deleteValoracion', ValoracionesCtrl.deleteValoracion);
 
 
 /*

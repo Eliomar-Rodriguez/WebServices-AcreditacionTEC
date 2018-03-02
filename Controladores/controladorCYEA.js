@@ -12,7 +12,7 @@ exports.insertCYEA = function(rRequest, rResponse){
 };
 
 exports.editCYEA = function(rRequest, rResponse){
-    logicaCYEA.editarCYEA(rRequest.query, function(data){
+    logicaCYEA.editarCYEA(rRequest.body, function(data){
         rResponse.send(data);
     });
 };

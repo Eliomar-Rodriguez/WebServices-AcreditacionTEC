@@ -6,13 +6,13 @@
 var logicaValoracion = require('../Logica/logicaValoracion.js');
 
 exports.insertValoracion = function(rRequest, rResponse){
-    logicaValoracion.insertarValoracion(rRequest.query, function(data){
+    logicaValoracion.insertarValoracion(rRequest.body, function(data){
         rResponse.send(data);
     })
 };
 
 exports.editValoracion = function(rRequest, rResponse){
-    logicaValoracion.editarValoracion(rRequest.query, function(data){
+    logicaValoracion.editarValoracion(rRequest.body, function(data){
         rResponse.send(data);
     });
 };
@@ -24,7 +24,7 @@ exports.selectValoracion = function(rRequest, rResponse){
 };
 
 exports.deleteValoracion = function(rRequest, rResponse){
-    logicaValoracion.eliminarValoracion(rRequest.query, function(data){
+    logicaValoracion.eliminarValoracion(rRequest.body, function(data){
         rResponse.send(data);
     });
 };

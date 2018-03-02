@@ -6,6 +6,7 @@
 var logicaComponente = require('../Logica/logicaComponentes.js');
 
 exports.insertComponente = function(rRequest, rResponse){
+    console.log(rRequest.body);
     logicaComponente.insertarComponente(rRequest.body, function(data){
         rResponse.send(data);
     })
@@ -24,6 +25,7 @@ exports.selectComponente = function(rRequest, rResponse){
 };
 
 exports.deleteComponente = function(rRequest, rResponse){
+    console.log(rRequest.body);
     logicaComponente.eliminarComponente(rRequest.body, function(data){
         rResponse.send(data);
     });
