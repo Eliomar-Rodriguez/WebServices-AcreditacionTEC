@@ -93,7 +93,9 @@ exports.executeRequest = function executeRequest(request, callback) {
         });
 
         request.on('doneProc', function (rowCount, more, rows) { // si el tipo de exito es doneProc llena callback
+            console.log('\n>>>\nRESPONSE:');
             console.log(res);
+            console.log('>>>');
             callback({
                 success: true,
                 data: res,
@@ -164,6 +166,6 @@ exports.callProcedure = function callProcedure(request, callback) {
             connection.callProcedure(request);
         });
     } catch (error) {
-        console.log(error);
+        console.log('Error:' + error);
     }    
 };

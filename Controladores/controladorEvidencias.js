@@ -19,7 +19,7 @@ exports.editEvidencia = function(rRequest, rResponse){
 
 exports.selectEvidencias = function(rRequest, rResponse){
     logicaEvidencia.seleccionarEvidencia(function(data){
-        rResponse.send(data.data);
+        rResponse.send(data);
     })
 };
 

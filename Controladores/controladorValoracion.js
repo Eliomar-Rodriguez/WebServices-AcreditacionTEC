@@ -6,7 +6,7 @@
 var logicaValoracion = require('../Logica/logicaValoracion.js');
 
 exports.insertValoracion = function(rRequest, rResponse){
-    logicaValoracion.insertarValoracion(rRequest.body, function(data){
+    logicaValoracion.insertarValoracion(rRequest.query, function(data){
         rResponse.send(data);
     })
 };
@@ -19,7 +19,7 @@ exports.editValoracion = function(rRequest, rResponse){
 
 exports.selectValoracion = function(rRequest, rResponse){
     logicaValoracion.seleccionarValoracion(function(data){
-        rResponse.send(data.data);
+        rResponse.send(data);
     })
 };
 

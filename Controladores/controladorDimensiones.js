@@ -19,7 +19,7 @@ exports.editDimension = function(rRequest, rResponse){
 
 exports.selectDimension = function(rRequest, rResponse){
     logicaDimension.seleccionarDimension(function(data){
-        rResponse.send(data.data);
+        rResponse.send(data);
     })
 };
 

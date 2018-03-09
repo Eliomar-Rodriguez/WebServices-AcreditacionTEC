@@ -19,7 +19,7 @@ exports.editNivelIAE = function(rRequest, rResponse){
 
 exports.selectNivelIAE = function(rRequest, rResponse){
     logicaNivelesIAE.seleccionarNivelIAE(function(data){
-        rResponse.send(data.data);
+        rResponse.send(data);
     })
 };
 

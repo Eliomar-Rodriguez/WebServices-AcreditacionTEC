@@ -1,6 +1,6 @@
 /*
 ================================================
->      Controlador de las CYE del sistema      <
+>      Controlador de los CYE del sistema      <
 ================================================
 */
 var logicaCYE = require('../Logica/logicaCYE.js');
@@ -19,7 +19,7 @@ exports.editCYE = function(rRequest, rResponse){
 
 exports.selectCYE = function(rRequest, rResponse){
     logicaCYE.seleccionarCYE(function(data){
-        rResponse.send(data.data);
+        rResponse.send(data);
     })
 };
 

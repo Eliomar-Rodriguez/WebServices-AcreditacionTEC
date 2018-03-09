@@ -9,7 +9,6 @@ var consultsPreparerNivelesIAE = require('../ConsultsPreparer/consultsPreparerNi
 // inserta NivelIAE
 exports.insertarNivelIAE = function(datos, callback) {
     consultsPreparerNivelesIAE.insertNivelIAE(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "No se pudo insertar el NivelIAE";
         if (response.success) {
             callback({
                 success: true,
@@ -21,8 +20,8 @@ exports.insertarNivelIAE = function(datos, callback) {
         } else {
             callback({
                 success: false,
-                message: msg,
-                title: "Error",
+                message: "Ya existe el Nivel de avance IAE que desea insertar.",
+                title: "Nivel de avance IAE duplicado",
                 error: response.error,
                 type: "error"
             })
@@ -34,14 +33,19 @@ exports.insertarNivelIAE = function(datos, callback) {
 exports.seleccionarNivelIAE = function(callback) {
     consultsPreparerNivelesIAE.selectNivelIAE( function(response) {
         if (response.success) {
-            msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar los NivelIAEs";
             callback({
+                success: true,
+                error: response.error,
+                title: "Selección exitosa.",
+                message: "La selección de todos los Niveles de Avance IAE a sido exitosa",
+                type: "success",
                 data: response.data           
             })
         } else {
             callback({
                 success: false,
                 title: "Error",
+                message: "No se pudo seleccionar los NivelIAEs",
                 error: response.error,
                 type: "error"
             })
@@ -52,7 +56,6 @@ exports.seleccionarNivelIAE = function(callback) {
 // editar NivelIAE
 exports.editarNivelIAE = function(datos, callback) {
     consultsPreparerNivelesIAE.editNivelIAE(datos, function(response) {
-        msg = (response.error === 1) ? "Error de conexión" : "No se pudo modificar el NivelIAE";
         if (response.success) {
             callback({
                 success: true,
@@ -64,7 +67,7 @@ exports.editarNivelIAE = function(datos, callback) {
         } else {
             callback({
                 success: false,
-                message: msg,
+                message: "No se pudo modificar el NivelIAE",
                 title: "Error",
                 error: response.error,
                 type: "error"
@@ -76,7 +79,6 @@ exports.editarNivelIAE = function(datos, callback) {
 // eliminar NivelIAE
 exports.eliminarNivelIAE = function(datos, callback) {
     consultsPreparerNivelesIAE.deleteNivelIAE(datos, function(response) {
-        msg = (response.error === 1) ? "Error de conexión" : "No se puede eliminar el NivelIAE";
         if (response.success) {
             callback({
                 success: true,
@@ -90,7 +92,7 @@ exports.eliminarNivelIAE = function(datos, callback) {
                 success: false,
                 error: response.error,
                 title: "Error",
-                message: msg,
+                message: "No se puede eliminar el NivelIAE",
                 type: "error"
             })
         }

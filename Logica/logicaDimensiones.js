@@ -36,7 +36,12 @@ exports.seleccionarDimension = function(callback) {
         if (response.success) {
             msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar las dimensiones";
             callback({
-                data: response.data           
+                success: true,
+                error: response.error,
+                title: "Selección exitosa.",
+                message: "La selección de todas las Dimensiones a sido exitosa",
+                type: "success",
+                data: response.data            
             })
         } else {
             callback({

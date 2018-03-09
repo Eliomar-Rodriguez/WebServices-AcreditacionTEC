@@ -20,7 +20,7 @@ exports.editCumpliNomin = function(rRequest, rResponse){
 
 exports.selectCumpliNomin = function(rRequest, rResponse){
     logicaCumpliNomin.seleccionarCumpliNomin(function(data){
-        rResponse.send(data.data);
+        rResponse.send(data);
     })
 };
 

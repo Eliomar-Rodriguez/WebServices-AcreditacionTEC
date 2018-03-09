@@ -21,7 +21,7 @@ exports.insertarValoracion = function(datos, callback) {
         } else {
             callback({
                 success: false,
-                message: msg,
+                message: "No se pudo insertar la Valoración",
                 title: "Error",
                 error: response.error,
                 type: "error"
@@ -36,7 +36,12 @@ exports.seleccionarValoracion = function(callback) {
         if (response.success) {
             msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar las Valoraciones";
             callback({
-                data: response.data           
+                success: true,
+                error: response.error,
+                title: "Selección exitosa.",
+                message: "La selección de todas las Valoraciones a sido exitosa",
+                type: "success",
+                data: response.data            
             })
         } else {
             callback({

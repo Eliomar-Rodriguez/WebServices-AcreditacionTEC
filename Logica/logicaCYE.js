@@ -15,7 +15,7 @@ exports.insertarCYE = function(datos, callback) {
                 success: true,
                 error: response.error,
                 title: "CYE agregado",
-                message: "CYE agregado con exito",
+                message: "CYE agregado con éxito",
                 type: "success"
             })
         } else {
@@ -36,7 +36,12 @@ exports.seleccionarCYE = function(callback) {
         if (response.success) {
             msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar los CYEs";
             callback({
-                data: response.data           
+                success: true,
+                error: response.error,
+                title: "Selección exitosa.",
+                message: "La selección de todos los CYE a sido exitosa",
+                type: "success",
+                data: response.data         
             })
         } else {
             callback({
@@ -58,7 +63,7 @@ exports.editarCYE = function(datos, callback) {
                 success: true,
                 error: response.error,
                 title: "CYE editado",
-                message: "CYE editado con exito",
+                message: "CYE editado con éxito",
                 type: "success"
             })
         } else {

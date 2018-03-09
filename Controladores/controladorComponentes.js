@@ -3,11 +3,11 @@
 >  Controlador de los Componentes del sistema  <
 ================================================
 */
-var logicaComponente = require('../Logica/logicaComponentes.js');
+var logicaComponente = require('../Logica/logicaComponentes');
 
 exports.insertComponente = function(rRequest, rResponse){
     console.log(rRequest.body);
-    logicaComponente.insertarComponente(rRequest.body, function(data){
+    logicaComponente.insertarComponente(rRequest.query, function(data){
         rResponse.send(data);
     })
 };
@@ -20,7 +20,7 @@ exports.editComponente = function(rRequest, rResponse){
 
 exports.selectComponente = function(rRequest, rResponse){
     logicaComponente.seleccionarComponente(function(data){
-        rResponse.send(data.data);
+        rResponse.send(data);
     })
 };
 

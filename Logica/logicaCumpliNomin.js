@@ -36,7 +36,12 @@ exports.seleccionarCumpliNomin = function(callback) {
         if (response.success) {
             msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar los Cumplimientos Nominales";
             callback({
-                data: response.data           
+                success: true,
+                error: response.error,
+                title: "Selección exitosa.",
+                message: "La selección de todos los Cumplimientos Nominales a sido exitosa",
+                type: "success",
+                data: response.data            
             })
         } else {
             callback({

@@ -15,7 +15,7 @@ exports.insertarCYEA = function(datos, callback) {
                 success: true,
                 error: response.error,
                 title: "CYEA agregado",
-                message: "CYEA agregado con exito",
+                message: "CYEA agregado con éxito",
                 type: "success"
             })
         } else {
@@ -36,6 +36,11 @@ exports.seleccionarCYEA = function(callback) {
         if (response.success) {
             msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar los CYEAs";
             callback({
+                success: true,
+                error: response.error,
+                title: "Selección exitosa.",
+                message: "La selección de todos los CYEA a sido exitosa",
+                type: "success",
                 data: response.data           
             })
         } else {
@@ -58,7 +63,7 @@ exports.editarCYEA = function(datos, callback) {
                 success: true,
                 error: response.error,
                 title: "CYEA editado",
-                message: "CYEA editado con exito",
+                message: "CYEA editado con éxito",
                 type: "success"
             })
         } else {

@@ -34,9 +34,13 @@ exports.insertarEvidencia = function(datos, callback) {
 exports.seleccionarEvidencia = function(callback) {
     consultsPreparerEvidencia.selectEvidencia( function(response) {
         if (response.success) {
-            msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar las Evidencias";
             callback({
-                data: response.data           
+                success: true,
+                error: response.error,
+                title: "Selección exitosa.",
+                message: "La selección de todas las Evidencias a sido exitosa",
+                type: "success",
+                data: response.data            
             })
         } else {
             callback({

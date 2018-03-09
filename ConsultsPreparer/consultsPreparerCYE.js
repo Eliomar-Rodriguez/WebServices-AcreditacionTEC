@@ -13,6 +13,8 @@ var sqlConection = require('../ConexionDBs/sqlConection.js');
 */
 exports.insertCYE = function insertCYE(datos, callback) {
     var request = new Request('insertCYE', function(err) { // nombre de procedimiento en la base de datos
+        console.log('Error detectado >>:'+err);
+        console.log('Error <<: '+request);
         if (err) {
             callback({
                 success: false,
@@ -43,7 +45,7 @@ exports.selectCYE = function(callback) {
                 data: err,
                 error: request.error,
                 title: "Error",
-                message: "Error obteniendo los datos. Revise su conexión",
+                message: "Error obteniendo los datos. Revise su conexión.",
                 type: "error"
             });
         }

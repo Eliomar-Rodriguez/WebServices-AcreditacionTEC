@@ -18,6 +18,7 @@ var NivelesIAECtrl = require('./Controladores/controladorNivelesIAE'); // contro
 var CumpliNominCtrl = require('./Controladores/controladorCumpliNomin'); // controlador de Cumplimientos Nominales
 var ValoracionesCtrl = require('./Controladores/controladorValoracion'); // controlador de Valoraciones
 var EvidenciasCtrl = require('./Controladores/controladorEvidencias'); // controlador de Evidencias
+var AutoevaluacionCtrl = require('./Controladores/controladorAutoevaluacion'); // controlador de Autoevaluaciones
 
 /*
 ===============================================================================
@@ -133,6 +134,16 @@ app.post('/insertEvidencia', EvidenciasCtrl.insertEvidencia);
 app.get('/selectEvidencias', EvidenciasCtrl.selectEvidencias);
 app.post('/editEvidencia', EvidenciasCtrl.editEvidencia);
 app.post('/deleteEvidencia', EvidenciasCtrl.deleteEvidencia);
+
+/*
+=======================================
+>     EndPoints de Autovaluaciones    < // bien todos
+=======================================
+*/
+app.post('/insertAutoevaluacion', AutoevaluacionCtrl.insertAutoevaluacion);
+app.get('/selectAutoevaluaciones', AutoevaluacionCtrl.selectAutoevaluaciones);
+app.post('/editAutoevaluacion', AutoevaluacionCtrl.editAutoevaluacion);
+app.post('/deleteAutoevaluacion', AutoevaluacionCtrl.deleteAutoevaluacion);
 
 /*
 ======================================================================================
