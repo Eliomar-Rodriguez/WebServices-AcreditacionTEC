@@ -24,9 +24,13 @@ exports.insertCYEA = function insertCYEA(datos, callback) {
         }
     });
     request.addParameter('ID_CYE_General', TYPES.Int, datos.ID_CYE);
-    request.addParameter('ID_Responsable', TYPES.Int, datos.ID_Responsable);
+    request.addParameter('ID_Valoracion', TYPES.Int, datos.ID_Valoracion);
+    request.addParameter('ID_NivelIAE', TYPES.Int, datos.ID_NivelIAE);
     request.addParameter('CriterioAjustado', TYPES.VarChar, datos.CriterioAjustado);
-    request.addParameter('FLOC', TYPES.Date, datos.Fecha);
+    request.addParameter('FLOC', TYPES.Date, datos.FLOC);
+    request.addParameter('FLA', TYPES.Date, datos.FLA);
+    request.addParameter('IncorporadoIAE', TYPES.Int, datos.IncorporadoIAE);
+    request.addParameter('Observaciones', TYPES.VarChar, datos.Observaciones);
 
     request.addOutputParameter('success', TYPES.Bit);
     
@@ -68,10 +72,12 @@ exports.editCYEA = function editCYEA(datos, callback) {
 
     request.addParameter('ID_CYEA', TYPES.Int, datos.ID);
     request.addParameter('ID_CYE_General', TYPES.Int, datos.ID_CYE);
-    request.addParameter('ID_Responsable', TYPES.Int, datos.ID_Responsable);
-    request.addParameter('Valoracion', TYPES.Int, datos.Valoracion);
-    request.addParameter('FLOC', TYPES.Date, datos.Fecha);
+    request.addParameter('ID_Valoracion', TYPES.Int, datos.ID_Valoracion);
+    request.addParameter('ID_NivelIAE', TYPES.Int, datos.ID_NivelIAE);
     request.addParameter('CriterioAjustado', TYPES.VarChar, datos.CriterioAjustado);
+    request.addParameter('FLOC', TYPES.Date, datos.FLOC);
+    request.addParameter('FLA', TYPES.Date, datos.FLA);
+    request.addParameter('IncorporadoIAE', TYPES.Int, datos.IncorporadoIAE);
     request.addParameter('Observaciones', TYPES.VarChar, datos.Observaciones);
     
     request.addOutputParameter('success', TYPES.Bit);

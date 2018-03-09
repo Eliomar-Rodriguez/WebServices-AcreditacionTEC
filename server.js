@@ -134,7 +134,6 @@ app.get('/selectEvidencias', EvidenciasCtrl.selectEvidencias);
 app.post('/editEvidencia', EvidenciasCtrl.editEvidencia);
 app.post('/deleteEvidencia', EvidenciasCtrl.deleteEvidencia);
 
-
 /*
 ======================================================================================
 >  Pone el servidor en escucha de peticiones, lo levanta en el puerto especificado.  <
