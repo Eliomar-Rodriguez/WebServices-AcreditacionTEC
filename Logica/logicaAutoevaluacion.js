@@ -4,7 +4,7 @@
 =========================================================================================================================
 */
 
-var consultsPreparerAutoevaluacion = require('../ConsultsPreparer/consultsPreparerAutoevaluacion.js');
+var consultsPreparerAutoevaluacion = require('../ConsultsPreparer/consultsPreparerAutoevaluacion');
 
 // inserta Autoevaluacion
 exports.insertarAutoevaluacion = function(datos, callback) {

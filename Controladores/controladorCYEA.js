@@ -3,10 +3,11 @@
 >     Controlador de las CYEA del sistema      <
 ================================================
 */
-var logicaCYEA = require('../Logica/logicaCYEA.js');
+var logicaCYEA = require('../Logica/logicaCYEA');
 
 exports.insertCYEA = function(rRequest, rResponse){
-    logicaCYEA.insertarCYEA(rRequest.body, function(data){
+    console.log(rRequest.query);
+    logicaCYEA.insertarCYEA(rRequest.query, function(data){
         rResponse.send(data);
     })
 };

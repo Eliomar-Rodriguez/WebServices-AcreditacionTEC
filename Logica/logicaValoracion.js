@@ -4,7 +4,7 @@
 ======================================================================================================
 */
 
-var consultsPreparerValoracion = require('../ConsultsPreparer/consultsPreparerValoracion.js');
+var consultsPreparerValoracion = require('../ConsultsPreparer/consultsPreparerValoracion');
 
 // inserta Valoracion
 exports.insertarValoracion = function(datos, callback) {

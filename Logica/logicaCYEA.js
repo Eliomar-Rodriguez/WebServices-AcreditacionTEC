@@ -4,7 +4,7 @@
 ===============================================================================================
 */
 
-var consultsPreparerCYEA = require('../ConsultsPreparer/consultsPreparerCYEA.js');
+var consultsPreparerCYEA = require('../ConsultsPreparer/consultsPreparerCYEA');
 
 // inserta CYEA
 exports.insertarCYEA = function(datos, callback) {

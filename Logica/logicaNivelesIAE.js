@@ -4,7 +4,7 @@
 ======================================================================================================
 */
 
-var consultsPreparerNivelesIAE = require('../ConsultsPreparer/consultsPreparerNivelesIAE.js');
+var consultsPreparerNivelesIAE = require('../ConsultsPreparer/consultsPreparerNivelesIAE');
 
 // inserta NivelIAE
 exports.insertarNivelIAE = function(datos, callback) {

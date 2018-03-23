@@ -3,7 +3,7 @@
 >    Controlador de los Cumplimientos Nominales del sistema    <
 ================================================================
 */
-var logicaCumpliNomin = require('../Logica/logicaCumpliNomin.js');
+var logicaCumpliNomin = require('../Logica/logicaCumpliNomin');
 
 exports.insertCumpliNomin = function(rRequest, rResponse){
     logicaCumpliNomin.insertarCumpliNomin(rRequest.body, function(data){

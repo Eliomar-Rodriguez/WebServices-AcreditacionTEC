@@ -3,7 +3,7 @@
 >  Controlador de las Dimensiones del sistema  <
 ================================================
 */
-var logicaDimension = require('../Logica/logicaDimensiones.js');
+var logicaDimension = require('../Logica/logicaDimensiones');
 
 exports.insertDimension = function(rRequest, rResponse){
     logicaDimension.insertarDimension(rRequest.body, function(data){

@@ -3,7 +3,7 @@
 >    Controlador de los NivelesIAE del sistema    <
 ===================================================
 */
-var logicaNivelesIAE = require('../Logica/logicaNivelesIAE.js');
+var logicaNivelesIAE = require('../Logica/logicaNivelesIAE');
 
 exports.insertNivelIAE = function(rRequest, rResponse){
     logicaNivelesIAE.insertarNivelIAE(rRequest.body, function(data){

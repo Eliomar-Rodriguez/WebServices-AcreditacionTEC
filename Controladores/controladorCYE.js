@@ -3,7 +3,7 @@
 >      Controlador de los CYE del sistema      <
 ================================================
 */
-var logicaCYE = require('../Logica/logicaCYE.js');
+var logicaCYE = require('../Logica/logicaCYE');
 
 exports.insertCYE = function(rRequest, rResponse){
     logicaCYE.insertarCYE(rRequest.body, function(data){

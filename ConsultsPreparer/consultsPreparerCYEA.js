@@ -1,6 +1,6 @@
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
-var sqlConection = require('../ConexionDBs/sqlConection.js');
+var sqlConection = require('../ConexionDBs/sqlConection');
 
 /*
 ===========================
@@ -40,7 +40,7 @@ exports.insertCYEA = function insertCYEA(datos, callback) {
 }
 
 exports.selectCYEA = function(callback) {  
-    var query = "SELECT * FROM CYEA"; //Agregar procedimiento almacenado para esta consulta
+    var query = "SELECT CA.ID, CA.CriterioAjustado, CA.FLOC, CA.FLA, CA.IncorporadoIAE, CA.Observaciones, CG.Criterio AS CYE, N.NivelIAE, V.Valoracion FROM CYEA AS CA INNER JOIN CYE AS CG ON CA.ID_CYE_General = CG.ID INNER JOIN NivelesIAE AS N ON CA.ID_NivelIAE = N.ID INNER JOIN Valoraciones AS V ON CA.ID_Valoracion = V.ID"; //Agregar procedimiento almacenado para esta consulta
     var request = new Request(query, function(err) {
         if (err) {
             callback({

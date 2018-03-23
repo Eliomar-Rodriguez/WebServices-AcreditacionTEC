@@ -3,7 +3,7 @@
 >    Controlador de los Cumplimientos Nominales del sistema    <
 ================================================================
 */
-var logicaValoracion = require('../Logica/logicaValoracion.js');
+var logicaValoracion = require('../Logica/logicaValoracion');
 
 exports.insertValoracion = function(rRequest, rResponse){
     logicaValoracion.insertarValoracion(rRequest.query, function(data){

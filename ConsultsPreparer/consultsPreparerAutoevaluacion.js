@@ -1,6 +1,6 @@
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
-var sqlConection = require('../ConexionDBs/sqlConection.js');
+var sqlConection = require('../ConexionDBs/sqlConection');
 
 /*
 ===============================
@@ -24,6 +24,7 @@ exports.insertAutoevaluacion = function insertAutoevaluacion(datos, callback) {
         }
     });
     request.addParameter('ID_Encargado', TYPES.Int, datos.ID_Encargado);
+    request.addParameter('Nombre', TYPES.Int, datos.Nombre);
     request.addParameter('Anio', TYPES.Int, datos.Anio);
 
     request.addOutputParameter('success', TYPES.Bit);
@@ -66,6 +67,7 @@ exports.editAutoevaluacion = function editAutoevaluacion(datos, callback) {
 
     request.addParameter('ID_AutoevalAnual', TYPES.Int, datos.ID);
     request.addParameter('ID_Encargado', TYPES.Int, datos.ID_Encargado);
+    request.addParameter('Nombre', TYPES.Int, datos.Nombre);
     request.addParameter('Anio', TYPES.Int, datos.Anio);
     
     request.addOutputParameter('success', TYPES.Bit);

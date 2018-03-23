@@ -4,7 +4,7 @@
 ======================================================================================================
 */
 
-var consultsPreparerEvidencia = require('../ConsultsPreparer/consultsPreparerEvidencia.js');
+var consultsPreparerEvidencia = require('../ConsultsPreparer/consultsPreparerEvidencia');
 
 // inserta Evidencia
 exports.insertarEvidencia = function(datos, callback) {

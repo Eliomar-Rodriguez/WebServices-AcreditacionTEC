@@ -4,15 +4,15 @@ var sqlConection = require('../ConexionDBs/sqlConection');
 
 /*
 ===========================
->  CRUD's de NivelIAE     <
+>  CRUD's de CYE          <
 >   - insert              <
 >   - select              <
 >   - edit                <
 >   - delete              <
 ===========================
 */
-exports.insertNivelIAE = function insertNivelIAE(datos, callback) {
-    var request = new Request('insertNivelIAE', function(err) { // nombre de procedimiento en la base de datos
+exports.insertValoracionCriterio = function insertValoracionCriterio(datos, callback) {
+    var request = new Request('insertValoracionCriterios', function(err) { // nombre de procedimiento en la base de datos
         if (err) {
             callback({
                 success: false,
@@ -23,7 +23,9 @@ exports.insertNivelIAE = function insertNivelIAE(datos, callback) {
             })
         }
     });
-    request.addParameter('Nivel', TYPES.VarChar, datos.Nivel);
+    request.addParameter('ID_Componente', TYPES.Int, datos.ID_Componente);
+    request.addParameter('ID_Carrera', TYPES.Int, datos.ID_Carrera);
+    request.addParameter('Criterio', TYPES.VarChar, datos.Criterio);
 
     request.addOutputParameter('success', TYPES.Bit);
     
@@ -32,8 +34,8 @@ exports.insertNivelIAE = function insertNivelIAE(datos, callback) {
     });
 }
 
-exports.selectNivelIAE = function(callback) {  
-    var query = "SELECT * FROM NivelesIAE"; //Agregar procedimiento almacenado para esta consulta
+exports.selectValoracionCriterios = function(callback) { 
+    var query = "";
     var request = new Request(query, function(err) {
         if (err) {
             callback({
@@ -41,17 +43,17 @@ exports.selectNivelIAE = function(callback) {
                 data: err,
                 error: request.error,
                 title: "Error",
-                message: "Error obteniendo los datos. Revise su conexión",
+                message: "Error obteniendo los datos. Revise su conexión.",
                 type: "error"
             });
         }
     });
-    // se usa executeRequest porque es el destinado para escribir consultas desde aca en vez de llamar procedimientos almacenados
+    // se usa executeRequest porque es el destinado para escribir consultas desde aca (StringQuery) en vez de llamar procedimientos almacenados
     sqlConection.executeRequest(request, callback); 
 }
 
-exports.editNivelIAE = function editNivelIAE(datos, callback) {
-    var request = new Request('editNivelIAE', function(err) {
+exports.editValoracionCriterio = function editValoracionCriterio(datos, callback) {
+    var request = new Request('editValoracionCriterios', function(err) {
         if (err) {
             callback({
                 success: false,
@@ -63,18 +65,20 @@ exports.editNivelIAE = function editNivelIAE(datos, callback) {
         }
     });
 
-    request.addParameter('ID_Nivel', TYPES.Int, datos.ID);
-    request.addParameter('Nivel', TYPES.VarChar, datos.Nivel); 
+    request.addParameter('ID_CYE', TYPES.Int, datos.ID);
+    request.addParameter('ID_Componente', TYPES.Int, datos.ID_Componente);
+    request.addParameter('ID_Carrera', TYPES.Int, datos.ID_Carrera); 
+    request.addParameter('Criterio', TYPES.VarChar, datos.Criterio);
     
     request.addOutputParameter('success', TYPES.Bit);
 
     sqlConection.callProcedure(request, callback);
 };
 // DELETE 
-exports.deleteNivelIAE = function deleteNivelIAE(datos, callback) {
-    var request = new Request('deleteNivelIAE', function(err) {
+exports.deleteValoracionCriterio = function deleteValoracionCriterio(datos, callback) {
+    var request = new Request('deleteValoracionCriterios', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el NivelIAE";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar la valoración de criterio deseada.";
             callback({
                 success: false,
                 error: request.error,
@@ -84,7 +88,7 @@ exports.deleteNivelIAE = function deleteNivelIAE(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_Nivel', TYPES.Int, datos.ID);
+    request.addParameter('ID_CYE', TYPES.Int, datos.ID);
     
     request.addOutputParameter('success', TYPES.Bit);
 

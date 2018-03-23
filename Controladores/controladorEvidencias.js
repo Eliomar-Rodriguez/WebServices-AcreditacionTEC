@@ -3,7 +3,7 @@
 >     Controlador de las Evidencia del sistema      <
 =====================================================
 */
-var logicaEvidencia = require('../Logica/logicaEvidencia.js');
+var logicaEvidencia = require('../Logica/logicaEvidencia');
 
 exports.insertEvidencia = function(rRequest, rResponse){
     logicaEvidencia.insertarEvidencia(rRequest.query, function(data){

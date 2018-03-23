@@ -4,7 +4,7 @@
 =======================================================================================================
 */
 
-var consultsPreparerCumpliNomin = require('../ConsultsPreparer/consultsPreparerCumpliNomin.js');
+var consultsPreparerCumpliNomin = require('../ConsultsPreparer/consultsPreparerCumpliNomin');
 
 // inserta Cumplimiento Nominal
 exports.insertarCumpliNomin = function(datos, callback) {

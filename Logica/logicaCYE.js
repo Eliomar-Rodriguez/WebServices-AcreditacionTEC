@@ -4,7 +4,7 @@
 ===============================================================================================
 */
 
-var consultsPreparerCYE = require('../ConsultsPreparer/consultsPreparerCYE.js');
+var consultsPreparerCYE = require('../ConsultsPreparer/consultsPreparerCYE');
 
 // inserta CYE
 exports.insertarCYE = function(datos, callback) {

@@ -19,6 +19,7 @@ var CumpliNominCtrl = require('./Controladores/controladorCumpliNomin'); // cont
 var ValoracionesCtrl = require('./Controladores/controladorValoracion'); // controlador de Valoraciones
 var EvidenciasCtrl = require('./Controladores/controladorEvidencias'); // controlador de Evidencias
 var AutoevaluacionCtrl = require('./Controladores/controladorAutoevaluacion'); // controlador de Autoevaluaciones
+var ValoracionCriteriosCtrl = require('./Controladores/controladorValoracionCriterios') // controlador de Valoraciones de Criterios
 
 /*
 ===============================================================================
@@ -54,10 +55,19 @@ app.use(function(req, res, next) {
  * put  edit
  * delete   delete
  */
+/*
+====================================================
+>     EndPoints de las Evaluaciones de Criterios      < // bien todos            NO ESTA COMPLETO!!!!!!!
+====================================================
+*/
+app.post('/insertEvaluacionCriterio', ValoracionCriteriosCtrl.insertEvaluacionCriterio);
+app.get('/selectEvaluacionCriterios', ValoracionCriteriosCtrl.selectEvaluacionCriterios);
+app.post('/editEvaluacionCriterio', ValoracionCriteriosCtrl.editEvaluacionCriterio);
+app.post('/deleteEvaluacionCriterio', ValoracionCriteriosCtrl.deleteEvaluacionCriterio);
 
 /*
 ==================================
->     EndPoints de los CYEA      < // bien todos            NO ESTA COMPLETO!!!!!!!
+>     EndPoints de los CYEA      < // bien todos            
 ==================================
 */
 app.post('/insertCYEA', CYEACtrl.insertCYEA);

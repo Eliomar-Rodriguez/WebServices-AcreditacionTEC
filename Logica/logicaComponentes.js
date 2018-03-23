@@ -4,7 +4,7 @@
 ===============================================================================================
 */
 
-var consultsPreparerComponente = require('../ConsultsPreparer/consultsPreparerComponente.js');
+var consultsPreparerComponente = require('../ConsultsPreparer/consultsPreparerComponente');
 
 // inserta componentes
 exports.insertarComponente = function(datos, callback) {

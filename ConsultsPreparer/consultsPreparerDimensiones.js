@@ -1,6 +1,6 @@
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
-var sqlConection = require('../ConexionDBs/sqlConection.js');
+var sqlConection = require('../ConexionDBs/sqlConection');
 
 /*
 ===========================
