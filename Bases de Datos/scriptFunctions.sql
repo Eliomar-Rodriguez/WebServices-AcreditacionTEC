@@ -1722,7 +1722,7 @@ GO
 */
 CREATE PROCEDURE dbo.deleteCYEA -- listo
 	@ID_CYEA			INT,
-	@success		BIT		OUTPUT
+	@success			BIT		OUTPUT
 AS
 	BEGIN
 		IF ((SELECT COUNT(*) FROM dbo.CYEA AS C WHERE C.ID = @ID_CYEA) = 1) -- verifica que el CYEA exista

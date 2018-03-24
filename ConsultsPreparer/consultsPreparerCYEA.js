@@ -23,14 +23,8 @@ exports.insertCYEA = function insertCYEA(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_CYE_General', TYPES.Int, datos.ID_CYE);
-    request.addParameter('ID_Valoracion', TYPES.Int, datos.ID_Valoracion);
-    request.addParameter('ID_NivelIAE', TYPES.Int, datos.ID_NivelIAE);
+    request.addParameter('ID_CYE', TYPES.Int, datos.ID_CYE);
     request.addParameter('CriterioAjustado', TYPES.VarChar, datos.CriterioAjustado);
-    request.addParameter('FLOC', TYPES.Date, datos.FLOC);
-    request.addParameter('FLA', TYPES.Date, datos.FLA);
-    request.addParameter('IncorporadoIAE', TYPES.Int, datos.IncorporadoIAE);
-    request.addParameter('Observaciones', TYPES.VarChar, datos.Observaciones);
 
     request.addOutputParameter('success', TYPES.Bit);
     
@@ -39,8 +33,8 @@ exports.insertCYEA = function insertCYEA(datos, callback) {
     });
 }
 
-exports.selectCYEA = function(callback) {  
-    var query = "SELECT CA.ID, CA.CriterioAjustado, CA.FLOC, CA.FLA, CA.IncorporadoIAE, CA.Observaciones, CG.Criterio AS CYE, N.NivelIAE, V.Valoracion FROM CYEA AS CA INNER JOIN CYE AS CG ON CA.ID_CYE_General = CG.ID INNER JOIN NivelesIAE AS N ON CA.ID_NivelIAE = N.ID INNER JOIN Valoraciones AS V ON CA.ID_Valoracion = V.ID"; //Agregar procedimiento almacenado para esta consulta
+exports.selectCYEA = function(callback) { 
+    var query = "SELECT CYEA.ID,CYE.Criterio AS CYE,CYEA.CriterioAjustado FROM CYEA INNER JOIN CYE ON CYEA.ID_CYE = CYE.ID";
     var request = new Request(query, function(err) {
         if (err) {
             callback({
@@ -48,12 +42,12 @@ exports.selectCYEA = function(callback) {
                 data: err,
                 error: request.error,
                 title: "Error",
-                message: "Error obteniendo los datos. Revise su conexión",
+                message: "Error obteniendo los datos. Revise su conexión.",
                 type: "error"
             });
         }
     });
-    // se usa executeRequest porque es el destinado para escribir consultas desde aca en vez de llamar procedimientos almacenados
+    // se usa executeRequest porque es el destinado para escribir consultas desde aca (StringQuery) en vez de llamar procedimientos almacenados
     sqlConection.executeRequest(request, callback); 
 }
 
@@ -70,15 +64,9 @@ exports.editCYEA = function editCYEA(datos, callback) {
         }
     });
 
-    request.addParameter('ID_CYEA', TYPES.Int, datos.ID);
-    request.addParameter('ID_CYE_General', TYPES.Int, datos.ID_CYE);
-    request.addParameter('ID_Valoracion', TYPES.Int, datos.ID_Valoracion);
-    request.addParameter('ID_NivelIAE', TYPES.Int, datos.ID_NivelIAE);
+    request.addParameter('ID_CYEA', TYPES.Int, datos.ID_CYEA);
+    request.addParameter('ID_CYE', TYPES.Int, datos.ID_CYE);
     request.addParameter('CriterioAjustado', TYPES.VarChar, datos.CriterioAjustado);
-    request.addParameter('FLOC', TYPES.Date, datos.FLOC);
-    request.addParameter('FLA', TYPES.Date, datos.FLA);
-    request.addParameter('IncorporadoIAE', TYPES.Int, datos.IncorporadoIAE);
-    request.addParameter('Observaciones', TYPES.VarChar, datos.Observaciones);
     
     request.addOutputParameter('success', TYPES.Bit);
 
@@ -88,7 +76,7 @@ exports.editCYEA = function editCYEA(datos, callback) {
 exports.deleteCYEA = function deleteCYEA(datos, callback) {
     var request = new Request('deleteCYEA', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el CYEA";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar es CYEA deseado.";
             callback({
                 success: false,
                 error: request.error,
@@ -98,7 +86,7 @@ exports.deleteCYEA = function deleteCYEA(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_CYEA', TYPES.Int, datos.ID);
+    request.addParameter('ID_CYEA', TYPES.Int, datos.ID_CYEA);
     
     request.addOutputParameter('success', TYPES.Bit);
 

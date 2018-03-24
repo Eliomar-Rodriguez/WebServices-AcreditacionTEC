@@ -21,26 +21,29 @@ var EvidenciasCtrl = require('./Controladores/controladorEvidencias'); // contro
 var AutoevaluacionCtrl = require('./Controladores/controladorAutoevaluacion'); // controlador de Autoevaluaciones
 var ValoracionCriteriosCtrl = require('./Controladores/controladorValoracionCriterios') // controlador de Valoraciones de Criterios
 
+var manejoErrores = require('./Autenticacion/errores');
 /*
 ===============================================================================
 >  Configuraciones principales del servidor, con esto escucha las peticiones  <
 ===============================================================================
 */
 var bodyParser = require('body-parser');
+var helmet = require('helmet');
 var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
     port = 8080;
 
+app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(bodyParser.json());
-
-app.use('/', express.static(__dirname + '/"Web Services"'));
+app.use('/', express.static(__dirname + '/"AcreditacionTEC"'));
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
 
@@ -57,13 +60,45 @@ app.use(function(req, res, next) {
  */
 /*
 ====================================================
->     EndPoints de las Evaluaciones de Criterios      < // bien todos            NO ESTA COMPLETO!!!!!!!
+>     EndPoints de las Valoracion de Criterios      < // bien todos            NO ESTA COMPLETO!!!!!!!
 ====================================================
 */
-app.post('/insertEvaluacionCriterio', ValoracionCriteriosCtrl.insertEvaluacionCriterio);
-app.get('/selectEvaluacionCriterios', ValoracionCriteriosCtrl.selectEvaluacionCriterios);
-app.post('/editEvaluacionCriterio', ValoracionCriteriosCtrl.editEvaluacionCriterio);
-app.post('/deleteEvaluacionCriterio', ValoracionCriteriosCtrl.deleteEvaluacionCriterio);
+let router = express.Router;
+
+app.get('/', (req, res) => {
+
+    var html = '<center>'+
+    '<p style="padding-top:10%">'+
+        '<h2>'+
+            'TEC Sede San Carlos<br>'+
+            'Comunidad de aplicaciones moviles<br><br>'+
+            'Back-End de proyecto AcreditacionTEC'+
+        '</h2>'+
+        '<b>Desarrollador:</b> Eliomar Antonio Rodriguez Arguedas'+
+        ' <br><br><h3><b style="color: red">Atención: </b>Ruta vacía.</h3>'+
+    '</p>'+
+    '</center>';
+    res.send(html)
+  })/*
+app.post('', (req, res) => {
+    res.json({
+        title: 'Ruta vacía',
+        message: 'Ruta inicial del backend'
+    })
+  })
+  app.put('', (req, res) => {
+    res.json({
+        title: 'Ruta vacía',
+        message: 'Ruta inicial del backend'
+    })
+  })*/
+
+app.get('/', manejoErrores.rutaVacia);
+
+app.post('/insertValoracionCriterio', ValoracionCriteriosCtrl.insertValoracionCriterio);
+app.get('/selectValoracionCriterios', ValoracionCriteriosCtrl.selectValoracionCriterios);
+app.post('/editValoracionCriterio', ValoracionCriteriosCtrl.editValoracionCriterio);
+app.post('/deleteValoracionCriterio', ValoracionCriteriosCtrl.deleteValoracionCriterio);
 
 /*
 ==================================
@@ -92,7 +127,7 @@ app.post('/deleteComponente', componenteCtrl.deleteComponente);
 */
 app.post('/insertDimension', dimensionCtrl.insertDimension);
 app.get('/selectDimensiones', dimensionCtrl.selectDimension);
-app.post('/editDimension', dimensionCtrl.editDimension);
+app.put('/editDimension', dimensionCtrl.editDimension);
 app.post('/deleteDimension', dimensionCtrl.deleteDimension);
 
 /*

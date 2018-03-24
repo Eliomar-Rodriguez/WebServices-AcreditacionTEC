@@ -56,7 +56,7 @@ exports.seleccionarValoracionCriterios = function(callback) {
 
 // editar ValoracionCriterio
 exports.editarValoracionCriterio = function(datos, callback) {
-    consultsPreparerValoracionCriterios.editCYE(datos, function(response) {
+    consultsPreparerValoracionCriterios.editValoracionCriterio(datos, function(response) {
         msg = (response.error === 1) ? "Error de conexión" : "No se pudo modificar la valoración de criterio";
         if (response.success) {
             callback({

@@ -23,7 +23,7 @@ exports.insertDimension = function insertDimension(datos, callback) {
             })
         }
     });
-    request.addParameter('NombreDimension', TYPES.VarChar, datos.Dimension);
+    request.addParameter('nombreDimension', TYPES.VarChar, datos.Dimension);
 
     request.addOutputParameter('success', TYPES.Bit);
     
@@ -72,7 +72,6 @@ exports.editDimension = function editDimension(datos, callback) {
 };
 // DELETE 
 exports.deleteDimension = function deleteDimension(datos, callback) {
-    console.log("Lego a consprep");
     var request = new Request('deleteDimension', function(err) {
         if (err) {
             console.log("Error");
