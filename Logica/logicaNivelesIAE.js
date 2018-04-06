@@ -3,25 +3,25 @@
 >     BackEnd de NivelesIAE, se encarga de realizar las llamadas necesarias a la base de datos       <
 ======================================================================================================
 */
-
 var consultsPreparerNivelesIAE = require('../ConsultsPreparer/consultsPreparerNivelesIAE');
 
 // inserta NivelIAE
 exports.insertarNivelIAE = function(datos, callback) {
     consultsPreparerNivelesIAE.insertNivelIAE(datos, function(response) {
+        msg = (response.error == 1) ? "Error de conexión" : "Ya existe el Nivel de avance IAE que desea insertar.";
         if (response.success) {
             callback({
                 success: true,
                 error: response.error,
                 title: "NivelIAE agregado",
-                message: "NivelIAE agregado con exito",
+                message: "Nivel de avance IAE agregado con exito",
                 type: "success"
             })
         } else {
             callback({
                 success: false,
-                message: "Ya existe el Nivel de avance IAE que desea insertar.",
-                title: "Nivel de avance IAE duplicado",
+                message: msg,
+                title: "Error",
                 error: response.error,
                 type: "error"
             })
@@ -32,12 +32,13 @@ exports.insertarNivelIAE = function(datos, callback) {
 // seleccionar NivelIAE
 exports.seleccionarNivelIAE = function(callback) {
     consultsPreparerNivelesIAE.selectNivelIAE( function(response) {
+        msg = (response.error == 1) ? "Error de conexión" : "No se puede seleccionar los Niveles de avance IAE";
         if (response.success) {
             callback({
                 success: true,
                 error: response.error,
                 title: "Selección exitosa.",
-                message: "La selección de todos los Niveles de Avance IAE a sido exitosa",
+                message: "La selección de todos los Niveles de avance IAE a sido exitosa",
                 type: "success",
                 data: response.data           
             })
@@ -45,7 +46,7 @@ exports.seleccionarNivelIAE = function(callback) {
             callback({
                 success: false,
                 title: "Error",
-                message: "No se pudo seleccionar los NivelIAEs",
+                message: msg,
                 error: response.error,
                 type: "error"
             })
@@ -56,6 +57,7 @@ exports.seleccionarNivelIAE = function(callback) {
 // editar NivelIAE
 exports.editarNivelIAE = function(datos, callback) {
     consultsPreparerNivelesIAE.editNivelIAE(datos, function(response) {
+        msg = (response.error === 1) ? "Error de conexión" : "No se puede modificar el Nivel de avance IAE";
         if (response.success) {
             callback({
                 success: true,
@@ -67,7 +69,7 @@ exports.editarNivelIAE = function(datos, callback) {
         } else {
             callback({
                 success: false,
-                message: "No se pudo modificar el NivelIAE",
+                message: msg,
                 title: "Error",
                 error: response.error,
                 type: "error"
@@ -79,12 +81,13 @@ exports.editarNivelIAE = function(datos, callback) {
 // eliminar NivelIAE
 exports.eliminarNivelIAE = function(datos, callback) {
     consultsPreparerNivelesIAE.deleteNivelIAE(datos, function(response) {
+        msg = (response.error == 1) ? "Error de conexión" : "No se puede eliminar el Nivel de avance IAE";
         if (response.success) {
             callback({
                 success: true,
                 error: response.error,
                 title: "NivelIAE eliminado",
-                message: "NivelIAE eliminado con éxito",
+                message: "Nivel de avance IAE eliminado con éxito",
                 type: "success"
             })
         } else {
@@ -92,7 +95,7 @@ exports.eliminarNivelIAE = function(datos, callback) {
                 success: false,
                 error: response.error,
                 title: "Error",
-                message: "No se puede eliminar el NivelIAE",
+                message: msg,
                 type: "error"
             })
         }

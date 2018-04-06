@@ -3,13 +3,12 @@
 >     BackEnd de Evidencias, se encarga de realizar las llamadas necesarias a la base de datos       <
 ======================================================================================================
 */
-
 var consultsPreparerEvidencia = require('../ConsultsPreparer/consultsPreparerEvidencia');
 
 // inserta Evidencia
 exports.insertarEvidencia = function(datos, callback) {
     consultsPreparerEvidencia.insertEvidencia(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "No se pudo insertar la Evidencia";
+        msg = (response.error == 1) ? "Error de conexión" : "Ya existe la evidencia que desea insertar.";
         if (response.success) {
             callback({
                 success: true,
@@ -33,6 +32,7 @@ exports.insertarEvidencia = function(datos, callback) {
 // seleccionar Evidencia
 exports.seleccionarEvidencia = function(callback) {
     consultsPreparerEvidencia.selectEvidencia( function(response) {
+        msg = (response.error === 1) ? "Error de conexión" : "No se puede seleccionar las evidencias";
         if (response.success) {
             callback({
                 success: true,
@@ -46,6 +46,7 @@ exports.seleccionarEvidencia = function(callback) {
             callback({
                 success: false,
                 title: "Error",
+                message: msg,
                 error: response.error,
                 type: "error"
             })
@@ -56,7 +57,7 @@ exports.seleccionarEvidencia = function(callback) {
 // editar Evidencia
 exports.editarEvidencia = function(datos, callback) {
     consultsPreparerEvidencia.editEvidencia(datos, function(response) {
-        msg = (response.error === 1) ? "Error de conexión" : "No se pudo modificar la Evidencia";
+        msg = (response.error === 1) ? "Error de conexión" : "No se puede modificar la Evidencia";
         if (response.success) {
             callback({
                 success: true,

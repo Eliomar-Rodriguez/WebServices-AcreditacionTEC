@@ -74,7 +74,7 @@ exports.editNivelIAE = function editNivelIAE(datos, callback) {
 exports.deleteNivelIAE = function deleteNivelIAE(datos, callback) {
     var request = new Request('deleteNivelIAE', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el NivelIAE";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el Nivel de avance IAE";
             callback({
                 success: false,
                 error: request.error,

@@ -3,12 +3,12 @@
 >     BackEnd de Autoevaluacion, se encarga del manejo de errores, asi como de lasrespuestas errones y/o exitosas       <
 =========================================================================================================================
 */
-
 var consultsPreparerAutoevaluacion = require('../ConsultsPreparer/consultsPreparerAutoevaluacion');
 
 // inserta Autoevaluacion
 exports.insertarAutoevaluacion = function(datos, callback) {
     consultsPreparerAutoevaluacion.insertAutoevaluacion(datos, function(response) {
+        msg = (response.error == 1) ? "Error de conexión" : "Ya existe la Autoevaluación que desea insertar.";
         if (response.success) {
             callback({
                 success: true,
@@ -20,8 +20,8 @@ exports.insertarAutoevaluacion = function(datos, callback) {
         } else {
             callback({
                 success: false,
-                message: "Ya existe la Autoevaluación que desea insertar.",
-                title: "Autoevaluación duplicada",
+                message: msg,
+                title: "Error",
                 error: response.error,
                 type: "error"
             })
@@ -32,6 +32,7 @@ exports.insertarAutoevaluacion = function(datos, callback) {
 // seleccionar Autoevaluacion
 exports.seleccionarAutoevaluacion = function(callback) {
     consultsPreparerAutoevaluacion.selectAutoevaluaciones( function(response) {
+        msg = (response.error == 1) ? "Error de conexión" : "No se puede seleccionar las Autoevaluaciones.";
         if (response.success) {
             callback({
                 success: true,
@@ -45,7 +46,7 @@ exports.seleccionarAutoevaluacion = function(callback) {
             callback({
                 success: false,
                 title: "Error",
-                message: "No se ha logrado seleccionar las Autoevaluaciones.",
+                message: msg,
                 error: response.error,
                 type: "error"
             })
@@ -56,6 +57,7 @@ exports.seleccionarAutoevaluacion = function(callback) {
 // editar Autoevaluacion
 exports.editarAutoevaluacion = function(datos, callback) {
     consultsPreparerAutoevaluacion.editAutoevaluacion(datos, function(response) {
+        msg = (response.error == 1) ? "Error de conexión" : "No se puede editar la Autoevaluación.";
         if (response.success) {
             callback({
                 success: true,
@@ -67,7 +69,7 @@ exports.editarAutoevaluacion = function(datos, callback) {
         } else {
             callback({
                 success: false,
-                message: "No se pudo modificar la Autoevaluación",
+                message: msg,
                 title: "Error",
                 error: response.error,
                 type: "error"

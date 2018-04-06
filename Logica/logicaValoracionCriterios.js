@@ -3,13 +3,12 @@
 >     BackEnd de ValoracionCriterios, se encarga de realizar las llamadas necesarias a la base de datos       <
 ===============================================================================================================
 */
-
 var consultsPreparerValoracionCriterios = require('../ConsultsPreparer/consultsPreparerValoracionCriterios');
 
 // inserta ValoracionCriterio
 exports.insertarValoracionCriterio = function(datos, callback) {
     consultsPreparerValoracionCriterios.insertValoracionCriterio(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "No se pudo insertar la valoración de criterio";
+        msg = (response.error == 1) ? "Error de conexión" : "Ya existe la Valoración de criterio que desea insertar.";
         if (response.success) {
             callback({
                 success: true,
@@ -33,8 +32,8 @@ exports.insertarValoracionCriterio = function(datos, callback) {
 // seleccionar ValoracionCriterio
 exports.seleccionarValoracionCriterios = function(callback) {
     consultsPreparerValoracionCriterios.selectValoracionCriterios( function(response) {
+        msg = (response.error == 1) ? "Error de conexión" : "No se puede seleccionar las valoraciones de criterios";
         if (response.success) {
-            msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar las valoraciones de criterios";
             callback({
                 success: true,
                 error: response.error,
@@ -47,6 +46,7 @@ exports.seleccionarValoracionCriterios = function(callback) {
             callback({
                 success: false,
                 title: "Error",
+                message: msg,
                 error: response.error,
                 type: "error"
             })
@@ -57,7 +57,7 @@ exports.seleccionarValoracionCriterios = function(callback) {
 // editar ValoracionCriterio
 exports.editarValoracionCriterio = function(datos, callback) {
     consultsPreparerValoracionCriterios.editValoracionCriterio(datos, function(response) {
-        msg = (response.error === 1) ? "Error de conexión" : "No se pudo modificar la valoración de criterio";
+        msg = (response.error === 1) ? "Error de conexión" : "No se puede modificar la valoración de criterio";
         if (response.success) {
             callback({
                 success: true,

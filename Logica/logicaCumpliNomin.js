@@ -3,13 +3,12 @@
 >     BackEnd de CumpliNomin, se encarga de realizar las llamadas necesarias a la base de datos       <
 =======================================================================================================
 */
-
 var consultsPreparerCumpliNomin = require('../ConsultsPreparer/consultsPreparerCumpliNomin');
 
 // inserta Cumplimiento Nominal
 exports.insertarCumpliNomin = function(datos, callback) {
     consultsPreparerCumpliNomin.insertCumpliNomin(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "No se pudo insertar el Cumplimiento Nominal";
+        msg = (response.error == 1) ? "Error de conexión" : "Ya existe el Cumplimiento Nominal que desea insertar.";
         if (response.success) {
             callback({
                 success: true,
@@ -33,8 +32,8 @@ exports.insertarCumpliNomin = function(datos, callback) {
 // seleccionar CumpliNomin
 exports.seleccionarCumpliNomin = function(callback) {
     consultsPreparerCumpliNomin.selectCumpliNomin( function(response) {
+        msg = (response.error == 1) ? "Error de conexión" : "No se puede seleccionar los Cumplimientos Nominales";
         if (response.success) {
-            msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar los Cumplimientos Nominales";
             callback({
                 success: true,
                 error: response.error,
@@ -47,6 +46,7 @@ exports.seleccionarCumpliNomin = function(callback) {
             callback({
                 success: false,
                 title: "Error",
+                message: msg,
                 error: response.error,
                 type: "error"
             })
@@ -57,7 +57,7 @@ exports.seleccionarCumpliNomin = function(callback) {
 // editar CumpliNomin
 exports.editarCumpliNomin = function(datos, callback) {
     consultsPreparerCumpliNomin.editCumpliNomin(datos, function(response) {
-        msg = (response.error === 1) ? "Error de conexión" : "No se pudo modificar el Cumplimiento Nominal";
+        msg = (response.error === 1) ? "Error de conexión" : "No se puede modificar el Cumplimiento Nominal";
         if (response.success) {
             callback({
                 success: true,

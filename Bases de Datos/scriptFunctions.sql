@@ -1205,7 +1205,7 @@ CREATE PROCEDURE dbo.insertValoracionCriterios_Responsables -- listo
 	@ID_Responsable					INT,
 	@TipoResponsabilidad			VARCHAR(250),
 	@success			BIT		OUTPUT
-AS 
+AS
 	BEGIN
 		IF ((SELECT COUNT(*) FROM dbo.ValoracionCriterios_Responsables AS CR WHERE CR.ID_ValoracionCriterios = @ID_ValoracionCriterios AND CR.ID_Responsable = @ID_Responsable AND CR.TipoResponsabilidad = @TipoResponsabilidad) = 1) -- existe el registro
 			BEGIN 

@@ -3,13 +3,12 @@
 >     BackEnd de Valoracion, se encarga de realizar las llamadas necesarias a la base de datos       <
 ======================================================================================================
 */
-
 var consultsPreparerValoracion = require('../ConsultsPreparer/consultsPreparerValoracion');
 
 // inserta Valoracion
 exports.insertarValoracion = function(datos, callback) {
     consultsPreparerValoracion.insertValoracion(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "No se pudo insertar la Valoración";
+        msg = (response.error == 1) ? "Error de conexión" : "Ya existe la valoración que desea insertar.";
         if (response.success) {
             callback({
                 success: true,
@@ -21,7 +20,7 @@ exports.insertarValoracion = function(datos, callback) {
         } else {
             callback({
                 success: false,
-                message: "No se pudo insertar la Valoración",
+                message: msg,
                 title: "Error",
                 error: response.error,
                 type: "error"
@@ -33,8 +32,8 @@ exports.insertarValoracion = function(datos, callback) {
 // seleccionar Valoracion
 exports.seleccionarValoracion = function(callback) {
     consultsPreparerValoracion.selectValoracion( function(response) {
-        if (response.success) {
-            msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar las Valoraciones";
+        msg = (response.error == 1) ? "Error de conexión" : "No se puede seleccionar las Valoraciones";
+        if (response.success) {            
             callback({
                 success: true,
                 error: response.error,
@@ -47,6 +46,7 @@ exports.seleccionarValoracion = function(callback) {
             callback({
                 success: false,
                 title: "Error",
+                message: msg,
                 error: response.error,
                 type: "error"
             })
@@ -57,7 +57,7 @@ exports.seleccionarValoracion = function(callback) {
 // editar Valoracion
 exports.editarValoracion = function(datos, callback) {
     consultsPreparerValoracion.editValoracion(datos, function(response) {
-        msg = (response.error === 1) ? "Error de conexión" : "No se pudo modificar la Valoración";
+        msg = (response.error === 1) ? "Error de conexión" : "No se puede modificar la Valoración";
         if (response.success) {
             callback({
                 success: true,

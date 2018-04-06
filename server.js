@@ -21,7 +21,6 @@ var EvidenciasCtrl = require('./Controladores/controladorEvidencias'); // contro
 var AutoevaluacionCtrl = require('./Controladores/controladorAutoevaluacion'); // controlador de Autoevaluaciones
 var ValoracionCriteriosCtrl = require('./Controladores/controladorValoracionCriterios') // controlador de Valoraciones de Criterios
 
-var manejoErrores = require('./Autenticacion/errores');
 /*
 ===============================================================================
 >  Configuraciones principales del servidor, con esto escucha las peticiones  <
@@ -66,7 +65,6 @@ app.use(function(req, res, next) {
 let router = express.Router;
 
 app.get('/', (req, res) => {
-
     var html = '<center>'+
     '<p style="padding-top:10%">'+
         '<h2>'+
@@ -78,23 +76,14 @@ app.get('/', (req, res) => {
         ' <br><br><h3><b style="color: red">Atención: </b>Ruta vacía.</h3>'+
     '</p>'+
     '</center>';
-    res.send(html)
-  })/*
-app.post('', (req, res) => {
-    res.json({
-        title: 'Ruta vacía',
-        message: 'Ruta inicial del backend'
-    })
-  })
-  app.put('', (req, res) => {
-    res.json({
-        title: 'Ruta vacía',
-        message: 'Ruta inicial del backend'
-    })
-  })*/
+    res.send(html);
+})
 
-app.get('/', manejoErrores.rutaVacia);
-
+/*
+=============================================
+>     EndPoints de Valoracion Criterio      < // bien todos            
+=============================================
+*/
 app.post('/insertValoracionCriterio', ValoracionCriteriosCtrl.insertValoracionCriterio);
 app.get('/selectValoracionCriterios', ValoracionCriteriosCtrl.selectValoracionCriterios);
 app.post('/editValoracionCriterio', ValoracionCriteriosCtrl.editValoracionCriterio);
@@ -128,7 +117,7 @@ app.post('/deleteComponente', componenteCtrl.deleteComponente);
 app.post('/insertDimension', dimensionCtrl.insertDimension);
 app.get('/selectDimensiones', dimensionCtrl.selectDimension);
 app.put('/editDimension', dimensionCtrl.editDimension);
-app.post('/deleteDimension', dimensionCtrl.deleteDimension);
+app.delete('/deleteDimension', dimensionCtrl.deleteDimension);
 
 /*
 ==================================

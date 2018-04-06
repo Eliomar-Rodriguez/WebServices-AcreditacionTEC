@@ -70,7 +70,7 @@ exports.editValoracionCriterio = function editValoracionCriterio(datos, callback
         }
     });
 
-    request.addParameter('ID_ValoracionCriterios', TYPES.Int, datos.ID_ValoracionCriterio);
+    request.addParameter('ID_ValoracionCriterios', TYPES.Int, datos.ID);
     request.addParameter('ID_CYEA', TYPES.Int, datos.ID_CYEA);
     request.addParameter('ID_Valoracion', TYPES.Int, datos.ID_Valoracion);
     request.addParameter('ID_NivelIAE', TYPES.Int, datos.ID_NivelIAE);
@@ -88,7 +88,7 @@ exports.editValoracionCriterio = function editValoracionCriterio(datos, callback
 exports.deleteValoracionCriterio = function deleteValoracionCriterio(datos, callback) {
     var request = new Request('deleteValoracionCriterios', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el CYEA";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar la Valoración de Criterios";
             callback({
                 success: false,
                 error: request.error,
@@ -98,7 +98,7 @@ exports.deleteValoracionCriterio = function deleteValoracionCriterio(datos, call
             })
         }
     });
-    request.addParameter('ID_ValoracionCriterios', TYPES.Int, datos.ID_ValoracionCriterio);
+    request.addParameter('ID_ValoracionCriterios', TYPES.Int, datos.ID);
     
     request.addOutputParameter('success', TYPES.Bit);
 

@@ -75,7 +75,7 @@ exports.editComponente = function editComponente(datos, callback) {
 exports.deleteComponente = function deleteComponente(datos, callback) {
     var request = new Request('deleteComponente', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el componente";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el Componente";
             callback({
                 success: false,
                 data: err,

@@ -24,6 +24,7 @@ exports.insertEvidencia = function insertEvidencia(datos, callback) {
         }
     });
     request.addParameter('TipoEvidencia', TYPES.Int, datos.TipoEvidencia);
+    request.addParameter('Descripcion', TYPES.VarChar, datos.Descripcion);
     request.addParameter('URL', TYPES.VarChar, datos.URL);
 
     request.addOutputParameter('success', TYPES.Bit);
@@ -66,6 +67,7 @@ exports.editEvidencia = function editEvidencia(datos, callback) {
 
     request.addParameter('ID_Evidencia', TYPES.Int, datos.ID);
     request.addParameter('TipoEvidencia', TYPES.Int, datos.TipoEvidencia);
+    request.addParameter('Descripcion', TYPES.VarChar, datos.Descripcion);
     request.addParameter('URL', TYPES.VarChar, datos.URL);
     
     request.addOutputParameter('success', TYPES.Bit);

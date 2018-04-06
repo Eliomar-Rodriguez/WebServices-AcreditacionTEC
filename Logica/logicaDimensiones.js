@@ -3,13 +3,12 @@
 >  BackEnd de Dimensiones, se encarga de realizar las llamadas necesarias a la base de datos  <
 ===============================================================================================
 */
-
 var consultsPreparerDimensiones = require('../ConsultsPreparer/consultsPreparerDimensiones');
 
 // inserta dimensiones
 exports.insertarDimension = function(datos, callback) {
     consultsPreparerDimensiones.insertDimension(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "No se pudo insertar la dimensión";
+        msg = (response.error == 1) ? "Error de conexión" : "Ya existe la dimensión que desea insertar.";
         if (response.success) {
             callback({
                 success: true,
@@ -34,7 +33,7 @@ exports.insertarDimension = function(datos, callback) {
 exports.seleccionarDimension = function(callback) {
     consultsPreparerDimensiones.selectDimension( function(response) {
         if (response.success) {
-            msg = (response.error == 1) ? "Error de conexión" : "No se pudo seleccionar las dimensiones";
+            msg = (response.error == 1) ? "Error de conexión" : "No se puede seleccionar las dimensiones";
             callback({
                 success: true,
                 error: response.error,
@@ -47,6 +46,7 @@ exports.seleccionarDimension = function(callback) {
             callback({
                 success: false,
                 title: "Error",
+                message: msg,
                 error: response.error,
                 type: "error"
             })
@@ -57,7 +57,7 @@ exports.seleccionarDimension = function(callback) {
 // editar dimension
 exports.editarDimension = function(datos, callback) {
     consultsPreparerDimensiones.editDimension(datos, function(response) {
-        msg = (response.error === 1) ? "Error de conexión" : "No se pudo modificar la dimensión";
+        msg = (response.error === 1) ? "Error de conexión" : "No se puede modificar la dimensión";
         if (response.success) {
             callback({
                 success: true,

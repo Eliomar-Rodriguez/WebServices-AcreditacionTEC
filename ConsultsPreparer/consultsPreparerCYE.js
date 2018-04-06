@@ -78,7 +78,7 @@ exports.editCYE = function editCYE(datos, callback) {
 exports.deleteCYE = function deleteCYE(datos, callback) {
     var request = new Request('deleteCYE', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el CYE";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el Criterio y Estandar";
             callback({
                 success: false,
                 error: request.error,
