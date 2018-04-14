@@ -1739,3 +1739,57 @@ AS
 			END;
 	END;	
 GO
+
+
+
+/*
+	Función encargada de devolver una tabla con todos los ID que recibe concatenado en un solo string por parámetro y separado con coma (,)
+*/
+CREATE FUNCTION dbo.splitString (
+	@stringToSplit VARCHAR(MAX) 
+)RETURNS
+	@returnList TABLE ([Name] [nvarchar] (500))
+AS
+BEGIN
+
+	DECLARE @name NVARCHAR(255)
+	DECLARE @pos INT
+
+	WHILE CHARINDEX(',', @stringToSplit) > 0
+		BEGIN
+			SELECT @pos  = CHARINDEX(',', @stringToSplit)  
+			SELECT @name = SUBSTRING(@stringToSplit, 1, @pos - 1)
+
+			INSERT INTO @returnList 
+			SELECT @name
+
+			SELECT @stringToSplit = SUBSTRING(@stringToSplit, @pos + 1, LEN(@stringToSplit) - @pos)
+		END
+
+	INSERT INTO @returnList
+	SELECT @stringToSplit
+
+	RETURN
+END
+
+--================================================================================
+--		Cursor para recorrer lista de IDs enviada desde el Front-End
+--================================================================================
+Declare @ID int
+DECLARE CURSOR_IDs_ValoracionCriterio_and_Evidencias CURSOR FOR
+
+SELECT * FROM dbo.splitString('1,2,15,1045,3,6,15351,516516516,22')
+OPEN CURSOR_IDs_ValoracionCriterio_and_Evidencias
+
+FETCH NEXT FROM CURSOR_IDs_ValoracionCriterio_and_Evidencias
+INTO @ID
+
+WHILE @@FETCH_STATUS = 0 
+	BEGIN
+		print(@ID)
+		--aquí uso las variables
+		FETCH NEXT FROM CURSOR_IDs_ValoracionCriterio_and_Evidencias INTO @ID -- next registro
+	END
+
+CLOSE CURSOR_IDs_ValoracionCriterio_and_Evidencias-- cierra el cursor
+DEALLOCATE CURSOR_IDs_ValoracionCriterio_and_Evidencias		--- limpia memoria

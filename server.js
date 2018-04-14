@@ -86,7 +86,7 @@ app.get('/', (req, res) => {
 */
 app.post('/insertValoracionCriterio', ValoracionCriteriosCtrl.insertValoracionCriterio);
 app.get('/selectValoracionCriterios', ValoracionCriteriosCtrl.selectValoracionCriterios);
-app.post('/editValoracionCriterio', ValoracionCriteriosCtrl.editValoracionCriterio);
+app.put('/editValoracionCriterio', ValoracionCriteriosCtrl.editValoracionCriterio);
 app.post('/deleteValoracionCriterio', ValoracionCriteriosCtrl.deleteValoracionCriterio);
 
 /*
@@ -96,7 +96,7 @@ app.post('/deleteValoracionCriterio', ValoracionCriteriosCtrl.deleteValoracionCr
 */
 app.post('/insertCYEA', CYEACtrl.insertCYEA);
 app.get('/selectCYEA', CYEACtrl.selectCYEA);
-app.post('/editCYEA', CYEACtrl.editCYEA);
+app.put('/editCYEA', CYEACtrl.editCYEA);
 app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
 
 /*
@@ -106,7 +106,7 @@ app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
 */
 app.post('/insertComponente', componenteCtrl.insertComponente);
 app.get('/selectComponentes', componenteCtrl.selectComponente);
-app.post('/editComponente', componenteCtrl.editComponente);
+app.put('/editComponente', componenteCtrl.editComponente);
 app.post('/deleteComponente', componenteCtrl.deleteComponente);
 
 /*
@@ -117,7 +117,7 @@ app.post('/deleteComponente', componenteCtrl.deleteComponente);
 app.post('/insertDimension', dimensionCtrl.insertDimension);
 app.get('/selectDimensiones', dimensionCtrl.selectDimension);
 app.put('/editDimension', dimensionCtrl.editDimension);
-app.delete('/deleteDimension', dimensionCtrl.deleteDimension);
+app.post('/deleteDimension', dimensionCtrl.deleteDimension);
 
 /*
 ==================================
@@ -126,7 +126,7 @@ app.delete('/deleteDimension', dimensionCtrl.deleteDimension);
 */
 app.post('/insertCYE', CYECtrl.insertCYE);
 app.get('/selectCYE', CYECtrl.selectCYE);
-app.post('/editCYE', CYECtrl.editCYE);
+app.put('/editCYE', CYECtrl.editCYE);
 app.post('/deleteCYE', CYECtrl.deleteCYE);
 
 /*
@@ -136,7 +136,7 @@ app.post('/deleteCYE', CYECtrl.deleteCYE);
 */
 app.post('/insertNivelIAE', NivelesIAECtrl.insertNivelIAE);
 app.get('/selectNivelIAE', NivelesIAECtrl.selectNivelIAE);
-app.post('/editNivelIAE', NivelesIAECtrl.editNivelIAE);
+app.put('/editNivelIAE', NivelesIAECtrl.editNivelIAE);
 app.post('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
 
 /*
@@ -146,7 +146,7 @@ app.post('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
 */
 app.post('/insertCumpliNomin', CumpliNominCtrl.insertCumpliNomin);
 app.get('/selectCumpliNomin', CumpliNominCtrl.selectCumpliNomin);
-app.post('/editCumpliNomin', CumpliNominCtrl.editCumpliNomin);
+app.put('/editCumpliNomin', CumpliNominCtrl.editCumpliNomin);
 app.post('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
 
 /*
@@ -156,7 +156,7 @@ app.post('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
 */
 app.post('/insertValoracion', ValoracionesCtrl.insertValoracion);
 app.get('/selectValoracion', ValoracionesCtrl.selectValoracion);
-app.post('/editValoracion', ValoracionesCtrl.editValoracion);
+app.put('/editValoracion', ValoracionesCtrl.editValoracion);
 app.post('/deleteValoracion', ValoracionesCtrl.deleteValoracion);
 
 /*
@@ -166,7 +166,7 @@ app.post('/deleteValoracion', ValoracionesCtrl.deleteValoracion);
 */
 app.post('/insertEvidencia', EvidenciasCtrl.insertEvidencia);
 app.get('/selectEvidencias', EvidenciasCtrl.selectEvidencias);
-app.post('/editEvidencia', EvidenciasCtrl.editEvidencia);
+app.put('/editEvidencia', EvidenciasCtrl.editEvidencia);
 app.post('/deleteEvidencia', EvidenciasCtrl.deleteEvidencia);
 
 /*
@@ -176,7 +176,7 @@ app.post('/deleteEvidencia', EvidenciasCtrl.deleteEvidencia);
 */
 app.post('/insertAutoevaluacion', AutoevaluacionCtrl.insertAutoevaluacion);
 app.get('/selectAutoevaluaciones', AutoevaluacionCtrl.selectAutoevaluaciones);
-app.post('/editAutoevaluacion', AutoevaluacionCtrl.editAutoevaluacion);
+app.put('/editAutoevaluacion', AutoevaluacionCtrl.editAutoevaluacion);
 app.post('/deleteAutoevaluacion', AutoevaluacionCtrl.deleteAutoevaluacion);
 
 /*
