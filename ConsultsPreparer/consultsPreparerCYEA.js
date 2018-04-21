@@ -86,7 +86,7 @@ exports.deleteCYEA = function deleteCYEA(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_CYEA', TYPES.Int, datos.ID_CYEA);
+    request.addParameter('ID_CYEA', TYPES.Int, datos.ID);
     
     request.addOutputParameter('success', TYPES.Bit);
 

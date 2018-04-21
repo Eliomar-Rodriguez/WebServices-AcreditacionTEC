@@ -24,7 +24,7 @@ exports.selectNivelIAE = function(rRequest, rResponse){
 };
 
 exports.deleteNivelIAE = function(rRequest, rResponse){
-    logicaNivelesIAE.eliminarNivelIAE(rRequest.body, function(data){
+    logicaNivelesIAE.eliminarNivelIAE(rRequest.query, function(data){
         rResponse.send(data);
     });
 };

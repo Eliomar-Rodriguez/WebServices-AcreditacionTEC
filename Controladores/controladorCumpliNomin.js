@@ -25,7 +25,7 @@ exports.selectCumpliNomin = function(rRequest, rResponse){
 };
 
 exports.deleteCumpliNomin = function(rRequest, rResponse){
-    logicaCumpliNomin.eliminarCumpliNomin(rRequest.body, function(data){
+    logicaCumpliNomin.eliminarCumpliNomin(rRequest.query, function(data){
         rResponse.send(data);
     });
 };

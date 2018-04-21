@@ -112,11 +112,18 @@ AS
 			END;
 		ELSE
 			BEGIN
-				IF ((SELECT COUNT(*) FROM dbo.Dimensiones AS C WHERE C.ID = @ID_Dimension) = 1)
+				IF ((SELECT COUNT(*) FROM dbo.Dimensiones AS D WHERE D.ID = @ID_Dimension) = 1)
 					BEGIN
-						INSERT INTO dbo.Componentes (Componente, ID_Dimension)  VALUES (@Componente, @ID_Dimension);
-						SET @success = 1 --exito
-						SELECT @success
+						BEGIN TRY
+							INSERT INTO dbo.Componentes (Componente, ID_Dimension)  VALUES (@Componente, @ID_Dimension);
+							SET @success = 1 --exito
+							SELECT @success
+						END TRY
+						BEGIN CATCH
+							SET @success = 0 --error
+							SELECT @success
+						END CATCH
+						
 					END;
 				ELSE
 					BEGIN
@@ -1009,6 +1016,11 @@ GO
 	- Observaciones: En caso de querer especificar con un comentario algo relacionado al cumplimiento del criterio lo puede hacer agregando la observación
 */
 CREATE PROCEDURE dbo.insertValoracionCriterios -- LISTO
+	-- IDs de las tablas intermedias
+	@ValCrit_Responsables	VARCHAR(MAX),
+	@ValCrit_Autoeval		VARCHAR(MAX), 
+	@ValCrit_CumpliNomin	VARCHAR(MAX), 
+	@ValCrit_Evidencias		VARCHAR(MAX), 
 	@ID_CYEA				INT,
 	@ID_Valoracion			INT,
 	@ID_NivelIAE			INT,
@@ -1020,6 +1032,7 @@ CREATE PROCEDURE dbo.insertValoracionCriterios -- LISTO
 	@success			BIT		OUTPUT
 AS 
 	BEGIN
+		DECLARE @TransactionName VARCHAR(20) = 'insertValCrit';  
 		IF ((SELECT COUNT(*) FROM dbo.CYEA AS C WHERE C.ID = @ID_CYEA) = 1) -- existe el CYEA
 			BEGIN
 				IF ((SELECT COUNT(*) FROM dbo.Valoraciones AS V WHERE V.ID = @ID_Valoracion) = 1) -- existe la valoracion
@@ -1043,11 +1056,27 @@ AS
 												SELECT @success
 											END
 										ELSE
-											BEGIN												
-												INSERT INTO dbo.ValoracionCriterios(ID_CYEA, ID_Valoracion, ID_NivelIAE,ID_Responsabilidad, FLOC, FLA, IncorporadoIAE, Observaciones)  VALUES 
-													(@ID_CYEA, @ID_Valoracion, @ID_NivelIAE, @ID_Responsabilidad, @FLOC, @FLA, @IncorporadoIAE, @Observaciones);
-												SET @success = 1
-												SELECT @success
+											BEGIN
+												BEGIN TRY
+													BEGIN TRAN @TransactionName  												
+														INSERT INTO dbo.ValoracionCriterios(ID_CYEA, ID_Valoracion, ID_NivelIAE,ID_Responsabilidad, FLOC, FLA, IncorporadoIAE, Observaciones)  VALUES 
+															(@ID_CYEA, @ID_Valoracion, @ID_NivelIAE, @ID_Responsabilidad, @FLOC, @FLA, @IncorporadoIAE, @Observaciones);
+														
+														--
+														--
+														--	LLAMAR AL PROCEDIMIENTO ALMACENADO Y CONTROLAR EXCEPCION, HACER PRUEBAS
+														--
+														--
+
+													ROLLBACK TRAN @TransactionName;
+													SET @success = 1 -- exito
+													SELECT @success
+												END TRY
+												BEGIN CATCH
+													SET @success = 0 -- error
+													SELECT @success
+												END CATCH
+												
 											END;
 									END;
 								ELSE
@@ -1751,8 +1780,7 @@ CREATE FUNCTION dbo.splitString (
 	@returnList TABLE ([Name] [nvarchar] (500))
 AS
 BEGIN
-
-	DECLARE @name NVARCHAR(255)
+	DECLARE @name NVARCHAR(MAX)
 	DECLARE @pos INT
 
 	WHILE CHARINDEX(',', @stringToSplit) > 0
@@ -1772,13 +1800,128 @@ BEGIN
 	RETURN
 END
 
+/*
+	Procedimiento almacenado que inserta todos los atributos que trae desde el Front-End concatenados en el char IDs_Concatenados 
+	y los relaciona con la Valoracion de un criterio especifico.
+	- ID_ValoracionCriterio: ID de la valoracion de un criterio especifico a relacionar con los IDs que vienen concatenados
+	- IDs_Concatenados: IDs concatenados y separados solo por comas (1,2,3,4,5,6,7,8,9,10) para poder mandarlos a la base de datos ya que no hay listas en BD
+	- TipoResponsabilidad: En caso de relacionar la valoracion de un criterio con responsables, nada mas, en los otros 3 casos no se usa
+	- Tipo: UNA de las 4 OPCIONes donde se va a insertar
+
+*/
+CREATE PROCEDURE dbo.insertarEnTablasIntermedias (
+	@ID_ValoracionCriterio		INTEGER,
+	@IDs_Concatenados			VARCHAR(MAX),
+	@TipoResponsabilidad		INTEGER, --puede que no se use
+	@Tipo						INTEGER,
+	@success					INTEGER -- para responder a la llamada desde el procedimiento almacenado principal y asegurar al cliente que se hizo bien la insercion
+)
+AS
+BEGIN
+	DECLARE @ID_Momentaneo		INTEGER -- se va a cargar cada ID cuando se recorra la tabla generada por el split de IDs
+
+	DECLARE CURSOR_IDs_Concatenados CURSOR FOR
+	SELECT * FROM dbo.splitString(@IDs_Concatenados)
+	OPEN CURSOR_IDs_Concatenados
+
+	FETCH NEXT FROM CURSOR_IDs_Concatenados
+	INTO @ID_Momentaneo
+
+	IF(@tipo = 1) -- Valoracion Criterio - Autoevaluacion Anual
+		BEGIN TRY			
+			WHILE @@FETCH_STATUS = 0 
+				BEGIN
+					INSERT INTO Autoeval_ValoracionCriterios (ID_Autoeval, ID_ValoracionCriterios) VALUES (@ID_Momentaneo, @ID_ValoracionCriterio);
+					FETCH NEXT FROM CURSOR_IDs_Concatenados INTO @ID_Momentaneo -- next ID de la tabla producida
+				END									
+			SET @success = 1; -- exito
+			SELECT @success
+		END TRY		
+		BEGIN CATCH
+			SELECT @success
+		END CATCH
+	ELSE
+		BEGIN
+			IF(@tipo = 2) -- Valoracion Criterio - Cumplimientos nominales
+				BEGIN TRY			
+					WHILE @@FETCH_STATUS = 0 
+						BEGIN
+							INSERT INTO CumplimientosNominales_ValoracionCriterios(ID_ValoracionCriterios,ID_CumplimNominal) VALUES (@ID_ValoracionCriterio,@ID_Momentaneo);
+							FETCH NEXT FROM CURSOR_IDs_Concatenados INTO @ID_Momentaneo -- next ID de la tabla producida
+						END									
+					SET @success = 1; -- exito
+					SELECT @success
+				END TRY
+				BEGIN CATCH
+					SET @success = 0 -- ERROR
+					SELECT @success
+				END CATCH
+			ELSE
+				BEGIN
+					IF(@tipo = 3) -- Valoracion Criterio - Evidencias						
+						BEGIN TRY			
+							WHILE @@FETCH_STATUS = 0 
+								BEGIN
+									INSERT INTO ValoracionCriterios_Evidencias(ID_ValoracionCriterios, ID_Evidencia) VALUES (@ID_ValoracionCriterio,@ID_Momentaneo);
+									FETCH NEXT FROM CURSOR_IDs_Concatenados INTO @ID_Momentaneo -- next ID de la tabla producida
+								END	
+							SET @success = 1; -- exito
+							SELECT @success 								
+						END TRY
+						BEGIN CATCH
+							SET @success = 0 -- ERROR
+							SELECT @success
+						END CATCH
+					ELSE
+						BEGIN
+							IF(@tipo = 4) -- Valoracion Criterio - Responsables								
+								BEGIN TRY			
+									WHILE @@FETCH_STATUS = 0 
+										BEGIN
+											INSERT INTO ValoracionCriterios_Responsables (ID_ValoracionCriterios, ID_Responsable, TipoResponsabilidad) VALUES (@ID_ValoracionCriterio,@ID_Momentaneo, @TipoResponsabilidad);
+											FETCH NEXT FROM CURSOR_IDs_Concatenados INTO @ID_Momentaneo -- next ID de la tabla producida
+										END
+									SET @success = 1; -- exito
+									SELECT @success									
+								END TRY
+								BEGIN CATCH
+									SET @success = 0 -- ERROR
+									SELECT @success
+								END CATCH
+							ELSE
+								BEGIN
+									SET @success = 0	
+									SELECT @success								
+								END
+						END
+				END
+		END
+	CLOSE CURSOR_IDs_Concatenados	-- cierra el cursor
+	DEALLOCATE CURSOR_IDs_Concatenados		--- limpia memoria eliminando el cursor
+END
+/*
+	FETCH NEXT FROM CURSOR_IDs_ValorCriter_CumpliNomin
+	INTO @ID_ValorCriter_CumpliNomin
+	
+	WHILE @@FETCH_STATUS = 0 
+	BEGIN
+		
+		print(@ID_ValorCriter_CumpliNomin)
+		--aquí uso las variables
+		FETCH NEXT FROM CURSOR_IDs_ValorCriter_CumpliNomin INTO @ID_ValorCriter_CumpliNomin -- next registro
+	END
+
+CLOSE CURSOR_IDs_ValorCriter_CumpliNomin	-- cierra el cursor
+DEALLOCATE CURSOR_IDs_ValorCriter_CumpliNomin		--- limpia memoria eliminando el cursor
+END
+	*/
 --================================================================================
 --		Cursor para recorrer lista de IDs enviada desde el Front-End
 --================================================================================
-Declare @ID int
+/*Declare @ID int
 DECLARE CURSOR_IDs_ValoracionCriterio_and_Evidencias CURSOR FOR
 
-SELECT * FROM dbo.splitString('1,2,15,1045,3,6,15351,516516516,22')
+SELECT * FROM dbo.splitString('1,2,15,1045,3,6,15351,516516516,22') -- aqui va el parametro de los IDs concatenados para que la funcion lo haga solo
 OPEN CURSOR_IDs_ValoracionCriterio_and_Evidencias
 
 FETCH NEXT FROM CURSOR_IDs_ValoracionCriterio_and_Evidencias
@@ -1786,6 +1929,7 @@ INTO @ID
 
 WHILE @@FETCH_STATUS = 0 
 	BEGIN
+	insert into Autoeval_ValoracionCriterios (ID_Autoeval,ID_ValoracionCriterios) values (1,2)
 		print(@ID)
 		--aquí uso las variables
 		FETCH NEXT FROM CURSOR_IDs_ValoracionCriterio_and_Evidencias INTO @ID -- next registro
@@ -1793,3 +1937,4 @@ WHILE @@FETCH_STATUS = 0
 
 CLOSE CURSOR_IDs_ValoracionCriterio_and_Evidencias-- cierra el cursor
 DEALLOCATE CURSOR_IDs_ValoracionCriterio_and_Evidencias		--- limpia memoria
+*/

@@ -24,7 +24,7 @@ exports.selectValoracionCriterios = function(rRequest, rResponse){
 };
 
 exports.deleteValoracionCriterio = function(rRequest, rResponse){
-    logicaValoracionCriterios.eliminarValoracionCriterio(rRequest.body, function(data){
+    logicaValoracionCriterios.eliminarValoracionCriterio(rRequest.query, function(data){
         rResponse.send(data);
     });
 };

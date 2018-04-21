@@ -50,25 +50,27 @@ exports.selectDimension = function(callback) {
     sqlConection.executeRequest(request, callback); 
 }
 
-exports.editDimension = function editDimension(datos, callback) {
-    var request = new Request('editDimension', function(err) {
-        if (err) {
-            callback({
-                success: false,
-                error: request.error,
-                title: "Error",
-                message: "Sucedio un error en la modificación de los datos",
-                type: "error"
-            })
-        }
-    });
+exports.editDimension = function editDimension(datos, callback) {    
+    try {
+        var request = new Request('editDimension', function(err) {
+            if (err) {
+                callback({
+                    success: false,
+                    error: request.error,
+                    title: "Error",
+                    message: "Sucedio un error en la modificación de los datos",
+                    type: "error"
+                })
+            }
+        });
+        request.addParameter('ID_Dimension', TYPES.Int, datos.ID);
+        request.addParameter('nombreDimension', TYPES.VarChar, datos.Dimension);
+        request.addOutputParameter('success', TYPES.Bit);
 
-    request.addParameter('ID_Dimension', TYPES.Int, datos.ID);
-    request.addParameter('nombreDimension', TYPES.VarChar, datos.Dimension);
-    
-    request.addOutputParameter('success', TYPES.Bit);
-
-    sqlConection.callProcedure(request, callback);
+        sqlConection.callProcedure(request, callback);
+    } catch (error) {
+        console.log(error);
+    }    
 };
 // DELETE 
 exports.deleteDimension = function deleteDimension(datos, callback) {

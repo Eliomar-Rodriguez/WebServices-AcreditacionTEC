@@ -24,7 +24,7 @@ exports.selectValoracion = function(rRequest, rResponse){
 };
 
 exports.deleteValoracion = function(rRequest, rResponse){
-    logicaValoracion.eliminarValoracion(rRequest.body, function(data){
+    logicaValoracion.eliminarValoracion(rRequest.query, function(data){
         rResponse.send(data);
     });
 };

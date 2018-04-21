@@ -64,8 +64,7 @@ app.use(function(req, res, next) {
 */
 let router = express.Router;
 
-app.get('/', (req, res) => {
-    var html = '<center>'+
+var html = '<center>'+
     '<p style="padding-top:10%">'+
         '<h2>'+
             'TEC Sede San Carlos<br>'+
@@ -76,6 +75,16 @@ app.get('/', (req, res) => {
         ' <br><br><h3><b style="color: red">Atención: </b>Ruta vacía.</h3>'+
     '</p>'+
     '</center>';
+app.post('/', (req, res) => {    
+    res.send(html);
+})
+app.put('/', (req, res) => {    
+    res.send(html);
+})
+app.get('/', (req, res) => {    
+    res.send(html);
+})
+app.delete('/', (req, res) => {    
     res.send(html);
 })
 
@@ -87,7 +96,7 @@ app.get('/', (req, res) => {
 app.post('/insertValoracionCriterio', ValoracionCriteriosCtrl.insertValoracionCriterio);
 app.get('/selectValoracionCriterios', ValoracionCriteriosCtrl.selectValoracionCriterios);
 app.put('/editValoracionCriterio', ValoracionCriteriosCtrl.editValoracionCriterio);
-app.post('/deleteValoracionCriterio', ValoracionCriteriosCtrl.deleteValoracionCriterio);
+app.delete('/deleteValoracionCriterio', ValoracionCriteriosCtrl.deleteValoracionCriterio);
 
 /*
 ==================================
@@ -97,7 +106,7 @@ app.post('/deleteValoracionCriterio', ValoracionCriteriosCtrl.deleteValoracionCr
 app.post('/insertCYEA', CYEACtrl.insertCYEA);
 app.get('/selectCYEA', CYEACtrl.selectCYEA);
 app.put('/editCYEA', CYEACtrl.editCYEA);
-app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
+app.delete('/deleteCYEA', CYEACtrl.deleteCYEA);
 
 /*
 ==================================
@@ -107,7 +116,7 @@ app.post('/deleteCYEA', CYEACtrl.deleteCYEA);
 app.post('/insertComponente', componenteCtrl.insertComponente);
 app.get('/selectComponentes', componenteCtrl.selectComponente);
 app.put('/editComponente', componenteCtrl.editComponente);
-app.post('/deleteComponente', componenteCtrl.deleteComponente);
+app.delete('/deleteComponente', componenteCtrl.deleteComponente);
 
 /*
 ==================================
@@ -117,7 +126,7 @@ app.post('/deleteComponente', componenteCtrl.deleteComponente);
 app.post('/insertDimension', dimensionCtrl.insertDimension);
 app.get('/selectDimensiones', dimensionCtrl.selectDimension);
 app.put('/editDimension', dimensionCtrl.editDimension);
-app.post('/deleteDimension', dimensionCtrl.deleteDimension);
+app.delete('/deleteDimension', dimensionCtrl.deleteDimension);
 
 /*
 ==================================
@@ -127,7 +136,7 @@ app.post('/deleteDimension', dimensionCtrl.deleteDimension);
 app.post('/insertCYE', CYECtrl.insertCYE);
 app.get('/selectCYE', CYECtrl.selectCYE);
 app.put('/editCYE', CYECtrl.editCYE);
-app.post('/deleteCYE', CYECtrl.deleteCYE);
+app.delete('/deleteCYE', CYECtrl.deleteCYE);
 
 /*
 ==================================
@@ -137,7 +146,7 @@ app.post('/deleteCYE', CYECtrl.deleteCYE);
 app.post('/insertNivelIAE', NivelesIAECtrl.insertNivelIAE);
 app.get('/selectNivelIAE', NivelesIAECtrl.selectNivelIAE);
 app.put('/editNivelIAE', NivelesIAECtrl.editNivelIAE);
-app.post('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
+app.delete('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
 
 /*
 ===============================================
@@ -147,7 +156,7 @@ app.post('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
 app.post('/insertCumpliNomin', CumpliNominCtrl.insertCumpliNomin);
 app.get('/selectCumpliNomin', CumpliNominCtrl.selectCumpliNomin);
 app.put('/editCumpliNomin', CumpliNominCtrl.editCumpliNomin);
-app.post('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
+app.delete('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
 
 /*
 ====================================
@@ -157,7 +166,7 @@ app.post('/deleteCumpliNomin', CumpliNominCtrl.deleteCumpliNomin);
 app.post('/insertValoracion', ValoracionesCtrl.insertValoracion);
 app.get('/selectValoracion', ValoracionesCtrl.selectValoracion);
 app.put('/editValoracion', ValoracionesCtrl.editValoracion);
-app.post('/deleteValoracion', ValoracionesCtrl.deleteValoracion);
+app.delete('/deleteValoracion', ValoracionesCtrl.deleteValoracion);
 
 /*
 ==================================
@@ -167,7 +176,7 @@ app.post('/deleteValoracion', ValoracionesCtrl.deleteValoracion);
 app.post('/insertEvidencia', EvidenciasCtrl.insertEvidencia);
 app.get('/selectEvidencias', EvidenciasCtrl.selectEvidencias);
 app.put('/editEvidencia', EvidenciasCtrl.editEvidencia);
-app.post('/deleteEvidencia', EvidenciasCtrl.deleteEvidencia);
+app.delete('/deleteEvidencia', EvidenciasCtrl.deleteEvidencia);
 
 /*
 =======================================
@@ -177,7 +186,7 @@ app.post('/deleteEvidencia', EvidenciasCtrl.deleteEvidencia);
 app.post('/insertAutoevaluacion', AutoevaluacionCtrl.insertAutoevaluacion);
 app.get('/selectAutoevaluaciones', AutoevaluacionCtrl.selectAutoevaluaciones);
 app.put('/editAutoevaluacion', AutoevaluacionCtrl.editAutoevaluacion);
-app.post('/deleteAutoevaluacion', AutoevaluacionCtrl.deleteAutoevaluacion);
+app.delete('/deleteAutoevaluacion', AutoevaluacionCtrl.deleteAutoevaluacion);
 
 /*
 ======================================================================================
