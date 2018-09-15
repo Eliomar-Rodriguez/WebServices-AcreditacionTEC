@@ -6,13 +6,15 @@
 var logicaCYEA = require('../Logica/logicaCYEA');
 
 exports.insertCYEA = function(rRequest, rResponse){
-    console.log(rRequest.query);
-    logicaCYEA.insertarCYEA(rRequest.query, function(data){
+    logicaCYEA.insertarCYEA(rRequest.body, function(data){
         rResponse.send(data);
     })
 };
 
 exports.editCYEA = function(rRequest, rResponse){
+    console.log("\n\n\edit\n")
+    console.log(rRequest.body)
+    console.log("\edit\n\n\n")
     logicaCYEA.editarCYEA(rRequest.body, function(data){
         rResponse.send(data);
     });

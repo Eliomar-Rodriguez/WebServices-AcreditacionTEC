@@ -109,9 +109,11 @@ GO
 CREATE TABLE Valoraciones(
 	ID			INT	IDENTITY(1,1)			NOT NULL,
 	Valoracion	VARCHAR(50)					NOT NULL	UNIQUE,
+	Posicion	FLOAT						NOT NULL	UNIQUE,
 	CONSTRAINT PK_Valoraciones_ID PRIMARY KEY CLUSTERED (ID)
 );
 GO
+--ALTER TABLE Valoraciones ALTER COLUMN Posicion INTEGER NOT NULL
 
 /*
 Tabla CumplimientosNominales, contiene fechas en las que se deben presentar avances o tener listo algún criterio
@@ -120,10 +122,12 @@ USE AcreditacionTEC;
 GO
 CREATE TABLE CumplimientosNominales(
 	ID					INT	IDENTITY(1,1)	NOT NULL,
-	FechaCumplimiento	DATE				NOT NULL	UNIQUE,
+	FechaCumplimiento	DATE				NOT NULL,
+	Descripcion			VARCHAR(300)		NOT NULL,
 	CONSTRAINT PK_CumplimientosNominales_ID PRIMARY KEY CLUSTERED (ID)
 );
 GO
+
 
 /*
 Tabla Responsables, contiene las personas que son responsables de que un criterio se cumpla bajo los requisitos de SINAES
@@ -145,8 +149,8 @@ GO
 CREATE TABLE Evidencias(
 	ID				INT	IDENTITY(1,1)	NOT NULL,
 	TipoEvidencia	INT					NOT NULL	UNIQUE,
-	Descripcion		VARCHAR(200)		NOT NULL	UNIQUE,
-	URL				VARCHAR(350)		NOT NULL,
+	Descripcion		VARCHAR(300)		NOT NULL	UNIQUE,
+	URL				VARCHAR(500)		NOT NULL,
 	CONSTRAINT PK_Evidencias_ID PRIMARY KEY CLUSTERED (ID)
 );
 GO

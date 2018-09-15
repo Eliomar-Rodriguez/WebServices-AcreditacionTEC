@@ -6,13 +6,14 @@
 var logicaEvidencia = require('../Logica/logicaEvidencia');
 
 exports.insertEvidencia = function(rRequest, rResponse){
-    logicaEvidencia.insertarEvidencia(rRequest.query, function(data){
+    console.log(rRequest.query)
+    logicaEvidencia.insertarEvidencia(rRequest.body, function(data){
         rResponse.send(data);
     })
 };
 
 exports.editEvidencia = function(rRequest, rResponse){
-    logicaEvidencia.editarEvidencia(rRequest.query, function(data){
+    logicaEvidencia.editarEvidencia(rRequest.body, function(data){
         rResponse.send(data);
     });
 };

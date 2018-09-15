@@ -1,10 +1,10 @@
-/*
-Comunidad de Aplicaciones MÛviles
+Ôªø/*
+Comunidad de Aplicaciones M√≥viles
 ITCR 2017
-Proyecto AcreditacionTEC desarrollado para la Escuela de AdministraciÛn de Empresas
+Proyecto AcreditacionTEC desarrollado para la Escuela de Administraci√≥n de Empresas
 Eliomar Rodriguez Arguedas
 
-NOTA: TODOS los procesos almacenados estan validados y en caso de realizar la operaciÛn de manera exitosa retorna un bit 1, caso contrario retorna bit 0
+NOTA: TODOS los procesos almacenados estan validados y en caso de realizar la operaci√≥n de manera exitosa retorna un bit 1, caso contrario retorna bit 0
 */
 
 USE AcreditacionTEC
@@ -15,8 +15,8 @@ GO
 ============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevas dimensiones
-	- nombreDimension: Nombre a asignar a la nueva dimensiÛn
+	Procedimiento almacenado encargado de la inserci√≥n de nuevas dimensiones
+	- nombreDimension: Nombre a asignar a la nueva dimensi√≥n
 */ 
 CREATE PROCEDURE dbo.insertDimension -- LISTO
 	@nombreDimension	VARCHAR(50),
@@ -37,9 +37,9 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de dimensiones
-	- ID_Dimension: ID de la dimensiÛn a editar
-	- nombreDimension: Nuevo nombre a asignar a la dimensiÛn
+	Procedimiento almacenado encargado de la edici√≥n de dimensiones
+	- ID_Dimension: ID de la dimensi√≥n a editar
+	- nombreDimension: Nuevo nombre a asignar a la dimensi√≥n
 */ 
 CREATE PROCEDURE dbo.editDimension -- LISTO
 	@ID_Dimension		INT,
@@ -57,15 +57,15 @@ AS
 			END;
 		ELSE
 			BEGIN
-				RAISERROR('La dimensiÛn que intenta editar no se encuentra registrada.',16,1);
+				RAISERROR('La dimensi√≥n que intenta editar no se encuentra registrada.',16,1);
 				SET @success = 0
 				SELECT @success
 			END;		
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una dimensiÛn en especifico 
-	- ID_Dimension: ID de la dimensiÛn que se desea eliminar
+	Procedimiento almacenado encargado de la eliminaci√≥n de una dimensi√≥n en especifico 
+	- ID_Dimension: ID de la dimensi√≥n que se desea eliminar
 */
 CREATE PROCEDURE dbo.deleteDimension -- LISTO
 	@ID_Dimension		INT,
@@ -80,7 +80,7 @@ AS
 			END;
 		ELSE
 			BEGIN
-				RAISERROR ('La dimensiÛn que intentas eliminar no existe.',16,1);
+				RAISERROR ('La dimensi√≥n que intentas eliminar no existe.',16,1);
 				SET @success = 0
 				SELECT @success
 			END;		
@@ -94,9 +94,9 @@ GO
 ============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevos componentes
+	Procedimiento almacenado encargado de la inserci√≥n de nuevos componentes
 	- Componente: Nombre del componente a registrar
-	- ID_Dimension: ID de la dimensiÛn a la que pertenece el componente
+	- ID_Dimension: ID de la dimensi√≥n a la que pertenece el componente
 */
 CREATE PROCEDURE dbo.insertComponente -- listo
 	@Componente			VARCHAR(50),
@@ -136,9 +136,9 @@ AS
 GO
 
 /*
-	Procedimiento almacenado encargado de la ediciÛn de componentes
+	Procedimiento almacenado encargado de la edici√≥n de componentes
 	 - ID_Componente: ID del componente a editar
-	 - ID_Dimension: ID de la nueva dimensiÛn a asociar
+	 - ID_Dimension: ID de la nueva dimensi√≥n a asociar
 	 - nombreComponente: Nuevo nombre que se le va a asignar al componente
 */
 CREATE PROCEDURE dbo.editComponente -- listo
@@ -176,7 +176,7 @@ AS
 GO
 
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de un componente en especifico 
+	Procedimiento almacenado encargado de la eliminaci√≥n de un componente en especifico 
 	- ID_Componente: ID del componente a eliminar
 */
 CREATE PROCEDURE dbo.deleteComponente -- listo
@@ -206,7 +206,7 @@ GO
 ============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevas sedes enviando el nombre
+	Procedimiento almacenado encargado de la inserci√≥n de nuevas sedes enviando el nombre
 */
 CREATE PROCEDURE dbo.insertSede --listo
 	@nombreSede		VARCHAR(50),
@@ -228,8 +228,8 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de componentes y recibe por par·metro el ID del componente a 
-	editar, el ID de la nueva dimensiÛn y el nuevo nombre que se le va a asignar
+	Procedimiento almacenado encargado de la edici√≥n de componentes y recibe por par√°metro el ID del componente a 
+	editar, el ID de la nueva dimensi√≥n y el nuevo nombre que se le va a asignar
 */
 CREATE PROCEDURE dbo.editSede -- listo
 	@ID_Sede		INT,
@@ -254,7 +254,7 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una sede en especifico enviando por par·metro el ID de la sede a eliminar
+	Procedimiento almacenado encargado de la eliminaci√≥n de una sede en especifico enviando por par√°metro el ID de la sede a eliminar
 */
 CREATE PROCEDURE dbo.deleteSede --listo
 	@ID_Sede		INT,
@@ -283,7 +283,7 @@ GO
 ============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevas sedes enviando el nombre y la sede a la que pertenece
+	Procedimiento almacenado encargado de la inserci√≥n de nuevas sedes enviando el nombre y la sede a la que pertenece
 */
 CREATE PROCEDURE dbo.insertCarrera -- listo
 	@nombreCarrera		VARCHAR(50),
@@ -315,7 +315,7 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de carreras y recibe por par·metro el ID de la carrera a 
+	Procedimiento almacenado encargado de la edici√≥n de carreras y recibe por par√°metro el ID de la carrera a 
 	editar, el ID de la nueva sede y el nuevo nombre que se le va a asignar
 */
 CREATE PROCEDURE dbo.editCarrera -- listo
@@ -352,7 +352,7 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una carrera en especifico enviando por par·metro el ID de la carrera que se desea eliminar
+	Procedimiento almacenado encargado de la eliminaci√≥n de una carrera en especifico enviando por par√°metro el ID de la carrera que se desea eliminar
 */
 CREATE PROCEDURE dbo.deleteCarrera -- listo
 	@ID_Carrera		INT,
@@ -381,9 +381,9 @@ GO
 ============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevos CYE
+	Procedimiento almacenado encargado de la inserci√≥n de nuevos CYE
 	- ID_Componente: ID del componente que tiene relacionado
-	- ID_Carrera: ID de la carrera a la que se asignÛ 
+	- ID_Carrera: ID de la carrera a la que se asign√≥ 
 	- Criterio: Criterio impuesto por SINAES que debe ser cumplido
 */
 CREATE PROCEDURE dbo.insertCYE -- listo
@@ -426,7 +426,7 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de CYE
+	Procedimiento almacenado encargado de la edici√≥n de CYE
 	- ID_CYE: ID del CYE a editar
 	- ID_Componente: ID del componente a asociar
 	- ID_Carrera: ID de la carrera a asignar
@@ -477,7 +477,7 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de un CYE en especifico
+	Procedimiento almacenado encargado de la eliminaci√≥n de un CYE en especifico
 	- ID_CYE: ID del criterio que se desea eliminar
 */
 CREATE PROCEDURE dbo.deleteCYE -- listo
@@ -507,9 +507,9 @@ GO
 ======================================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevas Autoevaluaciones Anuales
-	- ID_Encargado: ID del encargado de dicha autoevaluaciÛn
-	- Anio: AÒo en el que se realizar· la autoevaluaciÛn
+	Procedimiento almacenado encargado de la inserci√≥n de nuevas Autoevaluaciones Anuales
+	- ID_Encargado: ID del encargado de dicha autoevaluaci√≥n
+	- Anio: A√±o en el que se realizar√° la autoevaluaci√≥n
 	- Nombre: Nombre descriptivo para diferenciar entre autoevaluaciones
 */
 CREATE PROCEDURE dbo.insertAutoevaluacionAnual --listo
@@ -521,7 +521,7 @@ AS
 	BEGIN
 		IF ((SELECT COUNT(*) FROM dbo.AutoevaluacionesAnuales AS A WHERE A.Anio = @Anio AND A.ID_Encargado = @ID_Encargado AND A.Nombre = @Nombre) > 0)
 			BEGIN
-				RAISERROR ('La autoevaluciÛn que desea insertar ya se encuentra registrada.',16,1);
+				RAISERROR ('La autoevaluci√≥n que desea insertar ya se encuentra registrada.',16,1);
 				SET @success = 0
 				SELECT @success
 			END;
@@ -534,11 +534,11 @@ AS
 	END;    
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de Autoevaluaciones Anuales
-	- ID_AutoevalAnual: ID de la AutoevaluaciÛn a editar
-	- ID_Encargado: ID del nuevo encargado de aplicar dicha autoevaluaciÛn
-	- Anio: Nuevo aÒo en el que se va a aplicar la autoevaluaciÛn
-	- Nombre: Nuevo nombre que se le asignar· a la autoevaluaciÛn
+	Procedimiento almacenado encargado de la edici√≥n de Autoevaluaciones Anuales
+	- ID_AutoevalAnual: ID de la Autoevaluaci√≥n a editar
+	- ID_Encargado: ID del nuevo encargado de aplicar dicha autoevaluaci√≥n
+	- Anio: Nuevo a√±o en el que se va a aplicar la autoevaluaci√≥n
+	- Nombre: Nuevo nombre que se le asignar√° a la autoevaluaci√≥n
 */
 CREATE PROCEDURE dbo.editAutoevaluacionAnual -- listo
 	@ID_AutoevalAnual		INT,
@@ -560,15 +560,15 @@ AS
 			END;
 		ELSE
 			BEGIN
-				RAISERROR('La autoevaluaciÛn indicada no se encuentra registrada.',16,1);
+				RAISERROR('La autoevaluaci√≥n indicada no se encuentra registrada.',16,1);
 				SET @success = 0
 				SELECT @success
 			END;
 	END;	
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una AutoevaluaciÛn Anual en especÌfico 
-	- ID_AutoevalAnual: ID de la AutoevaluaciÛn que se desea eliminar
+	Procedimiento almacenado encargado de la eliminaci√≥n de una Autoevaluaci√≥n Anual en espec√≠fico 
+	- ID_AutoevalAnual: ID de la Autoevaluaci√≥n que se desea eliminar
 */
 CREATE PROCEDURE dbo.deleteAutoevaluacionAnual -- listo
 	@ID_AutoevalAnual		INT,
@@ -583,7 +583,7 @@ AS
 			END;
 		ELSE
 			BEGIN
-				RAISERROR('La autoevaluaciÛn indicada no se encuentra registrada.',16,1);
+				RAISERROR('La autoevaluaci√≥n indicada no se encuentra registrada.',16,1);
 				SET @success = 0
 				SELECT @success
 			END;
@@ -597,7 +597,7 @@ GO
 ============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevos Niveles de avance IAE 
+	Procedimiento almacenado encargado de la inserci√≥n de nuevos Niveles de avance IAE 
 	- Nivel: Nombre del nivel de avance IAE
 */
 CREATE PROCEDURE dbo.insertNivelIAE -- listo
@@ -620,7 +620,7 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de Niveles de avance IAE 
+	Procedimiento almacenado encargado de la edici√≥n de Niveles de avance IAE 
 	- ID_Nivel: ID del nivel IAE a editar
 	- Nivel: Nuevo nombre del nivel IAE
 */
@@ -647,7 +647,7 @@ AS
 	END;	
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de un nivel de avance IAE en especÌfico 
+	Procedimiento almacenado encargado de la eliminaci√≥n de un nivel de avance IAE en espec√≠fico 
 	- ID_Nivel: ID del nivel a eliminar
 */
 CREATE PROCEDURE dbo.deleteNivelIAE -- listo
@@ -673,62 +673,65 @@ GO
 
 /*
 ============================================================
-8.	PROCEDIMIENTOS TABLA VALORACIONES (con validaciones)
+8.	PROCEDIMIENTOS TABLA VALORACION (con validaciones)
 ============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevas valoraciones
-	- Valoracion: Nombre de la valoraciÛn
+	Procedimiento almacenado encargado de la inserci√≥n de nuevas valoraciones
+	- Valoracion: Nombre de la valoraci√≥n
 */
 CREATE PROCEDURE dbo.insertValoracion -- listo
 	@Valoracion		VARCHAR(50),
-	@success			BIT		OUTPUT
+	@Posicion		FLOAT,
+	@success		BIT		OUTPUT
 AS 
 	BEGIN
-		IF ((SELECT COUNT(*) FROM dbo.Valoraciones AS V WHERE V.Valoracion = @Valoracion) = 1) -- existe valoracion
+		IF ((SELECT COUNT(*) FROM dbo.Valoraciones AS V WHERE V.Valoracion = @Valoracion AND V.Posicion = @Posicion) = 1) -- existe valoracion
 			BEGIN
-				RAISERROR('La valoraciÛn que desea insertar ya se encuentra registrada.',16,1);
+				RAISERROR('La valoraci√≥n que desea insertar ya se encuentra registrada.',16,1);
 				SET @success = 0
 				SELECT @success
 			END;
 		ELSE
 			BEGIN
-				INSERT INTO dbo.Valoraciones(Valoracion)  VALUES (@Valoracion);
+				INSERT INTO dbo.Valoraciones(Valoracion, Posicion)  VALUES (@Valoracion, @Posicion);
 				SET @success = 1
 				SELECT @success
 			END;
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de una valoraciÛn
+	Procedimiento almacenado encargado de la edici√≥n de una valoraci√≥n
 	- ID_Valoracion:  ID de la valoracion a editar
-	- Valoracion: Nombre de la valoraciÛn
+	- Valoracion: Nombre de la valoraci√≥n
 */
 CREATE PROCEDURE dbo.editValoracion -- listo
 	@ID_Valoracion		INT,
 	@Valoracion			VARCHAR(50),
+	@Posicion			FLOAT,
 	@success			BIT		OUTPUT
 AS
 	BEGIN
-		IF ((SELECT COUNT(*) FROM dbo.Valoraciones AS V WHERE V.ID = @ID_Valoracion) = 1) -- existe valoracion
+		IF ((SELECT COUNT(*) FROM dbo.Valoraciones AS V WHERE V.ID = @ID_Valoracion AND V.Posicion = @Posicion) = 1) -- existe valoracion
 			BEGIN
 				UPDATE dbo.Valoraciones 
-				SET Valoracion = @Valoracion
+				SET Valoracion = @Valoracion,
+					Posicion = @Posicion
 				WHERE ID = @ID_Valoracion;
 				SET @success = 1
 				SELECT @success
 			END;
 		ELSE
 			BEGIN
-				RAISERROR('La valoraciÛn que desea editar no se encuentra registrada.',16,1);
+				RAISERROR('La valoraci√≥n que desea editar no se encuentra registrada.',16,1);
 				SET @success = 0
 				SELECT @success
 			END;
 	END;	
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una valoraciÛn en especÌfico
-	- ID_valoracion: ID de la valoraciÛn a eliminar
+	Procedimiento almacenado encargado de la eliminaci√≥n de una valoraci√≥n en espec√≠fico
+	- ID_valoracion: ID de la valoraci√≥n a eliminar
 */
 CREATE PROCEDURE dbo.deleteValoracion -- listo
 	@ID_Valoracion		INT,
@@ -743,7 +746,7 @@ AS
 			END;
 		ELSE
 			BEGIN
-				RAISERROR('La valoraciÛn que desea eliminar no se encuentra registrada.',16,1);
+				RAISERROR('La valoraci√≥n que desea eliminar no se encuentra registrada.',16,1);
 				SET @success = 0
 				SELECT @success
 			END;
@@ -757,15 +760,16 @@ GO
 =======================================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevas fechas de cumplimiento nominal
+	Procedimiento almacenado encargado de la inserci√≥n de nuevas fechas de cumplimiento nominal
 	- FechaCumplimiento: Fecha en la que debe estar cumplido el criterio
 */
 CREATE PROCEDURE dbo.insertCumplimientoNominal -- listo
 	@FechaCumplimiento		DATE,
+	@Descripcion			VARCHAR(300),
 	@success			BIT		OUTPUT
 AS 
 	BEGIN
-		IF ((SELECT COUNT(*) FROM dbo.CumplimientosNominales AS CN WHERE CN.FechaCumplimiento = @FechaCumplimiento) = 1) -- existe ya un CumplNomin
+		IF ((SELECT COUNT(*) FROM dbo.CumplimientosNominales AS CN WHERE CN.FechaCumplimiento = @FechaCumplimiento AND CN.Descripcion = @Descripcion) = 1) -- existe ya un CumplNomin
 			BEGIN
 				RAISERROR('El cumplimiento nominal que desea insertar ya se encuentra registrado.',16,1);
 				SET @success = 0
@@ -773,27 +777,29 @@ AS
 			END;
 		ELSE
 			BEGIN				
-				INSERT INTO dbo.CumplimientosNominales(FechaCumplimiento) VALUES (@FechaCumplimiento);
+				INSERT INTO dbo.CumplimientosNominales(FechaCumplimiento, Descripcion) VALUES (@FechaCumplimiento, @Descripcion);
 				SET @success = 1
 				SELECT @success
 			END;
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de un cumplimiento nominal
+	Procedimiento almacenado encargado de la edici√≥n de un cumplimiento nominal
 	- ID_CumpliNominal: ID del cumplimiento nominal a editar
 	- FechaCumplimiento: Nueva fecha de dicho cumplimiento
 */
 CREATE PROCEDURE dbo.editCumplimientoNominal -- listo
 	@ID_CumpliNominal		INT,
 	@FechaCumplimiento		DATE,
+	@Descripcion			VARCHAR(300),
 	@success			BIT		OUTPUT
 AS
 	BEGIN
 		IF ((SELECT COUNT(*) FROM dbo.CumplimientosNominales AS CN WHERE CN.ID = @ID_CumpliNominal) = 1) -- existe un CumplNomin
 			BEGIN
 				UPDATE dbo.CumplimientosNominales 
-				SET FechaCumplimiento = @FechaCumplimiento
+				SET FechaCumplimiento = @FechaCumplimiento,
+					Descripcion = @Descripcion
 				WHERE ID = @ID_CumpliNominal;
 				SET @success = 1
 				SELECT @success
@@ -807,7 +813,7 @@ AS
 	END;	
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de un cumplimiento nominal en especÌfico 
+	Procedimiento almacenado encargado de la eliminaci√≥n de un cumplimiento nominal en espec√≠fico 
 	- ID_CumpliNominal: ID del cumplimiento a eliminar
 */
 CREATE PROCEDURE dbo.deleteCumplimientoNominal -- listo
@@ -837,7 +843,7 @@ GO
 ============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevos responsables enviando el correo del dicha persona
+	Procedimiento almacenado encargado de la inserci√≥n de nuevos responsables enviando el correo del dicha persona
 */
 CREATE PROCEDURE dbo.insertResponsable -- listo
 	@Correo		VARCHAR(100),
@@ -861,7 +867,7 @@ GO
 
 
 /*
-	Procedimiento almacenado encargado de la ediciÛn de la informacion de responsables, recibe por par·metro el ID del responsable a editar, 
+	Procedimiento almacenado encargado de la edici√≥n de la informacion de responsables, recibe por par√°metro el ID del responsable a editar, 
 	y el nuevo correo del responsable
 */
 CREATE PROCEDURE dbo.editResponsable -- listo
@@ -887,7 +893,7 @@ AS
 	END;	
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de un responsable especifico enviando por par·metro el ID del responsable a eliminar
+	Procedimiento almacenado encargado de la eliminaci√≥n de un responsable especifico enviando por par√°metro el ID del responsable a eliminar
 */
 CREATE PROCEDURE dbo.deleteResponsable -- listo
 	@ID_Responsable		INT,
@@ -916,10 +922,10 @@ GO
 ============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevas evidencias
+	Procedimiento almacenado encargado de la inserci√≥n de nuevas evidencias
 	- TipoEvidencia: Tipo de evidencia a insertar
-	- URL: DirecciÛn en el servidor de archivos para luego cargarlo
-	- Descripcion: Breve descripciÛn para poder diferenciar entre evidencias
+	- URL: Direcci√≥n en el servidor de archivos para luego cargarlo
+	- Descripcion: Breve descripci√≥n para poder diferenciar entre evidencias
 */
 CREATE PROCEDURE dbo.insertEvidencia -- listo
 	@TipoEvidencia		INT,
@@ -943,10 +949,10 @@ AS
 	END;    
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de una evidencia
+	Procedimiento almacenado encargado de la edici√≥n de una evidencia
 	- ID_Evidencia: ID de la evidencia a editar
 	- TipoEvidencia: Nuevo tipo de evidencia
-	- URL: Nueva direcciÛn en el servidor
+	- URL: Nueva direcci√≥n en el servidor
 */
 CREATE PROCEDURE dbo.editEvidencia -- listo
 	@ID_Evidencia		INT,
@@ -975,7 +981,7 @@ AS
 	END;	
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una evidencia especÌfica
+	Procedimiento almacenado encargado de la eliminaci√≥n de una evidencia espec√≠fica
 	- ID_Evidencia: ID de la evidencia a eliminar
 */
 CREATE PROCEDURE dbo.deleteEvidencia -- LISTO
@@ -1005,15 +1011,15 @@ GO
 =================================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevas Valoraciones de Criterios
+	Procedimiento almacenado encargado de la inserci√≥n de nuevas Valoraciones de Criterios
 	- ID_CYEA: ID del CYEA a valorar
-	- ID_Valoracion: ID de la valoraciÛn que se le asignar· a la evaluaciÛn del criterio ajustado
+	- ID_Valoracion: ID de la valoraci√≥n que se le asignar√° a la evaluaci√≥n del criterio ajustado
 	- ID_NivelIAE: ID del nivel de avance IAE seleccionado
 	- ID_Responsabilidad: ID de responsabilidad encargada de velar porque el criterio se cumpla (administrativa, carrera X, etc)
-	- FLOC: Fecha lÌmite original para cumplimiento del criterio
-	- FLA: Fecha lÌmite ajustada para cumplimiento del criterio
-	- IncorporadoIAE: Si o no en caso de que el criterio estÈ incorporado en IAE o no
-	- Observaciones: En caso de querer especificar con un comentario algo relacionado al cumplimiento del criterio lo puede hacer agregando la observaciÛn
+	- FLOC: Fecha l√≠mite original para cumplimiento del criterio
+	- FLA: Fecha l√≠mite ajustada para cumplimiento del criterio
+	- IncorporadoIAE: Si o no en caso de que el criterio est√© incorporado en IAE o no
+	- Observaciones: En caso de querer especificar con un comentario algo relacionado al cumplimiento del criterio lo puede hacer agregando la observaci√≥n
 */
 CREATE PROCEDURE dbo.insertValoracionCriterios -- LISTO
 	-- IDs de las tablas intermedias
@@ -1051,7 +1057,7 @@ AS
 																	VC.IncorporadoIAE = @IncorporadoIAE AND
 																	VC.Observaciones = 	@Observaciones) = 1) -- existe un CYEA
 											BEGIN
-												RAISERROR('La valoraciÛn de criterio que desea agregar ya se encuentra registrada.',16,1);
+												RAISERROR('La valoraci√≥n de criterio que desea agregar ya se encuentra registrada.',16,1);
 												SET @success = 0
 												SELECT @success
 											END
@@ -1095,7 +1101,7 @@ AS
 					END;
 				ELSE
 					BEGIN
-						RAISERROR('La valoraciÛn que desea agregar no se encuentra registrada.',16,1);
+						RAISERROR('La valoraci√≥n que desea agregar no se encuentra registrada.',16,1);
 						SET @success = 0
 						SELECT @success
 					END;
@@ -1109,16 +1115,16 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de un CYEA
-	- ID_ValoracionCriterios: ID de la valoraciÛn de criterio a editar
+	Procedimiento almacenado encargado de la edici√≥n de un CYEA
+	- ID_ValoracionCriterios: ID de la valoraci√≥n de criterio a editar
 	- ID_CYEA: ID del nuevo criterio ajustado a valorar
-	- ID_Valoracion: ID de la nueva valoraciÛn que se le asignar· a la evaluaciÛn del criterio ajustado
+	- ID_Valoracion: ID de la nueva valoraci√≥n que se le asignar√° a la evaluaci√≥n del criterio ajustado
 	- ID_NivelIAE: ID del nuevo nivel de avance IAE seleccionado
 	- ID_Responsabilidad: ID de la nueva responsabilidad encargada de velar porque el criterio se cumpla (administrativa, carrera X, etc)
-	- FLOC: Nueva fecha lÌmite original para cumplimiento del criterio
-	- FLA: Nueva fecha lÌmite ajustada para cumplimiento del criterio
-	- IncorporadoIAE: Si o no en caso de que el criterio estÈ incorporado en IAE o no
-	- Observaciones: En caso de querer especificar con un comentario algo relacionado al cumplimiento del criterio lo puede hacer agregando la observaciÛn
+	- FLOC: Nueva fecha l√≠mite original para cumplimiento del criterio
+	- FLA: Nueva fecha l√≠mite ajustada para cumplimiento del criterio
+	- IncorporadoIAE: Si o no en caso de que el criterio est√© incorporado en IAE o no
+	- Observaciones: En caso de querer especificar con un comentario algo relacionado al cumplimiento del criterio lo puede hacer agregando la observaci√≥n
 
 */
 CREATE PROCEDURE dbo.editValoracionCriterios -- listo
@@ -1173,7 +1179,7 @@ AS
 							END
 						ELSE
 							BEGIN
-								RAISERROR('La valoraciÛn que desea agregar no se encuentra registrada.',16,1);
+								RAISERROR('La valoraci√≥n que desea agregar no se encuentra registrada.',16,1);
 								SET @success = 0
 								SELECT @success
 							END;
@@ -1187,15 +1193,15 @@ AS
 			END;
 		ELSE
 			BEGIN
-				RAISERROR('La valoraciÛn criterio que desea agregar no se encuentra registrada.',16,1);
+				RAISERROR('La valoraci√≥n criterio que desea agregar no se encuentra registrada.',16,1);
 				SET @success = 0
 				SELECT @success
 			END;	
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una valoraciÛn de criterio especÌfico 
-	- ID_ValoracionCriterio: ID de la ValoraciÛn de criterio a eliminar
+	Procedimiento almacenado encargado de la eliminaci√≥n de una valoraci√≥n de criterio espec√≠fico 
+	- ID_ValoracionCriterio: ID de la Valoraci√≥n de criterio a eliminar
 */
 CREATE PROCEDURE dbo.deleteValoracionCriterios -- listo
 	@ID_ValoracionCriterios		INT,
@@ -1210,7 +1216,7 @@ AS
 			END;
 		ELSE
 			BEGIN
-				RAISERROR('La valroaciÛn de criterio que desea eliminar no se encuentra registrada.',16,1);
+				RAISERROR('La valroaci√≥n de criterio que desea eliminar no se encuentra registrada.',16,1);
 				SET @success = 0
 				SELECT @success
 			END;	
@@ -1224,9 +1230,9 @@ GO
 ===============================================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn datos nuevos en esta tabla intermedia ValoracionCriterios_Responsables
-	- ID_ValoracionCriterios: ID de la valoraciÛn de criterio que se va a relacionar con el responsable
-	- ID_Responsable: ID del responsable de velar que la valoraciÛn criterio estÈ lista
+	Procedimiento almacenado encargado de la inserci√≥n datos nuevos en esta tabla intermedia ValoracionCriterios_Responsables
+	- ID_ValoracionCriterios: ID de la valoraci√≥n de criterio que se va a relacionar con el responsable
+	- ID_Responsable: ID del responsable de velar que la valoraci√≥n criterio est√© lista
 	- TipoResponsabilidad: Tipo de responsabilidad que se tiene en el cumplimiento del criterio, puede ser desde asistente hasta reponsable directo
 */
 CREATE PROCEDURE dbo.insertValoracionCriterios_Responsables -- listo
@@ -1251,13 +1257,13 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de los datos de la tabla intermedia ValoracionCriterios_Responsables
-	- ID_ValoracionCriterios_Old: ID de la valoraciÛn de criterio que se tenÌa relacionada con el responsable
-	- ID_Responsable_Old: ID del responsable que se tenÌa relacionado a cumplir con el criterio
-	- TipoResponsabilidad_Old: Tipo de responsabilidad que se tenÌa en el cumplimiento del criterio, puede ser desde asistente hasta reponsable directo
+	Procedimiento almacenado encargado de la edici√≥n de los datos de la tabla intermedia ValoracionCriterios_Responsables
+	- ID_ValoracionCriterios_Old: ID de la valoraci√≥n de criterio que se ten√≠a relacionada con el responsable
+	- ID_Responsable_Old: ID del responsable que se ten√≠a relacionado a cumplir con el criterio
+	- TipoResponsabilidad_Old: Tipo de responsabilidad que se ten√≠a en el cumplimiento del criterio, puede ser desde asistente hasta reponsable directo
 
-	- ID_ValoracionCriterios: ID de la nueva valoraciÛn de criterio que se va a relacionar con el responsable
-	- ID_Responsable: ID del nuevo responsable de velar que la valoraciÛn criterio estÈ lista
+	- ID_ValoracionCriterios: ID de la nueva valoraci√≥n de criterio que se va a relacionar con el responsable
+	- ID_Responsable: ID del nuevo responsable de velar que la valoraci√≥n criterio est√© lista
 	- TipoResponsabilidad: Nuevo tipo de responsabilidad que se tiene en el cumplimiento del criterio, puede ser desde asistente hasta reponsable directo
 
 */
@@ -1291,8 +1297,8 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una relaciÛn en la tabla intermedia ValoracionCriterios_Responsables
-	- ID_ValoracionCriterios: ID de la ValoraciÛn de criterio relacionada con el responsable de cumplir dicho criterio
+	Procedimiento almacenado encargado de la eliminaci√≥n de una relaci√≥n en la tabla intermedia ValoracionCriterios_Responsables
+	- ID_ValoracionCriterios: ID de la Valoraci√≥n de criterio relacionada con el responsable de cumplir dicho criterio
 	- ID_Responsable: Id del responsable
 */
 CREATE PROCEDURE dbo.deleteValoracionCriterios_Responsables -- listo
@@ -1324,9 +1330,9 @@ GO
 ==============================================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn datos nuevos en esta tabla intermedia entre AutoevaluacionAnual y ValoracionCriterios
-	- ID_ValoracionCriterio: ID de la ValoraciÛn de un criterio X
-	- ID_Autoeval: ID de la autoevaluaciÛn a la cual pertenece dicha evaluaciÛn de criterio
+	Procedimiento almacenado encargado de la inserci√≥n datos nuevos en esta tabla intermedia entre AutoevaluacionAnual y ValoracionCriterios
+	- ID_ValoracionCriterio: ID de la Valoraci√≥n de un criterio X
+	- ID_Autoeval: ID de la autoevaluaci√≥n a la cual pertenece dicha evaluaci√≥n de criterio
 */
 CREATE PROCEDURE dbo.insertAutoeval_ValoracionCriterios
 	@ID_ValoracionCriterio		INT,
@@ -1349,12 +1355,12 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de los datos de la tabla intermedia Autoeval_ValoracionCriterios
-	- ID_ValoracionCriterio_Old: ID de la ValoraciÛn anterior de un criterio X
-	- ID_Autoeval_Old: ID de la autoevaluaciÛn anterior a la cual pertenece dicha evaluaciÛn de criterio
+	Procedimiento almacenado encargado de la edici√≥n de los datos de la tabla intermedia Autoeval_ValoracionCriterios
+	- ID_ValoracionCriterio_Old: ID de la Valoraci√≥n anterior de un criterio X
+	- ID_Autoeval_Old: ID de la autoevaluaci√≥n anterior a la cual pertenece dicha evaluaci√≥n de criterio
 
-	- ID_ValoracionCriterio: Nuevo ID de la ValoraciÛn de un criterio X
-	- ID_Autoeval: Nuevo ID de la autoevaluaciÛn a la cual pertenece dicha evaluaciÛn de criterio
+	- ID_ValoracionCriterio: Nuevo ID de la Valoraci√≥n de un criterio X
+	- ID_Autoeval: Nuevo ID de la autoevaluaci√≥n a la cual pertenece dicha evaluaci√≥n de criterio
 */
 CREATE PROCEDURE dbo.editAutoeval_ValoracionCriterios -- listo
 	@ID_ValoracionCriterio_Old		INT,
@@ -1383,9 +1389,9 @@ AS
 	END;	
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una relacion en la tabla intermedia Autoeval_ValoracionCriterios
-	- ID_ValoracionCriterio: ID de la ValoraciÛn de un criterio X
-	- ID_Autoeval: ID de la autoevaluaciÛn a la cual pertenece dicha evaluaciÛn de criterio
+	Procedimiento almacenado encargado de la eliminaci√≥n de una relacion en la tabla intermedia Autoeval_ValoracionCriterios
+	- ID_ValoracionCriterio: ID de la Valoraci√≥n de un criterio X
+	- ID_Autoeval: ID de la autoevaluaci√≥n a la cual pertenece dicha evaluaci√≥n de criterio
 */
 CREATE PROCEDURE dbo.deleteAutoeval_ValoracionCriterios -- listo
 	@ID_ValoracionCriterio		INT,
@@ -1415,9 +1421,9 @@ GO
 =========================================================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn datos nuevos en esta tabla intermedia CumplimientosNominales_ValoracionCriterios
+	Procedimiento almacenado encargado de la inserci√≥n datos nuevos en esta tabla intermedia CumplimientosNominales_ValoracionCriterios
 	- ID_CumplimNominal: ID de la fecha de cumplimiento nominal del criterio
-	- ID_ValoracionCriterio: ID de la valoraciÛn que se le asignÛ al criterio
+	- ID_ValoracionCriterio: ID de la valoraci√≥n que se le asign√≥ al criterio
 */
 CREATE PROCEDURE dbo.insertCumplimNominal_ValoracionCriterios -- listo
 	@ID_CumplimNominal			INT,
@@ -1440,12 +1446,12 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de los datos de la tabla intermedia CumplimientosNominales_ValoracionCriterios
+	Procedimiento almacenado encargado de la edici√≥n de los datos de la tabla intermedia CumplimientosNominales_ValoracionCriterios
 	- ID_CumplimNominal_Old: ID anterior de la fecha de cumplimiento nominal del criterio
-	- ID_ValoracionCriterio_Old: ID anterior de la valoraciÛn que se le asignÛ al criterio
+	- ID_ValoracionCriterio_Old: ID anterior de la valoraci√≥n que se le asign√≥ al criterio
 
 	- ID_CumplimNominal: ID nuevo de la fecha de cumplimiento nominal del criterio
-	- ID_ValoracionCriterio: ID nuevo de la valoraciÛn que se le asignar· al criterio
+	- ID_ValoracionCriterio: ID nuevo de la valoraci√≥n que se le asignar√° al criterio
 */
 CREATE PROCEDURE dbo.editCumplimNominal_ValoracionCriterios -- LISTO
 	@ID_CumplimNominal_Old			INT,
@@ -1474,9 +1480,9 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una relacion en la tabla intermedia CumplimientosNominales_ValoracionCriterios
+	Procedimiento almacenado encargado de la eliminaci√≥n de una relacion en la tabla intermedia CumplimientosNominales_ValoracionCriterios
 	- ID_CumplimNominal: ID de la fecha de cumplimiento nominal del criterio a eliminar
-	- ID_ValoracionCriterio: ID de la valoraciÛn que se le asignar· al criterio a eliminar
+	- ID_ValoracionCriterio: ID de la valoraci√≥n que se le asignar√° al criterio a eliminar
 */
 CREATE PROCEDURE dbo.deleteCumplimNominal_ValoracionCriterios -- LISTO
 	@ID_CumplimNominal			INT,
@@ -1504,8 +1510,8 @@ GO
 ============================================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn datos nuevos en esta tabla intermedia ValoracionCriterios_Evidencias
-	- ID_ValoracionCriterios: ID de la valoraciÛn de criterio a insertar
+	Procedimiento almacenado encargado de la inserci√≥n datos nuevos en esta tabla intermedia ValoracionCriterios_Evidencias
+	- ID_ValoracionCriterios: ID de la valoraci√≥n de criterio a insertar
 	- ID_Evidencia: ID de la evidencia a relacionar con el criterio
 */
 CREATE PROCEDURE dbo.insertValoracionCriterios_Evidencia -- LISTO
@@ -1529,11 +1535,11 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de los datos de la tabla intermedia ValoracionCriterios_Evidencias
-	- ID_ValoracionCriterios_Old: ID de la anterior valoraciÛn de criterio
+	Procedimiento almacenado encargado de la edici√≥n de los datos de la tabla intermedia ValoracionCriterios_Evidencias
+	- ID_ValoracionCriterios_Old: ID de la anterior valoraci√≥n de criterio
 	- ID_Evidencia_Old: ID de la anterior evidencia a relacionar con el criterio valorado
 
-	- ID_ValoracionCriterios: ID de la nueva valoraciÛn de criterio
+	- ID_ValoracionCriterios: ID de la nueva valoraci√≥n de criterio
 	- ID_Evidencia: ID de la nueva evidencia a relacionar con el criterio valorado
 */
 CREATE PROCEDURE dbo.editValoracionCriterios_Evidencia
@@ -1563,8 +1569,8 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de una relacion en la tabla intermedia ValoracionCriterios_Evidencias
-	- ID_ValoracionCriterios: ID de la valoraciÛn de criterio relacionada a una evidencia que se quiere eliminar
+	Procedimiento almacenado encargado de la eliminaci√≥n de una relacion en la tabla intermedia ValoracionCriterios_Evidencias
+	- ID_ValoracionCriterios: ID de la valoraci√≥n de criterio relacionada a una evidencia que se quiere eliminar
 	- ID_Evidencia: ID de la evidencia relacionada con el criterio que se desea eliminar
 */
 CREATE PROCEDURE dbo.deleteValoracionCriterios_Evidencia
@@ -1594,8 +1600,8 @@ GO
 ===============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn datos nuevos en esta tabla Responsabilidad
-	- Responsabilidad: Tipo de responsabilidad que se tiene sobre el cumplimiento de un criterio especÌfico
+	Procedimiento almacenado encargado de la inserci√≥n datos nuevos en esta tabla Responsabilidad
+	- Responsabilidad: Tipo de responsabilidad que se tiene sobre el cumplimiento de un criterio espec√≠fico
 */
 CREATE PROCEDURE dbo.insertResponsabilidad -- LISTO
 	@Responsabilidad	VARCHAR(50),
@@ -1617,9 +1623,9 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de los datos de la tabla Responsabilidad
+	Procedimiento almacenado encargado de la edici√≥n de los datos de la tabla Responsabilidad
 	- ID_Responsabilidad: ID de la responsabilidad a editar
-	- Responsabilidad: Nueva descripciÛn de la responsabilidad
+	- Responsabilidad: Nueva descripci√≥n de la responsabilidad
 */
 CREATE PROCEDURE dbo.editResponsabilidad
 	@ID_Responsabilidad			INT,
@@ -1644,7 +1650,7 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn en la tabla Responsabilidad
+	Procedimiento almacenado encargado de la eliminaci√≥n en la tabla Responsabilidad
 	- ID_Responsabilidad: ID de la responsabilidad a eliminar
 */
 CREATE PROCEDURE dbo.deleteResponsabilidad
@@ -1673,9 +1679,9 @@ GO
 ============================================================
 */
 /*
-	Procedimiento almacenado encargado de la inserciÛn de nuevos CYEA
+	Procedimiento almacenado encargado de la inserci√≥n de nuevos CYEA
 	- ID_CYE: ID del CYE que tiene relacionado 
-	- CriterioAjustado: Criterio impuesto por SINAES ajustado a una sede y a una carrera en especÌfico
+	- CriterioAjustado: Criterio impuesto por SINAES ajustado a una sede y a una carrera en espec√≠fico
 */
 CREATE PROCEDURE dbo.insertCYEA -- listo
 	@ID_CYE					INT,
@@ -1707,10 +1713,10 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la ediciÛn de CYEA
+	Procedimiento almacenado encargado de la edici√≥n de CYEA
 	- ID_CYEA: ID del CYEA a editar
 	- ID_CYE: ID del CYE que tiene relacionado 
-	- CriterioAjustado: Nuevo criterio impuesto por SINAES pero ajustado a una sede y a una carrera en especÌfico
+	- CriterioAjustado: Nuevo criterio impuesto por SINAES pero ajustado a una sede y a una carrera en espec√≠fico
 */
 CREATE PROCEDURE dbo.editCYEA -- listo
 	@ID_CYEA				INT,
@@ -1746,7 +1752,7 @@ AS
 	END;
 GO
 /*
-	Procedimiento almacenado encargado de la eliminaciÛn de un CYEA en especÌfico
+	Procedimiento almacenado encargado de la eliminaci√≥n de un CYEA en espec√≠fico
 	- ID_CYEA: ID del criterio que se desea eliminar
 */
 CREATE PROCEDURE dbo.deleteCYEA -- listo
@@ -1772,7 +1778,7 @@ GO
 
 
 /*
-	FunciÛn encargada de devolver una tabla con todos los ID que recibe concatenado en un solo string por par·metro y separado con coma (,)
+	Funci√≥n encargada de devolver una tabla con todos los ID que recibe concatenado en un solo string por par√°metro y separado con coma (,)
 */
 CREATE FUNCTION dbo.splitString (
 	@stringToSplit VARCHAR(MAX) 
@@ -1907,7 +1913,7 @@ END
 	BEGIN
 		
 		print(@ID_ValorCriter_CumpliNomin)
-		--aquÌ uso las variables
+		--aqu√≠ uso las variables
 		FETCH NEXT FROM CURSOR_IDs_ValorCriter_CumpliNomin INTO @ID_ValorCriter_CumpliNomin -- next registro
 	END
 
@@ -1931,7 +1937,7 @@ WHILE @@FETCH_STATUS = 0
 	BEGIN
 	insert into Autoeval_ValoracionCriterios (ID_Autoeval,ID_ValoracionCriterios) values (1,2)
 		print(@ID)
-		--aquÌ uso las variables
+		--aqu√≠ uso las variables
 		FETCH NEXT FROM CURSOR_IDs_ValoracionCriterio_and_Evidencias INTO @ID -- next registro
 	END
 

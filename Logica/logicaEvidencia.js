@@ -8,7 +8,7 @@ var consultsPreparerEvidencia = require('../ConsultsPreparer/consultsPreparerEvi
 // inserta Evidencia
 exports.insertarEvidencia = function(datos, callback) {
     consultsPreparerEvidencia.insertEvidencia(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "Ya existe la evidencia que desea insertar.";
+        msg = (response.error == 1) ? "Error de conexión" : "Error al insertar datos.";
         if (response.success) {
             callback({
                 success: true,

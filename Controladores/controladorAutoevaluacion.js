@@ -6,7 +6,7 @@
 var logicaAutoevaluacion = require('../Logica/logicaAutoevaluacion');
 
 exports.insertAutoevaluacion = function(rRequest, rResponse){
-    logicaAutoevaluacion.insertarAutoevaluacion(rRequest.query, function(data){
+    logicaAutoevaluacion.insertarAutoevaluacion(rRequest.body, function(data){
         rResponse.send(data);
     })
 };

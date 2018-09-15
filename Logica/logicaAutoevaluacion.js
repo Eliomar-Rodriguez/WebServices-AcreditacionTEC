@@ -8,7 +8,7 @@ var consultsPreparerAutoevaluacion = require('../ConsultsPreparer/consultsPrepar
 // inserta Autoevaluacion
 exports.insertarAutoevaluacion = function(datos, callback) {
     consultsPreparerAutoevaluacion.insertAutoevaluacion(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "Ya existe la Autoevaluación que desea insertar.";
+        msg = (response.error == 1) ? "Error de conexión" : "Error al insertar datos";
         if (response.success) {
             callback({
                 success: true,

@@ -4,15 +4,15 @@ var sqlConection = require('../ConexionDBs/sqlConection');
 
 /*
 ===========================
->  CRUD's de Componentes  <
+>  CRUD's de Responsables         <
 >   - insert              <
 >   - select              <
 >   - edit                <
 >   - delete              <
 ===========================
 */
-exports.insertComponente = function insertComponente(datos, callback) {
-    var request = new Request('insertComponente', function(err) { // nombre de procedimiento en la base de datos
+exports.insertResponsable = function insertResponsable(datos, callback) {
+    var request = new Request('insertResponsable', function(err) { // nombre de procedimiento en la base de datos
         if (err) {
             callback({
                 success: false,
@@ -23,8 +23,8 @@ exports.insertComponente = function insertComponente(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_Dimension', TYPES.Int, datos.ID_Dimension);
-    request.addParameter('Componente', TYPES.VarChar, datos.Componente);
+    request.addParameter('Correo', TYPES.VarChar, datos.Correo);
+
     request.addOutputParameter('success', TYPES.Bit);
     
     sqlConection.callProcedure(request, function(res) {
@@ -32,8 +32,8 @@ exports.insertComponente = function insertComponente(datos, callback) {
     });
 }
 
-exports.selectComponente = function(callback) {
-    var query = "SELECT C.ID as ID_Componente, C.Componente, D.Dimension FROM Componentes AS C INNER JOIN (SELECT * FROM Dimensiones) AS D ON C.ID_Dimension = D.ID";
+exports.selectResponsables = function(callback) { 
+    var query = "SELECT * FROM Resposables";
     var request = new Request(query, function(err) {
         if (err) {
             callback({
@@ -41,17 +41,17 @@ exports.selectComponente = function(callback) {
                 data: err,
                 error: request.error,
                 title: "Error",
-                message: "Error obteniendo los datos. Revise su conexión",
+                message: "Error obteniendo los datos. Revise su conexión.",
                 type: "error"
             });
         }
     });
-    // se usa executeRequest porque es el destinado para escribir consultas desde aca en vez de llamar procedimientos almacenados
+    // se usa executeRequest porque es el destinado para escribir consultas desde aca (StringQuery) en vez de llamar procedimientos almacenados
     sqlConection.executeRequest(request, callback); 
 }
 
-exports.editComponente = function editComponente(datos, callback) {
-    var request = new Request('editComponente', function(err) {
+exports.editResponsable = function editResponsable(datos, callback) {
+    var request = new Request('editResponsable', function(err) {
         if (err) {
             callback({
                 success: false,
@@ -63,22 +63,20 @@ exports.editComponente = function editComponente(datos, callback) {
         }
     });
 
-    request.addParameter('ID_Componente', TYPES.Int, datos.ID_Componente);
-    request.addParameter('ID_Dimension', TYPES.Int, datos.ID_Dimension);
-    request.addParameter('nombreComponente', TYPES.VarChar, datos.Componente);
-
+    request.addParameter('ID_Responsable', TYPES.Int, datos.ID_Responsable);
+    request.addParameter('Correo', TYPES.VarChar, datos.Correo);
+    
     request.addOutputParameter('success', TYPES.Bit);
 
     sqlConection.callProcedure(request, callback);
 };
 // DELETE 
-exports.deleteComponente = function deleteComponente(datos, callback) {
-    var request = new Request('deleteComponente', function(err) {
+exports.deleteResponsable = function deleteResponsable(datos, callback) {
+    var request = new Request('deleteResponsable', function(err) {
         if (err) {
-            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el Componente";
+            msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el Responsable deseado.";
             callback({
                 success: false,
-                data: err,
                 error: request.error,
                 title: "Error",
                 message: msg,
@@ -86,7 +84,7 @@ exports.deleteComponente = function deleteComponente(datos, callback) {
             })
         }
     });
-    request.addParameter('ID_Componente', TYPES.Int, datos.ID);
+    request.addParameter('ID_Responsable', TYPES.Int, datos.ID);
     
     request.addOutputParameter('success', TYPES.Bit);
 

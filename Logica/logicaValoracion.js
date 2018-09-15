@@ -8,7 +8,7 @@ var consultsPreparerValoracion = require('../ConsultsPreparer/consultsPreparerVa
 // inserta Valoracion
 exports.insertarValoracion = function(datos, callback) {
     consultsPreparerValoracion.insertValoracion(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "Ya existe la valoración que desea insertar.";
+        msg = (response.error == 1) ? "Error de conexión" : "Error al insertar datos.";
         if (response.success) {
             callback({
                 success: true,

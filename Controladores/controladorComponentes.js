@@ -6,13 +6,13 @@
 var logicaComponente = require('../Logica/logicaComponentes');
 
 exports.insertComponente = function(rRequest, rResponse){
-    console.log(rRequest.query);
-    logicaComponente.insertarComponente(rRequest.query, function(data){
+    logicaComponente.insertarComponente(rRequest.body, function(data){
         rResponse.send(data);
     })
 };
 
 exports.editComponente = function(rRequest, rResponse){
+    console.log(rRequest.body)
     logicaComponente.editarComponente(rRequest.body, function(data){
         rResponse.send(data);
     });
@@ -25,7 +25,6 @@ exports.selectComponente = function(rRequest, rResponse){
 };
 
 exports.deleteComponente = function(rRequest, rResponse){
-    console.log(rRequest.body);
     logicaComponente.eliminarComponente(rRequest.query, function(data){
         rResponse.send(data);
     });

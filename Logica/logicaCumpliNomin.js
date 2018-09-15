@@ -8,7 +8,7 @@ var consultsPreparerCumpliNomin = require('../ConsultsPreparer/consultsPreparerC
 // inserta Cumplimiento Nominal
 exports.insertarCumpliNomin = function(datos, callback) {
     consultsPreparerCumpliNomin.insertCumpliNomin(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "Ya existe el Cumplimiento Nominal que desea insertar.";
+        msg = (response.error == 1) ? "Error de conexión" : "Error al insertar datos.";
         if (response.success) {
             callback({
                 success: true,

@@ -1,26 +1,30 @@
 /*
 =================================================
-=   Autor: Eliomar Antonio Rodríguez Arguedas   =
+=   Author: Eliomar Antonio Rodríguez Arguedas   =
 =                                               =
 =   Web Service para el proyecto Acreditación   =
 =   TEC                                         =
+=   The Back-End implements all HTTP VERBS      =
+=   so thats why it works with REST=
+=   REST, and is very modularized               =
 =================================================
 
 ===============================================================
->  Archivos donde estan los controladores en el servidor.     <
+>  Files where are the controllers on the server              <
 ===============================================================
 */
-var componenteCtrl = require('./Controladores/controladorComponentes'); // controlador de Componentes
-var dimensionCtrl = require('./Controladores/controladorDimensiones'); // controlador de Dimensiones
-var CYECtrl = require('./Controladores/controladorCYE'); // controlador de CYE
-var CYEACtrl = require('./Controladores/controladorCYEA'); // controlador de CYEA
+var componenteCtrl = require('./Controladores/controladorComponentes'); // components controller
+var dimensionCtrl = require('./Controladores/controladorDimensiones'); // dimentions controller
+var CYECtrl = require('./Controladores/controladorCYE'); // CYE controller
+var CYEACtrl = require('./Controladores/controladorCYEA'); // CYEA controller
 var NivelesIAECtrl = require('./Controladores/controladorNivelesIAE'); // controlador de NivelesIAE
 var CumpliNominCtrl = require('./Controladores/controladorCumpliNomin'); // controlador de Cumplimientos Nominales
 var ValoracionesCtrl = require('./Controladores/controladorValoracion'); // controlador de Valoraciones
 var EvidenciasCtrl = require('./Controladores/controladorEvidencias'); // controlador de Evidencias
 var AutoevaluacionCtrl = require('./Controladores/controladorAutoevaluacion'); // controlador de Autoevaluaciones
 var ValoracionCriteriosCtrl = require('./Controladores/controladorValoracionCriterios') // controlador de Valoraciones de Criterios
-
+var ResponsablesCtrl = require('./Controladores/controladorResponsables'); // controlador de responsables
+var ResponsabilidadesCtrl = require('./Controladores/controladorResponsabilidades');
 /*
 ===============================================================================
 >  Configuraciones principales del servidor, con esto escucha las peticiones  <
@@ -46,24 +50,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-/*
-===========================================
->  Inicio de las direcciones (Endpoints)  <
-===========================================
-
-/** tipos de consulta, implementar!
- * post insert
- * get  select
- * put  edit
- * delete   delete
- */
-/*
-====================================================
->     EndPoints de las Valoracion de Criterios      < // bien todos            NO ESTA COMPLETO!!!!!!!
-====================================================
-*/
-let router = express.Router;
-
 var html = '<center>'+
     '<p style="padding-top:10%">'+
         '<h2>'+
@@ -87,6 +73,18 @@ app.get('/', (req, res) => {
 app.delete('/', (req, res) => {    
     res.send(html);
 })
+
+/*
+===========================================
+>  Inicio de las direcciones (Endpoints)  <
+===========================================
+
+/** tipos de consulta, implementar!
+ * post insert
+ * get  select
+ * put  edit
+ * delete   delete
+ */
 
 /*
 =============================================
@@ -147,6 +145,27 @@ app.post('/insertNivelIAE', NivelesIAECtrl.insertNivelIAE);
 app.get('/selectNivelIAE', NivelesIAECtrl.selectNivelIAE);
 app.put('/editNivelIAE', NivelesIAECtrl.editNivelIAE);
 app.delete('/deleteNivelIAE', NivelesIAECtrl.deleteNivelIAE);
+
+/*
+==================================
+> EndPoints de los Responsables  < // bien todos
+==================================
+*/
+app.post('/insertResponsable', ResponsablesCtrl.insertResponsable);
+app.get('/selectResponsables', ResponsablesCtrl.selectResponsables);
+app.put('/editResponsable', ResponsablesCtrl.editResponsable);
+app.delete('/deleteResponsable', ResponsablesCtrl.deleteResponsable);
+
+/*
+==================================
+> EndPoints de los Responsables  < // bien todos
+==================================
+*/
+app.post('/insertResponsabilidad', ResponsabilidadesCtrl.insertResponsabilidad);
+app.get('/selectResponsabilidades', ResponsabilidadesCtrl.selectResponsabilidades);
+app.put('/editResponsabilidad', ResponsabilidadesCtrl.editResponsabilidad);
+app.delete('/deleteResponsabilidad', ResponsabilidadesCtrl.deleteResponsabilidad);
+
 
 /*
 ===============================================

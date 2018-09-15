@@ -8,7 +8,7 @@ var consultsPreparerCYEA = require('../ConsultsPreparer/consultsPreparerCYEA');
 // inserta CYEA
 exports.insertarCYEA = function(datos, callback) {
     consultsPreparerCYEA.insertCYEA(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "Ya existe el Criterio y Estandar Ajustado que desea insertar.";
+        msg = (response.error == 1) ? "Error de conexión" : "Error al insertar datos.";
         if (response.success) {
             callback({
                 success: true,

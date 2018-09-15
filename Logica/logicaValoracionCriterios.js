@@ -8,7 +8,7 @@ var consultsPreparerValoracionCriterios = require('../ConsultsPreparer/consultsP
 // inserta ValoracionCriterio
 exports.insertarValoracionCriterio = function(datos, callback) {
     consultsPreparerValoracionCriterios.insertValoracionCriterio(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "Ya existe la Valoración de criterio que desea insertar.";
+        msg = (response.error == 1) ? "Error de conexión" : "Error al insertar datos.";
         if (response.success) {
             callback({
                 success: true,
@@ -31,7 +31,7 @@ exports.insertarValoracionCriterio = function(datos, callback) {
 
 // seleccionar ValoracionCriterio
 exports.seleccionarValoracionCriterios = function(callback) {
-    consultsPreparerValoracionCriterios.selectValoracionCriterios( function(response) {
+    consultsPreparerValoracionCriterios.selectValoracionCriterio( function(response) {
         msg = (response.error == 1) ? "Error de conexión" : "No se puede seleccionar las valoraciones de criterios";
         if (response.success) {
             callback({

@@ -1,20 +1,20 @@
 /*
 ===============================================================================================
->  BackEnd de Dimensiones, se encarga de realizar las llamadas necesarias a la base de datos  <
+> BackEnd de Responsables, se encarga de realizar las llamadas necesarias a la base de datos  <
 ===============================================================================================
 */
-var consultsPreparerDimensiones = require('../ConsultsPreparer/consultsPreparerDimensiones');
+var consultsPreparerResponsable = require('../ConsultsPreparer/consultsPreparerResponsables');
 
-// inserta dimensiones
-exports.insertarDimension = function(datos, callback) {
-    consultsPreparerDimensiones.insertDimension(datos, function(response) {
+// inserta Responsable
+exports.insertarResponsable = function(datos, callback) {
+    consultsPreparerResponsable.insertResponsable(datos, function(response) {
         msg = (response.error == 1) ? "Error de conexión" : "Error al insertar datos.";
         if (response.success) {
             callback({
                 success: true,
                 error: response.error,
-                title: "Dimensión agregada",
-                message: "Dimensión agregada con exito",
+                title: "Responsable agregado",
+                message: "Responsable agregado con éxito",
                 type: "success"
             })
         } else {
@@ -29,19 +29,18 @@ exports.insertarDimension = function(datos, callback) {
     });
 };
 
-// seleccionar dimension
-exports.seleccionarDimension = function(callback) {
-    consultsPreparerDimensiones.selectDimension(function(response) {
-        console.log(response.success)
-        msg = (response.error == 1) ? "Error de conexión" : "No se puede seleccionar las dimensiones";
-        if (response.success) { 
+// seleccionar Responsables
+exports.seleccionarResponsables = function(callback) {
+    consultsPreparerResponsable.selectResponsables( function(response) {
+        if (response.success) {
+            msg = (response.error == 1) ? "Error de conexión" : "No se puede seleccionar los Responsables";
             callback({
                 success: true,
                 error: response.error,
                 title: "Selección exitosa.",
-                message: "La selección de todas las Dimensiones a sido exitosa",
+                message: "La selección de todos los Responsables a sido exitosa",
                 type: "success",
-                data: response.data            
+                data: response.data           
             })
         } else {
             callback({
@@ -55,16 +54,16 @@ exports.seleccionarDimension = function(callback) {
     });
 };
 
-// editar dimension
-exports.editarDimension = function(datos, callback) {
-    consultsPreparerDimensiones.editDimension(datos, function(response) {
-        msg = (response.error === 1) ? "Error de conexión" : "No se puede modificar la dimensión";
+// editar Responsable
+exports.editarResponsable = function(datos, callback) {
+    consultsPreparerResponsable.editResponsable(datos, function(response) {
+        msg = (response.error === 1) ? "Error de conexión" : "No se puede modificar el Responsable";
         if (response.success) {
             callback({
                 success: true,
                 error: response.error,
-                title: "Dimensión editada",
-                message: "Dimensión editada con exito",
+                title: "Responsable editado",
+                message: "Responsable editado con éxito",
                 type: "success"
             })
         } else {
@@ -79,16 +78,16 @@ exports.editarDimension = function(datos, callback) {
     });
 };
 
-// eliminar dimension
-exports.eliminarDimension = function(datos, callback) {
-    consultsPreparerDimensiones.deleteDimension(datos, function(response) {
-        msg = (response.error === 1) ? "Error de conexión" : "No se puede eliminar la dimensión";
+// eliminar Responsable
+exports.eliminarResponsable = function(datos, callback) {
+    consultsPreparerResponsable.deleteResponsable(datos, function(response) {
+        msg = (response.error === 1) ? "Error de conexión" : "No se puede eliminar el Responsable";
         if (response.success) {
             callback({
                 success: true,
                 error: response.error,
-                title: "Dimensión eliminada",
-                message: "Dimensión eliminada con éxito",
+                title: "Responsable eliminado",
+                message: "Responsable eliminado con éxito",
                 type: "success"
             })
         } else {

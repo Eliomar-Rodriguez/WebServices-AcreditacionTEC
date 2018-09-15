@@ -11,9 +11,12 @@ exports.insertCumpliNomin = function(rRequest, rResponse){
     })
 };
 
-exports.editCumpliNomin = function(rRequest, rResponse){
-    console.log(rRequest.query);
+exports.editCumpliNomin = function(rRequest, rResponse){   
+    console.log("\n\n===============================") 
+    console.log(rRequest.body);
+    console.log("===============================\n\n") 
     logicaCumpliNomin.editarCumpliNomin(rRequest.body, function(data){
+        console.log(data)
         rResponse.send(data);
     });
 };

@@ -72,7 +72,7 @@ exports.editDimension = function editDimension(datos, callback) {
         console.log(error);
     }    
 };
-// DELETE 
+// DELETE
 exports.deleteDimension = function deleteDimension(datos, callback) {
     var request = new Request('deleteDimension', function(err) {
         if (err) {

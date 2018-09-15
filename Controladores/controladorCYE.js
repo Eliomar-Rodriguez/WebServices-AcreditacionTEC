@@ -19,7 +19,7 @@ exports.editCYE = function(rRequest, rResponse){
 
 exports.selectCYE = function(rRequest, rResponse){
     logicaCYE.seleccionarCYE(function(data){
-        rResponse.send(data);
+        rResponse.send(data);   
     })
 };
 

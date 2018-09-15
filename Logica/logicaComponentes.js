@@ -8,7 +8,9 @@ var consultsPreparerComponente = require('../ConsultsPreparer/consultsPreparerCo
 // inserta componentes
 exports.insertarComponente = function(datos, callback) {
     consultsPreparerComponente.insertComponente(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "Ya existe el Componente que desea insertar.";
+        console.log(response);
+        console.log(response.error);
+        msg = (response.error == 1) ? "Error de conexión" : "Error al insertar datos.";
         if (response.success) {
             callback({
                 success: true,
@@ -31,7 +33,7 @@ exports.insertarComponente = function(datos, callback) {
 
 // seleccionar componentes
 exports.seleccionarComponente = function(callback) {
-    consultsPreparerComponente.selectComponente( function(response) {
+    consultsPreparerComponente.selectComponente(function(response) {
         msg = (response.error == 1) ? "Error de conexión" : "No se puede seleccionar los Componentes";
         if (response.success) {
             callback({

@@ -8,7 +8,7 @@ var consultsPreparerCYE = require('../ConsultsPreparer/consultsPreparerCYE');
 // inserta CYE
 exports.insertarCYE = function(datos, callback) {
     consultsPreparerCYE.insertCYE(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "Ya existe el Criterio y Estandar que desea insertar.";
+        msg = (response.error == 1) ? "Error de conexión" : "Error al insertar datos.";
         if (response.success) {
             callback({
                 success: true,

@@ -11,7 +11,7 @@ var sqlConection = require('../ConexionDBs/sqlConection');
 >   - delete              <
 ===========================
 */
-exports.insertValoracion = function insertValoracion(datos, callback) {
+exports.insertValoracion = function (datos, callback) {
     var request = new Request('insertValoracion', function(err) { // nombre de procedimiento en la base de datos
         if (err) {
             callback({
@@ -23,8 +23,13 @@ exports.insertValoracion = function insertValoracion(datos, callback) {
             })
         }
     });
+    console.log("\n\n=============================")
+    console.log(datos)
+    console.log("=============================\n\n")
     request.addParameter('Valoracion', TYPES.VarChar, datos.Valoracion);
+    request.addParameter('Posicion', TYPES.Float, datos.Posicion);
 
+    console.log*(datos.Posicion);
     request.addOutputParameter('success', TYPES.Bit);
     
     sqlConection.callProcedure(request, function(res) {
@@ -33,7 +38,7 @@ exports.insertValoracion = function insertValoracion(datos, callback) {
 }
 
 exports.selectValoracion = function(callback) {  
-    var query = "SELECT * FROM Valoraciones"; //Agregar procedimiento almacenado para esta consulta
+    var query = "SELECT * FROM Valoraciones ORDER BY Posicion DESC"; //Agregar procedimiento almacenado para esta consulta
     var request = new Request(query, function(err) {
         if (err) {
             callback({
@@ -50,7 +55,7 @@ exports.selectValoracion = function(callback) {
     sqlConection.executeRequest(request, callback); 
 }
 
-exports.editValoracion = function editValoracion(datos, callback) {
+exports.editValoracion = function(datos, callback) {
     var request = new Request('editValoracion', function(err) {
         if (err) {
             callback({
@@ -64,14 +69,15 @@ exports.editValoracion = function editValoracion(datos, callback) {
     });
 
     request.addParameter('ID_Valoracion', TYPES.Int, datos.ID);
-    request.addParameter('Valoracion', TYPES.VarChar, datos.Valoracion); 
+    request.addParameter('Valoracion', TYPES.VarChar, datos.Valoracion);
+    request.addParameter('Posicion', TYPES.Float, datos.Posicion); 
     
     request.addOutputParameter('success', TYPES.Bit);
 
     sqlConection.callProcedure(request, callback);
 };
 // DELETE 
-exports.deleteValoracion = function deleteValoracion(datos, callback) {
+exports.deleteValoracion = function(datos, callback) {
     var request = new Request('deleteValoracion', function(err) {
         if (err) {
             msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar la Valoración";

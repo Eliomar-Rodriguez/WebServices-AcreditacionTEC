@@ -11,7 +11,7 @@ var sqlConection = require('../ConexionDBs/sqlConection');
 >   - delete                 <
 ==============================
 */
-exports.insertCumpliNomin = function insertCumpliNomin(datos, callback) {
+exports.insertCumpliNomin = function (datos, callback) {
     var request = new Request('insertCumplimientoNominal', function(err) { // nombre de procedimiento en la base de datos
         if (err) {
             callback({
@@ -23,7 +23,9 @@ exports.insertCumpliNomin = function insertCumpliNomin(datos, callback) {
             })
         }
     });
+    
     request.addParameter('FechaCumplimiento', TYPES.Date, datos.FechaCumplimiento);
+    request.addParameter('Descripcion', TYPES.VarChar, datos.Descripcion);
 
     request.addOutputParameter('success', TYPES.Bit);
     
@@ -50,7 +52,7 @@ exports.selectCumpliNomin = function(callback) {
     sqlConection.executeRequest(request, callback); 
 }
 
-exports.editCumpliNomin = function editCumpliNomin(datos, callback) {
+exports.editCumpliNomin = function(datos, callback) {
     var request = new Request('editCumplimientoNominal', function(err) {
         if (err) {
             callback({
@@ -62,15 +64,19 @@ exports.editCumpliNomin = function editCumpliNomin(datos, callback) {
             })
         }
     });
+    console.log("\n\n============Cumplimiento nominal===================") 
+    console.log(datos)    
+    console.log("===============================\n\n") 
     request.addParameter('ID_CumpliNominal', TYPES.Int, datos.ID);
-    request.addParameter('FechaCumplimiento', TYPES.Date, datos.FechaCumplimiento); 
+    request.addParameter('FechaCumplimiento', TYPES.Date, datos.FechaCumplimiento);     
+    request.addParameter('Descripcion', TYPES.VarChar, datos.Descripcion);
     
     request.addOutputParameter('success', TYPES.Bit);
 
     sqlConection.callProcedure(request, callback);
 };
 // DELETE 
-exports.deleteCumpliNomin = function deleteCumpliNomin(datos, callback) {
+exports.deleteCumpliNomin = function(datos, callback) {
     var request = new Request('deleteCumplimientoNominal', function(err) {
         if (err) {
             msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar el Cumplimiento Nominal";

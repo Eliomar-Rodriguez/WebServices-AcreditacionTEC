@@ -51,7 +51,7 @@ exports.selectCYEA = function(callback) {
     sqlConection.executeRequest(request, callback); 
 }
 
-exports.editCYEA = function editCYEA(datos, callback) {
+exports.editCYEA = function(datos, callback) {
     var request = new Request('editCYEA', function(err) {
         if (err) {
             callback({
@@ -64,7 +64,7 @@ exports.editCYEA = function editCYEA(datos, callback) {
         }
     });
 
-    request.addParameter('ID_CYEA', TYPES.Int, datos.ID_CYEA);
+    request.addParameter('ID_CYEA', TYPES.Int, datos.ID);
     request.addParameter('ID_CYE', TYPES.Int, datos.ID_CYE);
     request.addParameter('CriterioAjustado', TYPES.VarChar, datos.CriterioAjustado);
     
@@ -73,7 +73,7 @@ exports.editCYEA = function editCYEA(datos, callback) {
     sqlConection.callProcedure(request, callback);
 };
 // DELETE 
-exports.deleteCYEA = function deleteCYEA(datos, callback) {
+exports.deleteCYEA = function(datos, callback) {
     var request = new Request('deleteCYEA', function(err) {
         if (err) {
             msg = (request.error == 1) ? "Error de conexión" : "No se puede eliminar es CYEA deseado.";

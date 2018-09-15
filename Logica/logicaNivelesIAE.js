@@ -8,7 +8,7 @@ var consultsPreparerNivelesIAE = require('../ConsultsPreparer/consultsPreparerNi
 // inserta NivelIAE
 exports.insertarNivelIAE = function(datos, callback) {
     consultsPreparerNivelesIAE.insertNivelIAE(datos, function(response) {
-        msg = (response.error == 1) ? "Error de conexión" : "Ya existe el Nivel de avance IAE que desea insertar.";
+        msg = (response.error == 1) ? "Error de conexión" : "Error al insertar datos.";
         if (response.success) {
             callback({
                 success: true,
